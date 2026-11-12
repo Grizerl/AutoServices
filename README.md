@@ -9,7 +9,7 @@
 ![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
 ![SCSS](https://img.shields.io/badge/SCSS-CC6699?logo=sass&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
-![Tests](https://img.shields.io/badge/tests-110%20passing-2e9e57)
+![Tests](https://img.shields.io/badge/tests-113%20passing-2e9e57)
 
 </div>
 
@@ -35,7 +35,7 @@
 
 ### Public website
 - **Home page** with hero slider, services, advantages, featured cars, team, testimonials slider and a booking form.
-- **Cars for sale**: catalog with search, brand / fuel / transmission / price filters, sorting and pagination (filters work **without page reload**); a page for every car with specs, discount badge and a *Request this car* form.
+- **Cars for sale**: catalog (served from 640×480 thumbnails) with search, brand / fuel / transmission / price filters, sorting and pagination (filters work **without page reload**); a page for every car with specs, discount badge and a *Request this car* form.
 - **Monthly subscriptions**: plans stored in the database, monthly/yearly price toggle, checkout form and a confirmation with a request number. No payment is taken online – a manager confirms every request.
 - **About**, **News & FAQ** (sliders and an accordion), **Partners** and **Contacts** (details, map, question form) pages.
 - Responsive from 320 px up, accessible burger menu, scroll animations (respecting `prefers-reduced-motion`), back-to-top button, sticky header.
@@ -45,7 +45,7 @@
 ### Admin panel (AdminLTE)
 - Dashboard with counters and notifications for new requests.
 - **Blog posts**, **reviews**, **team members** (photo upload), **repair requests** (status workflow), **questions**.
-- **Cars for sale**: photo upload, Available / Reserved / Sold status, old price → discount badge, featured flag; **car requests** (New → Contacted → Closed).
+- **Cars for sale**: photo upload (thumbnails are created automatically), Available / Reserved / Sold status, old price → discount badge, featured flag; **car requests** (New → Contacted → Closed).
 - **Subscription plans** and **subscriptions**: activating a subscription fills in its term automatically; the price and plan name are frozen when the request is made.
 - Pagination, flash messages, validation, responsive tables, role protection (`Admin`).
 
@@ -57,6 +57,7 @@
 | Database   | MySQL (SQLite in memory for tests)                                         |
 | Front-end  | Blade, SCSS, vanilla JS, Swiper 11, Font Awesome 6, Bootstrap 5 (auth pages) |
 | Admin UI   | AdminLTE 3 + custom SCSS                                                   |
+| Media      | spatie/laravel-medialibrary (photo conversions / thumbnails)               |
 | Tooling    | Vite 5, PHPUnit 11, Laradock                                               |
 
 ## Quick start
@@ -134,7 +135,7 @@ Main `.env` values:
 | `ADMIN_EMAIL`, `ADMIN_PASSWORD`| First administrator created by the seeder                         |
 | `MAIL_*`                       | Mail settings (the default `log` driver only writes to the log)   |
 
-`php artisan db:seed` runs:
+`php artisan migrate` also creates the `media` table of the media library. `php artisan db:seed` runs:
 
 - `RoleSeeder` – `Admin` and `User` roles,
 - `AdminUserSeeder` – the first administrator (outside production the defaults below are used; **in production set `ADMIN_PASSWORD` first**, otherwise no admin is created),
@@ -206,6 +207,7 @@ Styles are SCSS compiled by Vite into `public/build` (git-ignored – run `npm r
 - Design tokens (colours, radii, shadows, breakpoints) live in `resources/scss/abstracts/`.
 - Behaviour that is not bundled (sliders, menu, AJAX forms, scroll reveal) is in `public/assets/js/index.js`.
 - Uploaded photos use the `uploads` disk (`public/uploads`), so no `storage:link` is needed.
+- **Car photos** are handled by [spatie/laravel-medialibrary](https://spatie.be/docs/laravel-medialibrary): every upload gets a `thumb` conversion (exactly 640×480, scaled to fill and cropped – never stretched) used by cards and lists, and a `large` conversion (max 1400 px, original proportions) used on the car page. Conversions run synchronously, so no queue worker is needed. Cars created before the package was added are moved over with `php artisan cars:import-photos`; to rebuild conversions use `php artisan media-library:regenerate`.
 
 ## Testing
 
@@ -213,7 +215,7 @@ Styles are SCSS compiled by Vite into `public/build` (git-ignored – run `npm r
 php artisan test
 ```
 
-110 feature tests (SQLite in memory) cover public pages, forms (normal and AJAX), the cars catalog, the subscription flow and all admin sections including access control and file uploads.
+113 feature tests (SQLite in memory) cover public pages, forms (normal and AJAX), the cars catalog, the subscription flow and all admin sections including access control and file uploads.
 
 ## Deployment
 

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Car;
 use Illuminate\Database\Seeder;
 
-/** Sample cars for sale (bundled photos); only fills an empty table. */
+/** Sample cars for sale (bundled photos attached through the media library); only fills an empty table. */
 class DemoCarsSeeder extends Seeder
 {
     public function run(): void
@@ -30,7 +30,7 @@ class DemoCarsSeeder extends Seeder
         ];
 
         foreach ($cars as $i => [$brand, $model, $year, $mileage, $price, $oldPrice, $fuel, $transmission, $color, $status, $featured, $description]) {
-            Car::create([
+            $car = Car::create([
                 'brand' => $brand,
                 'model' => $model,
                 'year' => $year,
@@ -43,9 +43,12 @@ class DemoCarsSeeder extends Seeder
                 'status' => $status,
                 'is_featured' => $featured,
                 'description' => $description,
-                // bundled demo photos live in /public/assets/auto-sale
-                'image' => 'assets/auto-sale/car'.($i + 1).'.jpg',
             ]);
+
+            // bundled demo photo -> Spatie Media Library (builds the thumb / large conversions)
+            $car->addMedia(public_path('assets/auto-sale/car'.($i + 1).'.jpg'))
+                ->preservingOriginal()
+                ->toMediaCollection(Car::PHOTO);
         }
     }
 }

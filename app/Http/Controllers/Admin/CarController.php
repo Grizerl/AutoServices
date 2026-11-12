@@ -17,6 +17,7 @@ class CarController extends Controller
 
         return view('admin.cars.index', [
             'cars' => Car::query()
+                ->with('media')
                 ->withCount('inquiries')
                 ->when($status, fn ($q, $s) => $q->where('status', $s))
                 ->latest('id')
@@ -33,10 +34,10 @@ class CarController extends Controller
 
     public function store(CarRequest $request): RedirectResponse
     {
-        $data = $request->safe()->except('image');
-        $data['image'] = $request->file('image')->store(Car::IMAGE_DIRECTORY, Car::IMAGE_DISK);
+        $car = Car::create($request->safe()->except('image'));
 
-        Car::create($data);
+        // Spatie Media Library stores the photo and builds the thumb / large conversions
+        $car->addMediaFromRequest('image')->toMediaCollection(Car::PHOTO);
 
         return redirect()->route('cars.index')->with('success', 'The car has been added.');
     }
@@ -50,12 +51,17 @@ class CarController extends Controller
     {
         $data = $request->safe()->except('image');
 
-        if ($request->hasFile('image')) {
-            $car->deleteImageFile();
-            $data['image'] = $request->file('image')->store(Car::IMAGE_DIRECTORY, Car::IMAGE_DISK);
-        }
-
         $car->update($data);
+
+        if ($request->hasFile('image')) {
+            // single-file collection: the previous photo and its conversions are removed
+            $car->addMediaFromRequest('image')->toMediaCollection(Car::PHOTO);
+
+            if ($car->image) {
+                $car->deleteImageFile(); // legacy upload from before the media library
+                $car->update(['image' => null]);
+            }
+        }
 
         return redirect()->route('cars.index')->with('success', 'The car has been updated.');
     }

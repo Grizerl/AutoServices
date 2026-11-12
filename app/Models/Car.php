@@ -8,10 +8,19 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Car extends Model
+class Car extends Model implements HasMedia
 {
-    use HasFactory, HasUploadedImage;
+    use HasFactory, HasUploadedImage, InteractsWithMedia;
+
+    /** Spatie Media Library collection that holds the car photo. */
+    public const PHOTO = 'photo';
+
+    public const FALLBACK_IMAGE = 'assets/images/Car_transport_travel_icon.png';
 
     public const IMAGE_COLUMN = 'image';
     public const IMAGE_DISK = 'uploads';
@@ -69,11 +78,53 @@ class Car extends Model
         return $this->hasMany(CarInquiry::class);
     }
 
+    // ------------------------------------------------------------------ photo (Spatie Media Library)
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection(self::PHOTO)
+            ->singleFile() // a new upload replaces the old photo together with its conversions
+            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/webp']);
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        // exact 4:3 card thumbnail: scaled to fill and cropped, never stretched
+        $this->addMediaConversion('thumb')
+            ->performOnCollections(self::PHOTO)
+            ->fit(Fit::Crop, 640, 480)
+            ->quality(82)
+            ->nonQueued();
+
+        // web-sized copy for the car page: keeps the original proportions
+        $this->addMediaConversion('large')
+            ->performOnCollections(self::PHOTO)
+            ->fit(Fit::Max, 1400, 1050)
+            ->quality(85)
+            ->nonQueued();
+    }
+
     // ------------------------------------------------------------------ accessors
 
+    /**
+     * Original photo. Cars created before the media library keep working through
+     * the legacy "image" column (old uploads, bundled demo images, external links).
+     */
     protected function imageUrl(): Attribute
     {
-        return Attribute::get(fn () => $this->resolveImageUrl('assets/images/Car_transport_travel_icon.png'));
+        return Attribute::get(fn () => $this->getFirstMediaUrl(self::PHOTO) ?: $this->resolveImageUrl(self::FALLBACK_IMAGE));
+    }
+
+    /** 640x480 thumbnail for cards and lists (never the full-size original). */
+    protected function thumbUrl(): Attribute
+    {
+        return Attribute::get(fn () => $this->getFirstMediaUrl(self::PHOTO, 'thumb') ?: $this->resolveImageUrl(self::FALLBACK_IMAGE));
+    }
+
+    /** Web-sized copy (max 1400px, original proportions) for the car page. */
+    protected function largeUrl(): Attribute
+    {
+        return Attribute::get(fn () => $this->getFirstMediaUrl(self::PHOTO, 'large') ?: $this->resolveImageUrl(self::FALLBACK_IMAGE));
     }
 
     protected function title(): Attribute

@@ -96,8 +96,59 @@ class AdminSalesTest extends TestCase
         $car = Car::firstOrFail();
         $this->assertSame('Toyota Corolla', $car->title);
         $this->assertTrue($car->is_featured);
-        $this->assertStringStartsWith('cars/', $car->image);
-        Storage::disk('uploads')->assertExists($car->image);
+
+        // stored by Spatie Media Library together with its conversions
+        $media = $car->getFirstMedia(Car::PHOTO);
+        $this->assertNotNull($media);
+        Storage::disk('uploads')->assertExists($media->getPathRelativeToRoot());
+        Storage::disk('uploads')->assertExists($media->getPathRelativeToRoot('thumb'));
+        Storage::disk('uploads')->assertExists($media->getPathRelativeToRoot('large'));
+    }
+
+    public function test_car_thumbnail_is_exactly_4_by_3_and_the_large_copy_keeps_proportions(): void
+    {
+        Storage::fake('uploads');
+        $this->actingAs($this->admin());
+
+        // a tall photo must be cropped (not squashed) into the card thumbnail
+        $this->post(route('cars.store'), $this->carData(['image' => UploadedFile::fake()->image('tall.jpg', 900, 1600)]));
+        $media = Car::firstOrFail()->getFirstMedia(Car::PHOTO);
+
+        [$tw, $th] = getimagesizefromstring(Storage::disk('uploads')->get($media->getPathRelativeToRoot('thumb')));
+        $this->assertSame([640, 480], [$tw, $th]);
+
+        [$lw, $lh] = getimagesizefromstring(Storage::disk('uploads')->get($media->getPathRelativeToRoot('large')));
+        $this->assertLessThanOrEqual(1400, $lw);
+        $this->assertLessThanOrEqual(1050, $lh);
+        $this->assertEqualsWithDelta(900 / 1600, $lw / $lh, 0.01);
+
+        $car = Car::first();
+        $this->assertStringContainsString('conversions/', $car->thumb_url);
+        $this->assertStringContainsString('-thumb.', $car->thumb_url);
+        $this->assertStringContainsString('-large.', $car->large_url);
+        $this->assertStringNotContainsString('conversions/', $car->image_url); // original
+    }
+
+    public function test_listing_uses_thumbnails_not_the_original_photo(): void
+    {
+        Storage::fake('uploads');
+        $this->actingAs($this->admin());
+        $this->post(route('cars.store'), $this->carData());
+        $car = Car::firstOrFail();
+
+        $this->get(route('offer'))
+            ->assertSee($car->thumb_url, false)
+            ->assertDontSee($car->image_url, false);
+
+        $this->get(route('car.show', $car))->assertSee($car->large_url, false);
+    }
+
+    public function test_legacy_image_column_still_renders_as_a_fallback(): void
+    {
+        $car = Car::create(['brand' => 'A', 'model' => 'B', 'year' => 2020, 'price' => 1000, 'image' => 'assets/auto-sale/car1.jpg']);
+
+        $this->assertStringEndsWith('assets/auto-sale/car1.jpg', $car->thumb_url);
+        $this->assertStringEndsWith('assets/auto-sale/car1.jpg', $car->large_url);
     }
 
     public function test_car_photo_is_required_and_cannot_be_a_link(): void
@@ -137,7 +188,8 @@ class AdminSalesTest extends TestCase
         $this->actingAs($this->admin());
         $this->post(route('cars.store'), $this->carData());
         $car = Car::firstOrFail();
-        $oldPhoto = $car->image;
+        $old = $car->getFirstMedia(Car::PHOTO);
+        $oldPaths = [$old->getPathRelativeToRoot(), $old->getPathRelativeToRoot('thumb')];
 
         // without a new photo the old one stays
         $this->put(route('cars.update', $car), $this->carData(['price' => 14000, 'status' => 'sold', 'is_featured' => '0', 'image' => null]))
@@ -146,29 +198,37 @@ class AdminSalesTest extends TestCase
         $this->assertSame(14000, $car->price);
         $this->assertSame('sold', $car->status);
         $this->assertFalse($car->is_featured);
-        $this->assertSame($oldPhoto, $car->image);
+        $this->assertSame($old->id, $car->getFirstMedia(Car::PHOTO)->id);
 
-        // with a new photo the old file is removed
+        // with a new photo the previous one and its conversions are removed
         $this->put(route('cars.update', $car), $this->carData(['image' => UploadedFile::fake()->image('new.png')]));
-        $newPhoto = $car->fresh()->image;
-        $this->assertNotSame($oldPhoto, $newPhoto);
-        Storage::disk('uploads')->assertMissing($oldPhoto);
-        Storage::disk('uploads')->assertExists($newPhoto);
+        $new = $car->fresh()->getFirstMedia(Car::PHOTO);
+        $this->assertNotSame($old->id, $new->id);
+        $this->assertSame(1, $car->media()->count());
+        foreach ($oldPaths as $path) {
+            Storage::disk('uploads')->assertMissing($path);
+        }
+        Storage::disk('uploads')->assertExists($new->getPathRelativeToRoot('thumb'));
     }
 
-    public function test_deleting_a_car_removes_its_photo_and_requests(): void
+    public function test_deleting_a_car_removes_its_photo_conversions_and_requests(): void
     {
         Storage::fake('uploads');
         $this->actingAs($this->admin());
         $this->post(route('cars.store'), $this->carData());
         $car = Car::firstOrFail();
         $car->inquiries()->create(['name' => 'A B', 'phone' => '+380950660959']);
+        $media = $car->getFirstMedia(Car::PHOTO);
+        $paths = [$media->getPathRelativeToRoot(), $media->getPathRelativeToRoot('thumb'), $media->getPathRelativeToRoot('large')];
 
         $this->delete(route('cars.destroy', $car))->assertRedirect(route('cars.index'));
 
         $this->assertDatabaseCount('cars', 0);
         $this->assertDatabaseCount('car_inquiries', 0);
-        Storage::disk('uploads')->assertMissing($car->image);
+        $this->assertDatabaseCount('media', 0);
+        foreach ($paths as $path) {
+            Storage::disk('uploads')->assertMissing($path);
+        }
     }
 
     public function test_bundled_demo_car_photos_are_never_deleted(): void
