@@ -15,10 +15,16 @@ npm run build   # production build of the SCSS/JS bundles into public/build
 
 ### Admin panel & tests
 
-- Admin panel: `/Admin/Panel` (requires the `Admin` role). `php artisan db:seed` creates `admin@auto.local` / `password` outside production; in production set `ADMIN_PASSWORD` first.
+- Admin panel: see the `control` prefix in `routes/web.php` (requires the `Admin` role). `php artisan db:seed` creates `admin@auto.local` / `password` outside production; in production set `ADMIN_PASSWORD` first.
 - Public forms (repair request on the home page, question on the contacts page) are rate limited and validated server-side.
 - Member photos are uploaded files stored in `public/uploads/members` (git-ignored, no `storage:link` needed).
 - Tests: `php artisan test` (SQLite in memory).
+
+### Cars for sale and subscriptions
+
+- **Cars:** public catalog (`/Pages/Offer`) with search, brand/fuel/transmission/price filters, sorting and pagination; each car has its own page with a *Request this car* form. In the admin: *Cars for sale* (photo upload, status Available/Reserved/Sold, old price → discount badge) and *Car requests* (New → Contacted → Closed).
+- **Subscriptions:** plans are stored in the database (`Plans` in the admin) and shown on `/Pages/Pricing/Plan` with a monthly/yearly toggle. A visitor chooses a plan, fills in the checkout form and gets a request number; no payment is taken online. In the admin, *Subscriptions* lets a manager confirm a request (status → Active fills in the start/end dates), cancel it or delete it. The price and plan name are frozen when the request is made.
+- `php artisan db:seed` creates the default plans in every environment and demo cars outside production.
 
 ### Front-end structure
 

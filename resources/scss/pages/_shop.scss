@@ -2,208 +2,93 @@
 @use '../abstracts/mixins' as *;
 
 // ===========================================================================
-// Cars for sale (/AutoStyle/Pages/Offer)
+// Cars for sale: catalog (/Pages/Offer) and car page (/Pages/Offer/{id})
 // ===========================================================================
-.page-offer {
-  .sn-offer-media-container {
-    padding-top: 70px;
-    padding-bottom: 40px;
+.sn-title-container {
+  @include flex-center(column);
+  text-align: center;
+}
+
+.sn-title {
+  color: $red-title;
+  font-size: 23px;
+  letter-spacing: 1px;
+}
+
+.sn-subtitle {
+  margin: 8px 0 12px;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+}
+
+.catalog__lead {
+  max-width: 640px;
+  margin: 0 auto 10px;
+  color: $gray;
+  line-height: 1.7;
+}
+
+.page-offer,
+.page-car,
+.page-home {
+  .catalog,
+  .car-detail {
+    padding: 60px 0 70px;
   }
 
-  .sn-title-container {
-    @include flex-center(column);
-    text-align: center;
-  }
-
-  .sn-title {
-    color: $red-title;
-    font-size: 23px;
-  }
-
-  .sn-subtitle {
-    font-size: 40px;
-    font-weight: 700;
-    margin: 8px 0 55px;
-  }
-
-  .sn-discount {
-    color: $red-title;
-    margin: 0 5px;
-  }
-
-  .shop_content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-
-    > div {
-      margin-bottom: 20px;
-    }
-  }
-
-  .shop-car-card-container {
-    overflow: hidden;
-    text-align: center;
+  // ------------------------------------------------------------------ filters
+  .catalog-filters {
+    display: block;
+    margin: 34px 0 10px;
+    padding: 22px;
     border-radius: $radius;
+    background: $white;
     box-shadow: $shadow-card;
-    transition: transform 0.4s $ease, box-shadow 0.4s $ease;
 
-    img {
-      transition: transform 0.7s $ease;
+    &__grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(5, 1fr);
+      gap: 14px;
     }
 
-    &:hover {
-      transform: translateY(-8px);
-      box-shadow: $shadow-lift;
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 18px;
 
-      img {
-        transform: scale(1.05);
+      .btn-car {
+        padding: 10px 24px;
+      }
+
+      > div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
       }
     }
   }
 
-  .car-brand,
-  .car-price {
-    font-size: 30px;
-    color: $black-light;
+  .catalog__count {
+    min-height: 1.5em;
+    margin: 18px 0 14px;
+    color: $gray;
+    font-weight: 500;
   }
 
-  .car-model {
-    font-size: 15px;
-    color: $black-light;
-  }
-
-  .old-price {
-    font-size: 20px;
-    text-decoration: line-through;
-    color: $red-title;
-  }
-
-  .car-description {
-    font-size: 1.3rem;
-    padding: 0 4vh;
-    color: $gray-light;
-  }
-
-  .btn-st-car {
-    display: inline-block;
-    text-align: center;
-    font-family: $font-roboto;
-    width: 35%;
-    padding: 10px 0;
-    margin: 15px 0 25px;
-    border: none;
-    border-radius: 8px;
-    background: $red-title;
-    font-size: 17px;
-    color: $white;
-    cursor: pointer;
-    transition: 0.5s;
-
-    &:hover {
-      width: 95%;
-      background: $red-btn;
-    }
-  }
-
-  @include max(1210px) {
-    .shop_content {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-  }
-
-  @include max(800px) {
-    .shop_content {
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-  }
-
-  .shop-car-card-container img {
-    width: 100%;
-    height: auto;
-  }
-}
-
-// ===========================================================================
-// Subscription plans (/AutoStyle/Pages/Pricing/Plan)
-// ===========================================================================
-.page-plan {
-  .section-header {
-    background: $gray-surface;
-  }
-
-  .section-element-title-conteiner {
-    @include flex-center(column);
-  }
-
-  .title-element {
-    color: $red-title;
-    font-size: 23px;
-    font-weight: 600;
-    margin-top: 10vh;
-    text-transform: uppercase;
-  }
-
-  .subtitle-element {
-    color: $black-light;
-    font-size: 50px;
-    font-weight: 600;
-    margin: 0 0 25px;
-  }
-
-  .section-element-nav {
+  // ------------------------------------------------------------------ grid + card
+  .car-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    margin-top: 40px;
+    gap: 28px;
   }
 
-  .element-nav-item {
-    margin-bottom: 15px;
-    text-align: center;
-  }
-
-  .element-nav-link {
-    background: $white;
-    color: $black;
-    border: 0;
-    border-radius: 5px;
-    font-size: 17px;
-    padding: 30px 50px;
-    box-shadow: 0 0 25px 2px rgba(196, 206, 213, 0.2);
-    transition: 0.5s;
-    cursor: pointer;
-
-    strong {
-      font-size: 23px;
-    }
-
-    &:hover,
-    &.active {
-      background: $red-btn;
-      color: $white;
-    }
-  }
-
-  .section-card-list-pricing {
-    display: none;
-
-    &.show {
-      display: block;
-    }
-  }
-
-  .section-card-list-pricing-plan-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-  }
-
-  .card-items-pricing {
+  .car-card {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    text-align: center;
-    margin: 30px 25px 55px;
     border-radius: $radius;
     background: $white;
     box-shadow: $shadow-card;
@@ -212,124 +97,804 @@
     &:hover {
       transform: translateY(-8px);
       box-shadow: $shadow-lift;
+
+      .car-card__media img {
+        transform: scale(1.06);
+      }
     }
 
-    h4 {
-      font-size: 26px;
-      padding: 26px 0 12px;
-      margin: 0 0 10px;
+    &--sold {
+      .car-card__media img {
+        filter: grayscale(0.85);
+      }
+
+      .car-card__price strong {
+        color: $gray;
+      }
     }
 
-    h6 {
-      font-size: 21px;
-      color: #989898;
+    &__media {
+      position: relative;
       display: block;
-      text-decoration: line-through;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: $gray-surface;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s $ease, filter 0.4s;
+      }
+    }
+
+    &__badges {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    &__body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 18px 20px 20px;
+    }
+
+    &__title {
+      margin: 0 0 12px;
+      font-size: 1.3rem;
+
+      a {
+        color: $black-light;
+        transition: color 0.2s;
+
+        &:hover {
+          color: $red-btn;
+        }
+      }
+    }
+
+    &__specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 12px;
+      margin: 0 0 18px;
+      padding: 0;
+      font-size: 0.92rem;
+      color: $gray;
+
+      i {
+        width: 18px;
+        margin-right: 4px;
+        color: $red-btn;
+      }
+    }
+
+    &__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid rgba($black, 0.07);
+
+      .btn-car {
+        padding: 9px 20px;
+        font-size: 0.92rem;
+      }
+    }
+
+    &__price {
       margin: 0;
-    }
+      line-height: 1.2;
 
-    h5 {
-      font-size: 35px;
-      padding-bottom: 30px;
-    }
+      strong {
+        display: block;
+        font-size: 1.5rem;
+        color: $black-light;
+      }
 
-    span {
-      font-size: 24px;
-      margin-right: 5px;
-    }
-
-    ul li {
-      text-align: center;
-      line-height: 40px;
-      font-size: 19px;
-      list-style: none;
+      s {
+        font-size: 0.9rem;
+        color: $red-title;
+      }
     }
   }
 
-  .conditions-part {
-    a {
-      color: $gray-icon;
-      font-weight: 300;
+  // ------------------------------------------------------------------ car page
+  .car-detail__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .car-detail__media {
+    position: relative;
+    overflow: hidden;
+    border-radius: $radius;
+    box-shadow: $shadow-card;
+
+    img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
     }
+
+    .car-card__badges {
+      top: 16px;
+      left: 16px;
+    }
+  }
+
+  .car-detail__title {
+    margin: 0 0 10px;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+
+    small {
+      font-size: 0.55em;
+      font-weight: 500;
+      color: $gray;
+    }
+  }
+
+  .car-detail__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 12px;
+    margin: 0 0 6px;
+
+    strong {
+      font-size: 2.2rem;
+      color: $red-btn;
+    }
+
+    s {
+      font-size: 1.15rem;
+      color: $gray;
+    }
+  }
+
+  .car-detail__description {
+    margin: 22px 0;
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.7;
+      color: $gray;
+    }
+  }
+
+  .car-detail__perks {
+    display: grid;
+    gap: 8px;
+    margin: 0 0 24px;
+    padding: 0;
+    color: $black-light;
 
     i {
-      margin-left: 15px;
-      font-weight: 700;
-      color: $gray-icon;
-    }
-  }
-
-  .with-pricing-icon {
-    font-size: 40px;
-    color: $white;
-    background-color: $red-btn;
-    padding: 40px 0;
-    background-image: linear-gradient(135deg, $red-btn, $red-dark);
-  }
-
-  .btn-pricing-card {
-    display: block;
-    text-align: center;
-    width: 100%;
-    text-transform: uppercase;
-    font-family: $font-roboto;
-    font-weight: 500;
-    background: $red-btn;
-    line-height: 41px;
-    padding: 7px 30px;
-    font-size: 16px;
-    border-radius: 5px;
-    color: $white;
-    border: 1px solid $red-btn;
-    transition: 0.5s;
-    cursor: pointer;
-
-    &:hover {
-      background: transparent;
+      width: 22px;
       color: $red-btn;
     }
   }
 
-  @include max(1200px) {
-    .card-items-pricing {
-      margin: 30px 0 55px;
+  // ------------------------------------------------------------------ request form
+  .request-card {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 36px;
+    margin-top: 50px;
+    padding: 34px;
+    border-radius: $radius;
+    background: $white;
+    box-shadow: $shadow-card;
+    scroll-margin-top: 100px;
+
+    &__intro {
+      h2 {
+        margin: 0 0 10px;
+        font-size: 1.7rem;
+      }
+
+      p {
+        margin: 0;
+        line-height: 1.7;
+        color: $gray;
+      }
+    }
+
+    .form-alert {
+      grid-column: 1 / -1;
+      margin: 0;
+
+      i {
+        margin-right: 6px;
+      }
     }
   }
 
-  @include max(900px) {
-    .section-element-nav {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 50px;
-    }
+  .request-form {
+    align-items: stretch;
+    gap: 14px;
 
-    .section-card-list-pricing-plan-content {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .card-items-pricing {
-      margin: 30px 0 20px;
+    .btn-car {
+      align-self: flex-start;
+      margin-top: 6px;
     }
   }
 
-  @include max(660px) {
-    .section-element-nav {
-      grid-template-columns: 1fr;
-      gap: 12px;
+  .related {
+    margin-top: 60px;
+
+    &__title {
+      margin: 0 0 24px;
+      font-size: 1.6rem;
+    }
+  }
+}
+
+// request form rows are shared with the subscription checkout
+.request-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  width: 100%;
+}
+
+@include max($bp-xl) {
+  .page-offer .catalog-filters__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .page-offer .field-group--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+@include max($bp-lg) {
+  .page-offer .car-grid,
+  .page-car .car-grid,
+  .page-home .car-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .page-car .car-detail__grid,
+  .page-car .request-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include max($bp-sm) {
+  .page-offer .catalog-filters__grid,
+  .request-form__row {
+    grid-template-columns: 1fr;
+  }
+
+  .page-offer .car-grid,
+  .page-car .car-grid,
+  .page-home .car-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-offer .catalog-filters,
+  .page-car .request-card {
+    padding: 18px;
+  }
+
+  .page-offer .catalog,
+  .page-car .car-detail {
+    padding: 40px 0 50px;
+  }
+}
+
+// ===========================================================================
+// Subscription plans, checkout and confirmation
+// ===========================================================================
+.page-plan {
+  .plans,
+  .checkout,
+  .thanks {
+    padding: 60px 0 70px;
+    background: $gray-surface;
+  }
+
+  .plans__head {
+    @include flex-center(column);
+    text-align: center;
+  }
+
+  // ------------------------------------------------------------------ billing toggle
+  .billing-toggle {
+    display: inline-flex;
+    gap: 6px;
+    margin: 22px 0 36px;
+    padding: 6px;
+    border-radius: 999px;
+    background: $white;
+    box-shadow: $shadow-soft;
+
+    &__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 26px;
+      border-radius: 999px;
+      font-weight: 600;
+      color: $black-light;
+      transition: background 0.25s, color 0.25s;
+
+      &:hover {
+        color: $red-btn;
+      }
+
+      &.is-active {
+        background: $red-btn;
+        color: $white;
+      }
     }
 
-    .element-nav-item {
-      margin-bottom: 0;
+    &__save {
+      padding: 2px 9px;
+      border-radius: 999px;
+      background: rgba($white, 0.22);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
     }
 
-    .element-nav-link {
-      display: block;
+    &__btn:not(.is-active) &__save {
+      background: rgba($red-btn, 0.12);
+      color: $red-btn;
+    }
+  }
+
+  // price blocks follow the chosen period
+  [data-period='monthly'] .price--yearly,
+  [data-period='yearly'] .price--monthly {
+    display: none;
+  }
+
+  // ------------------------------------------------------------------ plan cards
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .plan-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 38px 30px 30px;
+    border: 2px solid transparent;
+    border-radius: $radius;
+    background: $white;
+    box-shadow: $shadow-card;
+    text-align: center;
+    transition: transform 0.4s $ease, box-shadow 0.4s $ease, border-color 0.3s;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-lift;
+    }
+
+    &--popular {
+      border-color: $red-btn;
+      transform: translateY(-10px);
+
+      &:hover {
+        transform: translateY(-18px);
+      }
+    }
+
+    &__ribbon {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 5px 18px;
+      border-radius: 999px;
+      background: $red-btn;
+      box-shadow: $shadow-red;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: $white;
+    }
+
+    &__icon {
+      display: inline-grid;
+      place-items: center;
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background: rgba($red-btn, 0.1);
+      font-size: 1.9rem;
+      color: $red-btn;
+    }
+
+    &__name {
+      margin: 0 0 6px;
+      font-size: 1.6rem;
+    }
+
+    &__desc {
+      min-height: 2.8em;
+      margin: 0 0 14px;
+      color: $gray;
+      line-height: 1.5;
+    }
+
+    &__price {
+      margin: 6px 0 20px;
+    }
+
+    .btn-plan {
       width: 100%;
-      padding: 18px 20px;
+      margin-top: auto;
+    }
+  }
+
+  .price {
+    margin: 0;
+
+    &__amount {
+      font-family: $font-roboto;
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1;
+      color: $black-light;
+
+      sup {
+        margin-right: 2px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        vertical-align: super;
+      }
     }
 
-    .section-card-list-pricing-plan-content {
-      grid-template-columns: 1fr;
-      gap: 0;
+    &__period {
+      font-size: 1rem;
+      color: $gray;
     }
+
+    &__note {
+      display: block;
+      margin-top: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #2e9e57;
+    }
+  }
+
+  .feature-list {
+    margin: 0 0 26px;
+    padding: 0;
+    text-align: left;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px dashed rgba($black, 0.1);
+      line-height: 1.4;
+      color: $black-light;
+
+      i {
+        flex: 0 0 20px;
+        margin-top: 3px;
+        text-align: center;
+      }
+
+      &.is-included i {
+        color: #2e9e57;
+      }
+
+      &.is-excluded {
+        color: rgba($black-light, 0.45);
+        text-decoration: line-through;
+
+        i {
+          color: rgba($black-light, 0.35);
+        }
+      }
+    }
+  }
+
+  // ------------------------------------------------------------------ how it works
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 64px;
+  }
+
+  .step {
+    text-align: center;
+
+    &__num {
+      display: inline-grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: $dark;
+      font-weight: 700;
+      color: $white;
+    }
+
+    h4 {
+      margin: 12px 0 6px;
+    }
+
+    p {
+      margin: 0;
+      color: $gray;
+    }
+  }
+
+  // ------------------------------------------------------------------ checkout
+  .checkout__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .checkout__summary,
+  .checkout__form {
+    padding: 32px;
+    border-radius: $radius;
+    background: $white;
+    box-shadow: $shadow-card;
+  }
+
+  .checkout__summary {
+    text-align: center;
+
+    h2 {
+      margin: 0 0 6px;
+    }
+  }
+
+  .checkout__form {
+    h2 {
+      margin: 0 0 10px;
+    }
+
+    form {
+      align-items: stretch;
+      gap: 14px;
+    }
+
+    .btn-car {
+      align-self: flex-start;
+      margin-top: 6px;
+    }
+  }
+
+  .checkout__note {
+    margin: 0 0 22px;
+    padding: 12px 16px;
+    border-radius: $radius-sm;
+    background: rgba($red-btn, 0.07);
+    line-height: 1.5;
+    color: $black-light;
+
+    i {
+      margin-right: 6px;
+      color: $red-btn;
+    }
+  }
+
+  .period-picker {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    legend {
+      grid-column: 1 / -1;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .field-error {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .period-option {
+    position: relative;
+    display: grid;
+    gap: 2px;
+    padding: 14px 16px 14px 44px;
+    border: 2px solid #d9dde2;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+
+    input {
+      position: absolute;
+      top: 18px;
+      left: 16px;
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      accent-color: $red-btn;
+    }
+
+    &:has(input:checked),
+    &.is-selected {
+      border-color: $red-btn;
+      background: rgba($red-btn, 0.05);
+    }
+
+    &__label {
+      font-weight: 700;
+    }
+
+    &__price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: $red-btn;
+
+      small {
+        margin-left: 3px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: $gray;
+      }
+    }
+
+    &__save {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #2e9e57;
+    }
+  }
+
+  // ------------------------------------------------------------------ thank-you page
+  .thanks-card {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 44px 36px;
+    border-radius: $radius;
+    background: $white;
+    box-shadow: $shadow-card;
+    text-align: center;
+
+    &__icon {
+      display: inline-block;
+      border-radius: 50%;
+      font-size: 4rem;
+      line-height: 1;
+      color: #2e9e57;
+      animation: pulse-ring 1.6s ease-out 2;
+    }
+
+    h2 {
+      margin: 14px 0 8px;
+    }
+
+    h3 {
+      margin: 28px 0 10px;
+      font-size: 1.15rem;
+    }
+
+    &__lead {
+      margin: 0 0 18px;
+      color: $gray;
+    }
+
+    &__ref {
+      display: inline-block;
+      margin: 0 0 8px;
+      padding: 12px 24px;
+      border: 2px dashed $red-btn;
+      border-radius: 12px;
+      color: $gray;
+
+      strong {
+        display: block;
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+        color: $red-btn;
+      }
+    }
+
+    .spec-table {
+      text-align: left;
+    }
+
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+  }
+
+  .next-steps {
+    max-width: 480px;
+    margin: 0 auto;
+    padding-left: 22px;
+    text-align: left;
+    line-height: 1.7;
+    color: $gray;
+    list-style: decimal;
+
+    li {
+      padding: 2px 0;
+    }
+  }
+
+  .checkout .back-link {
+    margin-bottom: 18px;
+  }
+}
+
+@include max($bp-lg) {
+  .page-plan .plan-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .page-plan .plan-card--popular {
+    transform: none;
+
+    &:hover {
+      transform: translateY(-8px);
+    }
+  }
+
+  .page-plan .checkout__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include max($bp-sm) {
+  .page-plan .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .page-plan .plans,
+  .page-plan .checkout,
+  .page-plan .thanks {
+    padding: 40px 0 50px;
+  }
+
+  .page-plan .checkout__summary,
+  .page-plan .checkout__form,
+  .page-plan .thanks-card {
+    padding: 22px 18px;
+  }
+
+  .page-plan .period-picker {
+    grid-template-columns: 1fr;
+  }
+
+  .page-plan .billing-toggle__btn {
+    padding: 10px 18px;
   }
 }

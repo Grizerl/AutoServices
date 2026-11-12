@@ -13,35 +13,36 @@ class PublicPagesTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_root_redirects_to_the_site(): void
+    public function test_the_site_is_served_from_the_root(): void
     {
-        $this->get('/')->assertRedirect('/AutoStyle');
+        $this->get('/')->assertOk()->assertSee('Auto Service');
+        $this->assertSame(url('/'), route('home_auto'));
     }
 
     #[DataProvider('pages')]
-    public function test_public_pages_render(string $url): void
+    public function test_public_pages_render(string $route): void
     {
-        $this->get($url)->assertOk();
+        $this->get(route($route))->assertOk();
     }
 
     public static function pages(): array
     {
         return [
-            ['/AutoStyle'],
-            ['/AutoStyle/About/News'],
-            ['/AutoStyle/About/History'],
-            ['/AutoStyle/Contacts/Detailed'],
-            ['/AutoStyle/Pages/Offer'],
-            ['/AutoStyle/Pages/Pricing/Plan'],
-            ['/AutoStyle/Pages/Partners'],
-            ['/login'],
+            ['home_auto'],
+            ['vision'],
+            ['history'],
+            ['contacts'],
+            ['offer'],
+            ['plan'],
+            ['partners'],
+            ['login'],
         ];
     }
 
     public function test_home_page_renders_with_an_empty_database(): void
     {
         // used to redirect back to itself in an endless loop
-        $this->get('/AutoStyle')->assertOk();
+        $this->get(route('home_auto'))->assertOk();
     }
 
     public function test_home_page_shows_content_from_the_database(): void
@@ -53,7 +54,7 @@ class PublicPagesTest extends TestCase
             'place_of_residence' => 'Kyiv', 'img' => 'assets/people/team-img1.jpg',
         ]);
 
-        $this->get('/AutoStyle')
+        $this->get(route('home_auto'))
             ->assertOk()
             ->assertSee('Welcome to the garage')
             ->assertSee('Jane Doe')

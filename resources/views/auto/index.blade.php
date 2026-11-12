@@ -207,6 +207,25 @@
       </div>
    </div>
 </section>
+@if ($featuredCars->isNotEmpty())
+<section class="section-featured" id="cars">
+   <div class="container">
+      <div class="sn-title-container">
+         <h2 class="sn-title">CARS FOR SALE</h2>
+         <h3 class="sn-subtitle">Checked by our mechanics</h3>
+         <p class="catalog__lead">A selection of cars we have inspected and prepared for a new owner.</p>
+      </div>
+      <div class="car-grid">
+         @foreach ($featuredCars as $car)
+            @include('auto.cars._card', ['car' => $car])
+         @endforeach
+      </div>
+      <div class="section-featured__more">
+         <a class="btn-car btn-car--lg" href="{{ route('offer') }}">See all cars</a>
+      </div>
+   </div>
+</section>
+@endif
 <section id="client-say"> 
 <!-- Client testimonials section -->
    <div class="section-client-container">

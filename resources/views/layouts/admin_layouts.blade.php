@@ -39,6 +39,8 @@
       <li class="nav-item d-none d-lg-inline-block"><a href="{{ route('members.index') }}" class="nav-link">Team</a></li>
       <li class="nav-item d-none d-lg-inline-block"><a href="{{ route('contact.index') }}" class="nav-link">Questions</a></li>
       <li class="nav-item d-none d-lg-inline-block"><a href="{{ route('repair.index') }}" class="nav-link">Repair requests</a></li>
+      <li class="nav-item d-none d-xl-inline-block"><a href="{{ route('cars.index') }}" class="nav-link">Cars</a></li>
+      <li class="nav-item d-none d-xl-inline-block"><a href="{{ route('subscriptions.index') }}" class="nav-link">Subscriptions</a></li>
     </ul>
 
     <ul class="navbar-nav ml-auto">
@@ -62,6 +64,14 @@
           <div class="dropdown-divider"></div>
           <a href="{{ route('contact.index') }}" class="dropdown-item">
             <i class="fas fa-question-circle mr-2"></i> {{ $notifications['questions'] }} questions
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="{{ route('car-inquiries.index', ['status' => 'new']) }}" class="dropdown-item">
+            <i class="fas fa-car mr-2"></i> {{ $notifications['car_requests'] }} new car requests
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="{{ route('subscriptions.index', ['status' => 'pending']) }}" class="dropdown-item">
+            <i class="fas fa-id-card mr-2"></i> {{ $notifications['subscriptions'] }} pending subscriptions
           </a>
         </div>
       </li>
@@ -152,6 +162,54 @@
               <p>Repair requests</p>
             </a>
           </li>
+
+          <li class="nav-header">SALES</li>
+
+          <li class="nav-item {{ request()->routeIs('cars.*') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ request()->routeIs('cars.*') ? 'active' : '' }}">
+              <i class="nav-icon fa-solid fa-car-side"></i>
+              <p>Cars for sale <i class="right fas fa-angle-left"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('cars.index') }}" class="nav-link"><i class="far fa-circle nav-icon"></i><p>All cars</p></a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('cars.create') }}" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Add car</p></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('car-inquiries.index') }}" class="nav-link {{ request()->routeIs('car-inquiries.*') ? 'active' : '' }}">
+              <i class="nav-icon fa-solid fa-envelope-open-text"></i>
+              <p>
+                Car requests
+                @if ($notifications['car_requests'] > 0)<span class="badge badge-danger right">{{ $notifications['car_requests'] }}</span>@endif
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-header">SUBSCRIPTIONS</li>
+
+          <li class="nav-item">
+            <a href="{{ route('plans.index') }}" class="nav-link {{ request()->routeIs('plans.*') ? 'active' : '' }}">
+              <i class="nav-icon fa-solid fa-layer-group"></i>
+              <p>Plans</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('subscriptions.index') }}" class="nav-link {{ request()->routeIs('subscriptions.*') ? 'active' : '' }}">
+              <i class="nav-icon fa-solid fa-id-card"></i>
+              <p>
+                Subscriptions
+                @if ($notifications['subscriptions'] > 0)<span class="badge badge-warning right">{{ $notifications['subscriptions'] }}</span>@endif
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-header">ACCOUNT</li>
 
           <li class="nav-item">
             <form action="{{ route('logout') }}" method="POST">
