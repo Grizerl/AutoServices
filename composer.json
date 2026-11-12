@@ -5,7 +5,7 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.4",
         "barryvdh/laravel-elfinder": "^0.5.3",
         "laravel/fortify": "^1.23",
         "laravel/framework": "^11.9",
