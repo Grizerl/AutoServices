@@ -22,7 +22,7 @@
                         Id
                       </th>
                       <th style="width: 20%">
-                        Сustomer name
+                        Customer name
                       </th>
                       <th style="width: 30%">
                         Auto

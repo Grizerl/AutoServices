@@ -1,6 +1,6 @@
 @extends('layouts.auto_layouts')
 
-@section('title', 'Автосервіс - Car Services and Mechanic')
+@section('title', 'Subscription Plans - Auto Service')
 @section('body-class', 'page-plan')
 
 @push('scripts')

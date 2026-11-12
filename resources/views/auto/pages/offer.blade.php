@@ -1,6 +1,6 @@
 @extends('layouts.auto_layouts')
 
-@section('title', 'Автосервіс - Car Services and Mechanic')
+@section('title', 'Cars for Sale - Auto Service')
 @section('body-class', 'page-offer')
 
 

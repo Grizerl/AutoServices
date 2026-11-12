@@ -1,6 +1,6 @@
 @extends('layouts.auto_layouts')
 
-@section('title', 'Автосервіс - Car Services and Mechanic')
+@section('title', 'Partners - Auto Service')
 @section('body-class', 'page-partners')
 
 
@@ -27,16 +27,16 @@
     <div class="section-licenses-container">
         <div class="container">
             <div class="section-licenses-content">
-                <h1 class="section-licenses-content-title">Ліцензії</h1>
+                <h1 class="section-licenses-content-title">Licenses</h1>
             </div>
             <div class="section-charter-container">
-                <div class="charter-box-first-img"> <img  src="/assets/partners/charter.png" alt="Charter"><span>Офіційний дистриб'ютор матеріалів марки ELF</span></div>
-                <div class="charter-box-first-img"> <img src="/assets/partners/charter.png" alt="Charter"><span>Офіційний дистриб'ютор матеріалів марки Moly</span></div>
-                <div class="charter-box-first-img"> <img  src="/assets/partners/charter.png" alt="Charter"><span>Офіційний дистриб'ютор матеріалів марки Castrol</span></div>
+                <div class="charter-box-first-img"> <img  src="/assets/partners/charter.png" alt="Charter"><span>Official distributor of ELF materials</span></div>
+                <div class="charter-box-first-img"> <img src="/assets/partners/charter.png" alt="Charter"><span>Official distributor of Moly materials</span></div>
+                <div class="charter-box-first-img"> <img  src="/assets/partners/charter.png" alt="Charter"><span>Official distributor of Castrol materials</span></div>
                 
-                <div class="charter-box-second-img"> <img  src="/assets/partners/charter.png" alt="Charter"><span>Офіційний дистриб'ютор матеріалів марки ШЕЛЛ</span></div>
-                <div class="charter-box-second-img"> <img  src="/assets/partners/charter.png" alt="Charter"><span>Офіційний дистриб'ютор матеріалів марки Mobil</span></div>
-                <div class="charter-box-second-img"> <img  src="/assets/partners/charter.png" alt="Charter"><span>Офіційний дистриб'ютор матеріалів марки Motul</span></div>
+                <div class="charter-box-second-img"> <img  src="/assets/partners/charter.png" alt="Charter"><span>Official distributor of Shell materials</span></div>
+                <div class="charter-box-second-img"> <img  src="/assets/partners/charter.png" alt="Charter"><span>Official distributor of Mobil materials</span></div>
+                <div class="charter-box-second-img"> <img  src="/assets/partners/charter.png" alt="Charter"><span>Official distributor of Motul materials</span></div>
             </div>
         </div>
     </div>
@@ -46,15 +46,15 @@
         <div class="section-partners-container">
             <div class="section-partners-container">
                 <div class="container">
-                    <div style="display: flex; align-items: center; justify-content: center;"><h1 class="section-partners-title">Партнери</h1></div>
+                    <div style="display: flex; align-items: center; justify-content: center;"><h1 class="section-partners-title">Partners</h1></div>
                     <div  style="display: flex; align-items: center; justify-content: center;">
                         <div class="grid-partners">
-                            <div class="partners-box-first-img"><img class="logo-partners" src="/assets/partners/partners-company/ArmTek.png" alt="Компанія «АРМТЕК»"><span class="title-company">Компанія «АРМТЕК»</span></div>
-                            <div  class="partners-box-first-img"><img class="logo-partners" src="/assets/partners/partners-company/Sachs.png" alt="Компанія «Sachs"><span  class="title-company">Компанія «Sachs»</span></div>
-                            <div  class="partners-box-first-img"><img class="logo-partners" src="/assets/partners/partners-company/Kyb.png" alt="Компанія «Kyb»"><span  class="title-company">Компанія «Kyb»</span></div>
-                            <div class="partners-box-first-img"><img class="logo-partners" src="/assets/partners/partners-company/Smotor.png" alt="Компанія «SMotor»"><span  class="title-company">Компанія «SMotor»</span></div>
-                            <div  class="partners-box-second-img"><img class="logo-partners" src="/assets/partners/partners-company/avtoExperet.png" alt="Компанія «AvtoExpert»"><span  class="title-company">Компанія «AvtoExpert»</span></div>
-                            <div class="partners-box-second-img"><img class="logo-partners" src="/assets/partners/partners-company/Smile.png" alt="Компанія «Smile»"><span  class="title-company">Компанія «Smile»</span></div>
+                            <div class="partners-box-first-img"><img class="logo-partners" src="/assets/partners/partners-company/ArmTek.png" alt="ARMTEK logo"><span class="title-company">ARMTEK</span></div>
+                            <div  class="partners-box-first-img"><img class="logo-partners" src="/assets/partners/partners-company/Sachs.png" alt="Sachs logo"><span  class="title-company">Sachs</span></div>
+                            <div  class="partners-box-first-img"><img class="logo-partners" src="/assets/partners/partners-company/Kyb.png" alt="Kyb logo"><span  class="title-company">Kyb</span></div>
+                            <div class="partners-box-first-img"><img class="logo-partners" src="/assets/partners/partners-company/Smotor.png" alt="SMotor logo"><span  class="title-company">SMotor</span></div>
+                            <div  class="partners-box-second-img"><img class="logo-partners" src="/assets/partners/partners-company/avtoExperet.png" alt="AvtoExpert logo"><span  class="title-company">AvtoExpert</span></div>
+                            <div class="partners-box-second-img"><img class="logo-partners" src="/assets/partners/partners-company/Smile.png" alt="Smile logo"><span  class="title-company">Smile</span></div>
                         </div>
                     </div>
                 </div>
