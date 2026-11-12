@@ -1,12 +1,8 @@
 @extends('layouts.auto_layouts')
 
 @section('title', 'Автосервіс - Car Services and Mechanic')
+@section('body-class', 'page-partners')
 
-@section('link')
-<link rel="stylesheet" href="{{ asset('assets/css/index.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/partners/partners.css') }}">
-<script src="{{ asset('assets/js/index.js') }}"></script>
-@endsection
 
 @section('content')
 

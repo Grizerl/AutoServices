@@ -1,0 +1,45 @@
+// ---------------------------------------------------------------------------
+// Design tokens
+// ---------------------------------------------------------------------------
+
+// Colors
+$white: #ffffff;
+$black: #000000;
+$black-light: #303030;
+$black-panel: #1d1d1d;
+$gray: #6c757d;
+$gray-light: #999999;
+$gray-icon: #555555;
+$gray-surface: #f9f9f9;
+$red: #f13f3f;
+$red-btn: #db2d2e;
+$red-title: #ee0e39;
+$red-accent: #e80e38;
+
+// Typography
+$font-stem: 'Assistant', sans-serif;
+$font-roboto: 'Roboto', sans-serif;
+$font-sans: 'Open Sans', sans-serif;
+
+// Layout
+$container-width: 1280px;
+
+// Breakpoints (max-width)
+$bp-xxl: 1540px;
+$bp-xl: 1280px;
+$bp-lg: 1000px;
+$bp-md: 775px;
+$bp-sm: 600px;
+$bp-xs: 450px;
+
+// Motion
+$transition-fast: 0.3s ease-in-out;
+$transition-base: 0.5s;
+
+// Shadows
+$shadow-card: 0 0 30px 0 rgba($black, 0.1);
+$shadow-soft: 0 0 20px 0 rgba($black, 0.08);
+
+// Assets (served from /public)
+$img-path: '/assets/images';
+$partners-path: '/assets/partners';

@@ -1,14 +1,12 @@
 @extends('layouts.auto_layouts')
 
 @section('title', 'Автосервіс - Car Services and Mechanic')
+@section('body-class', 'page-news')
 
-@section('link')
-<link rel="stylesheet" href="{{ asset('assets/css/index.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/about/vision.css') }}">
+@push('scripts')
+<script src="{{ asset('assets/js/about/about.js') }}"></script>
+@endpush
 
-<script src="{{ asset('/assets/js/index.js') }}"></script>
-<script src="{{ asset('/assets/js/about/about.js') }}"></script>
-@endsection
 
 @section('content')
 <div class="wrapper">

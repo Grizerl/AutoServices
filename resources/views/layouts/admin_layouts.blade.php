@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3//admin/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <title>AdminPanel -@yield('title')</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -25,11 +24,9 @@
   <!-- Daterange picker -->
   <link rel="stylesheet" href="/assets/plugins/daterangepicker/daterangepicker.css">
   <link href="/assets/dist/css/colorbox.css" rel="stylesheet">
-  <link href="/assets/dist/css/colorbox.css" rel="stylesheet">
   <link rel="website icon" href="/assets/images/circle.png">
 
-  <link rel="stylesheet" href="/assets/css/admin/admin.css">
-  <link rel="stylesheet" href="/assets/css/admin/members/member.css">
+  @vite('resources/scss/admin.scss')
   @inject('adminPanel', 'App\Services\AdminPanel')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
