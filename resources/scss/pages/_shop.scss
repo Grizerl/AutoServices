@@ -1,0 +1,296 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ===========================================================================
+// Cars for sale (/AutoStyle/Pages/Offer)
+// ===========================================================================
+.page-offer {
+  .sn-offer-media-container {
+    padding-top: 70px;
+    padding-bottom: 40px;
+  }
+
+  .sn-title-container {
+    @include flex-center(column);
+    text-align: center;
+  }
+
+  .sn-title {
+    color: $red-title;
+    font-size: 23px;
+  }
+
+  .sn-subtitle {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 8px 0 55px;
+  }
+
+  .sn-discount {
+    color: $red-title;
+    margin: 0 5px;
+  }
+
+  .shop_content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+
+    > div {
+      margin-bottom: 20px;
+    }
+  }
+
+  .shop-car-card-container {
+    text-align: center;
+    box-shadow: 0 0 30px 0 rgba($black, 0.1);
+  }
+
+  .car-brand,
+  .car-price {
+    font-size: 30px;
+    color: $black-light;
+  }
+
+  .car-model {
+    font-size: 15px;
+    color: $black-light;
+  }
+
+  .old-price {
+    font-size: 20px;
+    text-decoration: line-through;
+    color: $red-title;
+  }
+
+  .car-description {
+    font-size: 1.3rem;
+    padding: 0 4vh;
+    color: $gray-light;
+  }
+
+  .btn-st-car {
+    font-family: $font-roboto;
+    width: 35%;
+    padding: 10px 0;
+    margin: 15px 0 25px;
+    border: none;
+    border-radius: 8px;
+    background: $red-title;
+    font-size: 17px;
+    color: $white;
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:hover {
+      width: 95%;
+      background: $red-btn;
+    }
+  }
+
+  @include max(1210px) {
+    .shop_content {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+  }
+
+  @include max(800px) {
+    .shop_content {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  }
+
+  @include max(420px) {
+    .container {
+      padding: 0;
+    }
+  }
+}
+
+// ===========================================================================
+// Subscription plans (/AutoStyle/Pages/Pricing/Plan)
+// ===========================================================================
+.page-plan {
+  .section-header {
+    background: $gray-surface;
+  }
+
+  .section-element-title-conteiner {
+    @include flex-center(column);
+  }
+
+  .title-element {
+    color: $red-title;
+    font-size: 23px;
+    font-weight: 600;
+    margin-top: 10vh;
+    text-transform: uppercase;
+  }
+
+  .subtitle-element {
+    color: $black-light;
+    font-size: 50px;
+    font-weight: 600;
+    margin: 0 0 25px;
+  }
+
+  .section-element-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 40px;
+  }
+
+  .element-nav-item {
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .element-nav-link {
+    background: $white;
+    color: $black;
+    border: 0;
+    border-radius: 5px;
+    font-size: 17px;
+    padding: 30px 50px;
+    box-shadow: 0 0 25px 2px rgba(196, 206, 213, 0.2);
+    transition: 0.5s;
+    cursor: pointer;
+
+    strong {
+      font-size: 23px;
+    }
+
+    &:hover,
+    &.active {
+      background: $red-btn;
+      color: $white;
+    }
+  }
+
+  .section-card-list-pricing {
+    display: none;
+
+    &.show {
+      display: block;
+    }
+  }
+
+  .section-card-list-pricing-plan-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+
+  .card-items-pricing {
+    text-align: center;
+    margin: 30px 25px 55px;
+    box-shadow: 8px 8px 30px 0 rgba(42, 67, 113, 0.15);
+
+    h4 {
+      font-size: 26px;
+      padding: 26px 0 12px;
+      margin: 0 0 10px;
+    }
+
+    h6 {
+      font-size: 21px;
+      color: #989898;
+      display: block;
+      text-decoration: line-through;
+      margin: 0;
+    }
+
+    h5 {
+      font-size: 35px;
+      padding-bottom: 30px;
+    }
+
+    span {
+      font-size: 24px;
+      margin-right: 5px;
+    }
+
+    ul li {
+      text-align: center;
+      line-height: 40px;
+      font-size: 19px;
+      list-style: none;
+    }
+  }
+
+  .conditions-part {
+    a {
+      color: $gray-icon;
+      font-weight: 300;
+    }
+
+    i {
+      margin-left: 15px;
+      font-weight: 700;
+      color: $gray-icon;
+    }
+  }
+
+  .with-pricing-icon {
+    font-size: 40px;
+    color: $white;
+    background-color: $red-btn;
+    padding: 40px 0;
+  }
+
+  .btn-pricing-card {
+    width: 100%;
+    text-transform: uppercase;
+    font-family: $font-roboto;
+    font-weight: 500;
+    background: $red-btn;
+    line-height: 41px;
+    padding: 7px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    color: $white;
+    border: 1px solid $red-btn;
+    transition: 0.5s;
+    cursor: pointer;
+
+    &:hover {
+      background: transparent;
+      color: $red-btn;
+    }
+  }
+
+  @include max(1200px) {
+    .card-items-pricing {
+      margin: 30px 0 55px;
+    }
+  }
+
+  @include max(900px) {
+    .section-element-nav {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px;
+    }
+
+    .section-card-list-pricing-plan-content {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card-items-pricing {
+      margin: 30px 0 20px;
+    }
+  }
+
+  @include max(660px) {
+    .section-element-nav {
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+
+    .section-card-list-pricing-plan-content {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+}

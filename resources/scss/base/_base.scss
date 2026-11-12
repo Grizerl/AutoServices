@@ -1,0 +1,48 @@
+@use '../abstracts/variables' as *;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6,
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  font-style: normal;
+  font-family: $font-roboto;
+  line-height: 1.2;
+  font-weight: 700;
+  font-size: 25px;
+  margin: 15px 0;
+  transition: 0.5s;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+// Generic stacked form (home booking form, contact form)
+form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

@@ -1,3 +1,33 @@
+# Auto Service
+
+Laravel 11 / PHP 8.4 website for a car service: public site, admin panel (AdminLTE) and auth pages.
+
+## Local development
+
+```bash
+composer install
+cp .env.example .env && php artisan key:generate
+php artisan migrate
+npm install
+npm run dev     # Vite dev server with hot reload
+npm run build   # production build of the SCSS/JS bundles into public/build
+```
+
+### Front-end structure
+
+Styles are written in SCSS and compiled by Vite (`public/build` is git-ignored, run `npm run build` after pulling).
+
+| Entry                      | Used by                                      |
+| -------------------------- | -------------------------------------------- |
+| `resources/scss/site.scss` | public website (`layouts/auto_layouts`)      |
+| `resources/scss/admin.scss`| admin panel overrides (`layouts/admin_layouts`) |
+| `resources/sass/app.scss`  | auth pages (Bootstrap 5, `layouts/app`)      |
+
+Public SCSS lives in `resources/scss/{abstracts,base,layout,pages}`. Page-specific rules are scoped by a
+`page-*` class on `<body>` (set with `@section('body-class', ...)` in each view).
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

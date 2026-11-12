@@ -1,0 +1,115 @@
+@use '../abstracts/variables' as *;
+
+$admin-accent: #007bff;
+$admin-text: #333;
+$admin-muted: #555;
+$admin-card-shadow: 0 4px 10px rgba($black, 0.1);
+
+.header-view-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+// Shared "view" typography (member + repair detail pages)
+.view-title {
+  display: inline-block;
+  font-size: 1.8rem;
+  color: $admin-text;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid $admin-accent;
+}
+
+.view-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.view-item {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  color: $admin-muted;
+
+  b {
+    color: $admin-accent;
+  }
+}
+
+// Repair detail
+.view-content {
+  display: flex;
+  gap: 100px;
+  margin-bottom: 40px;
+  align-items: center;
+}
+
+.view-img-car {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba($black, 0.1);
+}
+
+// Member detail
+.portfolio-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 2rem;
+  background-color: $white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: $admin-card-shadow;
+  margin-bottom: 2rem;
+}
+
+.view-img {
+  width: 40%;
+  border-radius: 15%;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba($black, 0.2);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.project-section {
+  background: $white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: $admin-card-shadow;
+}
+
+.project-title {
+  font-size: 2rem;
+  color: $admin-accent;
+  margin-bottom: 1.5rem;
+}
+
+.prots-contentg {
+  p {
+    font-size: 1rem;
+    color: $admin-text;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    color: $admin-muted;
+    list-style-type: disc;
+  }
+
+  li {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  strong {
+    color: $admin-accent;
+  }
+}

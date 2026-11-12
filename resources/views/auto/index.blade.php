@@ -1,6 +1,7 @@
 @extends('layouts.auto_layouts') <!-- Base layout -->
 
 @section('title', 'Автосервіс - Car Services and Mechanic') <!-- Page title -->
+@section('body-class', 'page-home')
 
 @section('content') <!-- Main content -->
 <aside>
@@ -224,7 +225,7 @@
                      <div class="swiper-slide-content">
                         <div class="slider-client-content">
                            <div class="img-slider-container">
-                              <img class="swiper-img-box" src="./assets/images/hackery-user.png" alt="User Male Icon">
+                              <img class="swiper-img-box" src="/assets/images/hackery-user.png" alt="User Male Icon">
                            </div>
                         <div>
                            <h6 style="text-align: center;" class="swiper-name-box">{{ $item['name'] }}</h6>
@@ -256,12 +257,12 @@
       <div class="swiper-wrapper">
          <div class="swiper-slide">
             <div>
-               <img src="./assets/images/before.jpg" alt="Car before">
+               <img src="/assets/images/before.jpg" alt="Car before">
             </div>
          </div>
          <div class="swiper-slide">
             <div>
-               <img src="./assets/images/after.jpg" alt="Car after">
+               <img src="/assets/images/after.jpg" alt="Car after">
             </div>
          </div>
       </div>
@@ -303,7 +304,7 @@
    <div class="section-contact-container">
       <div class="section-contact-content">
          <div class="sc-Fvrha">
-            <img style="width: 80%;" src="./assets/images/Contact.png" alt="Car Mercedes-Benz">
+            <img style="width: 80%;" src="/assets/images/Contact.png" alt="Car Mercedes-Benz">
          </div>
          <div class="section-contact-container-form">
             <h1 class="section-contact-container-title">Contact us</h1>

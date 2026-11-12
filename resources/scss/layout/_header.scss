@@ -1,0 +1,251 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ---------------------------------------------------------------------------
+// Top advertising bar
+// ---------------------------------------------------------------------------
+.advertising-line,
+.advertising-line .row,
+.top-left,
+.top-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background: $red;
+}
+
+.advertising-line .row {
+  padding: 10px 0;
+  width: 100%;
+}
+
+.top-left a {
+  color: $white;
+  margin: 0 20px 0 5px;
+  font-size: 15px;
+  font-family: $font-sans;
+}
+
+.top-right i {
+  color: $white;
+  margin: 0 15px 0 0;
+}
+
+// ---------------------------------------------------------------------------
+// Main navigation
+// ---------------------------------------------------------------------------
+.logo-slogan {
+  font-family: $font-stem;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 5px 0;
+  letter-spacing: 1px;
+}
+
+.navbar-content,
+.nav-content,
+.nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.navbar-content {
+  padding: 10px 0;
+}
+
+.nav-item {
+  font-family: $font-roboto;
+  font-size: 17.5px;
+  font-weight: 500;
+}
+
+.nav-link {
+  color: $black-light;
+  margin: 5px 18px;
+  text-align: right;
+}
+
+.lk-content {
+  font-size: 13.5px;
+}
+
+.nav-link-number {
+  font-size: 19px;
+  font-weight: bold;
+  color: $black;
+}
+
+.menu-item {
+  position: relative;
+
+  &:hover .sub-menu {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.sub-menu {
+  display: block;
+  position: absolute;
+  z-index: 9999;
+  top: 170%;
+  width: 197px;
+  text-align: left;
+  margin: 0;
+  padding: 15px 0;
+  box-shadow: 0 1px 3px rgba($black, 0.3);
+  background-color: $white;
+  border: 1px solid #ccc;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+
+  li {
+    padding: 10px 0 10px 10px;
+  }
+
+  a {
+    font-weight: 400;
+    color: $black-light;
+  }
+}
+
+// Burger + drawer are hidden on desktop
+.burger-menu,
+.menu-container {
+  display: none;
+}
+
+// ---------------------------------------------------------------------------
+// Responsive header
+// ---------------------------------------------------------------------------
+@include max($bp-lg) {
+  .nav-bar-collapse {
+    display: none;
+  }
+
+  .navbar-content,
+  .nav-content,
+  .nav-item {
+    justify-content: space-between;
+  }
+
+  .burger-menu {
+    display: block;
+    cursor: pointer;
+  }
+
+  .menu-container {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 375px;
+    background-color: $white;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 999;
+
+    &.active {
+      transform: translateX(0);
+      opacity: 1;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+  }
+
+  .menu {
+    padding: 20px 0;
+  }
+
+  .adaptive-logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+
+  .close-btn {
+    text-align: right;
+    font-size: 2.5rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .adaptive-item,
+  .adaptive-link {
+    font-family: $font-roboto;
+    font-size: 17.5px;
+    font-weight: 600;
+    padding: 15px 5px;
+    background-color: $red;
+  }
+
+  .adaptive-item {
+    border-bottom: 1px solid $red-btn;
+  }
+
+  .adaptive-link {
+    padding: 15px;
+    color: $white;
+  }
+
+  .adaptive-link-number {
+    color: $white;
+  }
+
+  .sc-FDFgh {
+    color: $white;
+  }
+
+  // Sub menus inside the drawer
+  .sc-FAFfgd {
+    display: block;
+    position: absolute;
+    z-index: 9999;
+    top: 100%;
+    left: 0;
+    width: 197px;
+    text-align: left;
+    margin: 0;
+    padding: 15px 0;
+    box-shadow: 0 1px 3px rgba($black, 0.3);
+    background-color: $white;
+    border: 1px solid #ccc;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+
+    > a {
+      color: $black-light;
+    }
+  }
+
+  .menu-item:hover .sc-FAFfgd {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@include max($bp-md) {
+  .advertising-line .row {
+    flex-wrap: wrap;
+    text-align: center;
+  }
+}
+
+@include max($bp-sm) {
+  .advertising-line,
+  .advertising-line .row,
+  .top-left,
+  .top-right {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .top-right {
+    padding-top: 10px;
+  }
+}

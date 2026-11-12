@@ -3,27 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Swiper.js CSS and JS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/swiper@11.1.9/swiper-bundle.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- Link to Custom CSS -->
-    <link rel="stylesheet" href="./assets/css/index.css">
-    <link rel="icon" type="png" href="/assets/images/website-logo.png">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Open+Sans:wght@300..800&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.1.9/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11.1.9/swiper-bundle.min.js"></script>
+
+    <!-- Site styles (SCSS compiled by Vite) -->
+    @vite('resources/scss/site.scss')
+
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/website-logo.png') }}">
+
     <!-- FontAwesome Icons -->
     <script src="https://kit.fontawesome.com/46a432ef36.js" crossorigin="anonymous"></script>
-    <!-- Additional CSS Links -->
+
     @yield('link')
 
     <title>@yield('title')</title>
 </head>
-<body>
+<body class="@yield('body-class')">
 <div class="App">
 <!-- Preloader -->
     <div class="preload" data-preload>
         <div class="preloader-content">
             <p class="text">Loading</p>
-            <img class="circle" src="../../../assets/images/circle.png" alt="Preload">
+            <img class="circle" src="{{ asset('assets/images/circle.png') }}" alt="Preload">
         </div>
     </div>
 <!-- Advertising Line -->
@@ -260,6 +269,7 @@
 </aside>
 </footer>
 </div>
-<script src="./assets/js/index.js"></script>
+<script src="{{ asset('assets/js/index.js') }}"></script>
+@stack('scripts')
 </body>
 </html>
