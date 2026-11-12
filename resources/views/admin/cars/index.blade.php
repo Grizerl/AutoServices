@@ -36,7 +36,7 @@
             @php($badges = ['available' => 'success', 'reserved' => 'warning', 'sold' => 'secondary'])
             @forelse ($cars as $car)
               <tr>
-                <td><img src="{{ $car->image_url }}" alt="{{ $car->title }}" style="width: 72px; height: 54px; object-fit: cover; border-radius: 6px;"></td>
+                <td><img src="{{ $car->thumb_url }}" alt="{{ $car->title }}" width="72" height="54" loading="lazy" style="width: 72px; height: 54px; object-fit: cover; border-radius: 6px;"></td>
                 <td>
                   <strong>{{ $car->title }}</strong>
                   @if ($car->is_featured)<i class="fas fa-star text-warning ml-1" title="Featured"></i>@endif

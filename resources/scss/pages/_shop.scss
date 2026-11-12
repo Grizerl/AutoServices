@@ -238,10 +238,14 @@
     border-radius: $radius;
     box-shadow: $shadow-card;
 
+    // keep the photo's own proportions: never stretched, never cropped
     img {
+      display: block;
       width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
+      height: auto;
+      max-height: 560px;
+      object-fit: contain;
+      background: $gray-surface;
     }
 
     .car-card__badges {

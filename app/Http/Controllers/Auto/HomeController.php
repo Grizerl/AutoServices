@@ -19,6 +19,7 @@ class HomeController extends Controller
             'members' => Members::oldest()->get(),
             // featured cars first, topped up with the newest available ones
             'featuredCars' => Car::query()
+                ->with('media')
                 ->where('status', Car::STATUS_AVAILABLE)
                 ->orderByDesc('is_featured')
                 ->orderByDesc('id')

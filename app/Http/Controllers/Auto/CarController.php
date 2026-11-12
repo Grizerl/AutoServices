@@ -20,6 +20,7 @@ class CarController extends Controller
         $filters = $this->filters($request);
 
         $cars = Car::query()
+            ->with('media')
             ->filter($filters)
             ->sortBy($filters['sort'])
             ->paginate(self::PER_PAGE)
@@ -35,7 +36,10 @@ class CarController extends Controller
 
     public function show(Car $car): View
     {
+        $car->loadMissing('media');
+
         $related = Car::query()
+            ->with('media')
             ->whereKeyNot($car->getKey())
             ->where('status', '!=', Car::STATUS_SOLD)
             ->orderByRaw('brand = ? desc', [$car->brand])

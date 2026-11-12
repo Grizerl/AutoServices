@@ -14,7 +14,7 @@
 
          <div class="car-detail__grid">
             <div class="car-detail__media" data-animate="fade-right">
-               <img src="{{ $car->image_url }}" alt="{{ $car->title }}">
+               <img src="{{ $car->large_url }}" alt="{{ $car->title }}" decoding="async">
                <span class="car-card__badges">
                   @if ($car->status !== \App\Models\Car::STATUS_AVAILABLE)
                      <span class="badge-pill badge-pill--{{ $car->status }}">{{ $car->status_label }}</span>

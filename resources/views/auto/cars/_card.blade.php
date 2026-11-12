@@ -1,7 +1,7 @@
 @php($sold = $car->status === \App\Models\Car::STATUS_SOLD)
 <article @class(['car-card', 'car-card--sold' => $sold])>
   <a class="car-card__media" href="{{ route('car.show', $car) }}" tabindex="-1" aria-hidden="true">
-    <img src="{{ $car->image_url }}" alt="{{ $car->title }}" loading="lazy">
+    <img src="{{ $car->thumb_url }}" alt="{{ $car->title }}" width="640" height="480" loading="lazy" decoding="async">
     <span class="car-card__badges">
       @if ($car->status !== \App\Models\Car::STATUS_AVAILABLE)
         <span class="badge-pill badge-pill--{{ $car->status }}">{{ $car->status_label }}</span>
