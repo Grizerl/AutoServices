@@ -7,7 +7,7 @@
                 @method('PUT')
                 <div class="card-body">
                   <div class="form-group">
-                    <label>Сustomer name</label>
+                    <label>Customer name</label>
                     <input name="name" type="text" class="form-control" value="{{$repair->name}}">
                   </div>
                   <div class="form-group">

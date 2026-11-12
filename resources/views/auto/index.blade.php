@@ -1,6 +1,6 @@
 @extends('layouts.auto_layouts') <!-- Base layout -->
 
-@section('title', 'Автосервіс - Car Services and Mechanic') <!-- Page title -->
+@section('title', 'Auto Service - Car Repair and Maintenance') <!-- Page title -->
 @section('body-class', 'page-home')
 
 @section('content') <!-- Main content -->
@@ -285,7 +285,7 @@
                   <div class="swiper-slide">
                      <div class="team-container">
                         <div>
-                           <img class="member-img" src="{{$member['img']}}" alt="Сompany team">
+                           <img class="member-img" src="{{$member['img']}}" alt="Company team">
                         </div>
                         <div class="media-team-container">
                            <h3>{{$member['name']}}</h3>

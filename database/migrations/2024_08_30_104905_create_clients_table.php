@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('role');
-            $table->text('commentars'); // Використовуйте 'commentars', якщо це правильна назва стовпця
+            $table->text('commentars'); // Keep the legacy 'commentars' column name
             $table->timestamps();
         });
     }

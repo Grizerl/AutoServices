@@ -48,7 +48,7 @@ class ContactController extends Controller
     
         $contact->save();
     
-        return redirect()->back()->with('success', 'Контакт успішно додано!');
+        return redirect()->back()->with('success', 'Thank you! Your question has been sent.');
     }
     
 

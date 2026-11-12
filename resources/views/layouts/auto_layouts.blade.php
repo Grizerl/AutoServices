@@ -75,7 +75,7 @@
 <div class="container">
     <div class="navbar-content">
         <div class="main-logo">
-            <h2 class="logo-slogan">Автосервіс</h2>
+            <h2 class="logo-slogan">Auto Service</h2>
         </div>
         <div class="nav-bar-collapse">
             <ul class="nav-content">
@@ -86,7 +86,7 @@
                     <a class="nav-link" tabindex="2" id="about-link" href="#about">About us<i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="{{route('vision')}}">Сompany news</a></li>
+                                <a href="{{route('vision')}}">Company news</a></li>
                             <li>
                                 <a href="{{route('history')}}">About the company</a></li>
                         </ul>
@@ -117,7 +117,7 @@
                         </ul>
                 </li>
                 <li class="nav-item">
-                    <span class="nav-link lk-content">Cлужба продаж
+                    <span class="nav-link lk-content">Sales department
                         <div style="padding-top:5px;">
                             <a href="tel:+380950660959" class="nav-link-number">+380 95 066 09 59</a> 
                         </div>
@@ -133,7 +133,7 @@
         </div>
         <div class="menu-container">
             <div class="adaptive-logo">
-                <h2 class="logo-slogan">Автосервіс</h2>
+                <h2 class="logo-slogan">Auto Service</h2>
                 <div class="close-btn">&times;</div>
             </div>
             <ul class="menu">
@@ -144,7 +144,7 @@
                     <a class="nav-link sc-FDFgh" tabindex="2" id="about-link" href="#about">About us<i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
                         <ul class="sub-menu sc-FAFfgd">
                             <li>
-                                <a href="{{route('vision')}}">Сompany news</a>
+                                <a href="{{route('vision')}}">Company news</a>
                             </li>
                             <li>
                                 <a href="{{route('history')}}">About the company</a>
@@ -177,7 +177,7 @@
                         </ul>
                 </li>
                 <li class="adaptive-item">
-                    <span class="adaptive-link">Cлужба продаж</span>
+                    <span class="adaptive-link">Sales department</span>
                     <div style="text-align: left;  margin-top: 20px;  margin-left: 15px; ">
                         <a href="tel:+380950660959" class="adaptive-link-number">+380 95 066 09 59</a> 
                     </div>
@@ -195,7 +195,7 @@
                 <h3 class="copy-title">Skills</h3>
                     <div class="copy-list">
                         <span class="copy-link">Sale of cars</span>
-                        <span class="copy-link">Сar repair</span>
+                        <span class="copy-link">Car repair</span>
                     </div>
         <!-- Community Section -->
         <div>
