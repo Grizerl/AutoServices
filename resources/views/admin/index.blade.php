@@ -18,6 +18,10 @@
           ['bg-warning', $pending, 'Pending repair requests', 'fa-toolbox', route('repair.index')],
           ['bg-secondary', $repair, 'All repair requests', 'fa-car-burst', route('repair.index')],
           ['bg-danger', $contact, 'Questions', 'fa-circle-question', route('contact.index')],
+          ['bg-teal', $cars, 'Cars available for sale', 'fa-car-side', route('cars.index')],
+          ['bg-maroon', $carRequests, 'New car requests', 'fa-envelope-open-text', route('car-inquiries.index', ['status' => 'new'])],
+          ['bg-orange', $pendingSubscriptions, 'Subscriptions to confirm', 'fa-id-card', route('subscriptions.index', ['status' => 'pending'])],
+          ['bg-indigo', $activeSubscriptions, 'Active subscriptions', 'fa-circle-check', route('subscriptions.index', ['status' => 'active'])],
         ];
       @endphp
       @foreach ($boxes as [$color, $count, $label, $icon, $url])

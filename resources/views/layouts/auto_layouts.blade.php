@@ -189,8 +189,8 @@
             <div class="copy">
                 <h3 class="copy-title">Skills</h3>
                     <div class="copy-list">
-                        <span class="copy-link">Sale of cars</span>
-                        <span class="copy-link">Car repair</span>
+                        <a href="{{ route('offer') }}"><span class="copy-link">Sale of cars</span></a>
+                        <a href="{{ route('home_auto') }}#contacts"><span class="copy-link">Car repair</span></a>
                     </div>
         <!-- Community Section -->
         <div>

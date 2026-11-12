@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auto;
 
 use App\Http\Controllers\Controller;
+use App\Models\Car;
 use App\Models\Client;
 use App\Models\Members;
 use App\Models\Post;
@@ -16,6 +17,13 @@ class HomeController extends Controller
             'post' => Post::oldest()->get(),
             'client' => Client::latest()->get(),
             'members' => Members::oldest()->get(),
+            // featured cars first, topped up with the newest available ones
+            'featuredCars' => Car::query()
+                ->where('status', Car::STATUS_AVAILABLE)
+                ->orderByDesc('is_featured')
+                ->orderByDesc('id')
+                ->limit(3)
+                ->get(),
         ]);
     }
 }

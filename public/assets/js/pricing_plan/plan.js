@@ -1,22 +1,37 @@
-// Subscription plan tabs (Silver / Platinum / Gold)
+// Subscription plans: switch between monthly and yearly prices without reloading.
+// Without JavaScript the toggle buttons are plain links (?period=yearly) and still work.
 document.addEventListener('DOMContentLoaded', function () {
-    var tabs = document.querySelectorAll('[data-plan-tab]');
-    var panels = document.querySelectorAll('[data-plan-panel]');
-    if (!tabs.length) { return; }
+    var root = document.querySelector('[data-plans]');
+    if (!root) { return; }
 
-    function show(name) {
-        tabs.forEach(function (tab) {
-            tab.classList.toggle('active', tab.dataset.planTab === name);
+    var buttons = root.querySelectorAll('[data-period-btn]');
+    var links = root.querySelectorAll('[data-checkout-link]');
+
+    function setPeriod(period) {
+        root.setAttribute('data-period', period);
+
+        buttons.forEach(function (btn) {
+            var active = btn.getAttribute('data-period-btn') === period;
+            btn.classList.toggle('is-active', active);
+            btn.setAttribute('aria-pressed', active ? 'true' : 'false');
         });
-        panels.forEach(function (panel) {
-            panel.classList.toggle('show', panel.dataset.planPanel === name);
+
+        // keep the "Choose" buttons pointing at the selected period
+        links.forEach(function (link) {
+            link.setAttribute('href', link.getAttribute('data-base') + '?period=' + period);
         });
+
+        if (window.history && window.history.replaceState) {
+            var url = new URL(window.location.href);
+            url.searchParams.set('period', period);
+            window.history.replaceState(null, '', url);
+        }
     }
 
-    tabs.forEach(function (tab) {
-        tab.addEventListener('click', function (event) {
+    buttons.forEach(function (btn) {
+        btn.addEventListener('click', function (event) {
             event.preventDefault();
-            show(tab.dataset.planTab);
+            setPeriod(btn.getAttribute('data-period-btn'));
         });
     });
 });

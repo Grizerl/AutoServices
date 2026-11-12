@@ -1,0 +1,264 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ---------------------------------------------------------------------------
+// Shared UI used by the cars and subscription pages
+// ---------------------------------------------------------------------------
+
+// Buttons
+.btn-car,
+.btn-plan {
+  display: inline-block;
+  padding: 12px 28px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: linear-gradient(135deg, $red-btn, $red-dark);
+  box-shadow: $shadow-red;
+  font-family: $font-roboto;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-align: center;
+  color: $white;
+  cursor: pointer;
+  transition: transform 0.3s $ease, box-shadow 0.3s $ease, background 0.3s, color 0.3s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba($red-btn, 0.5);
+    color: $white;
+  }
+
+  &--lg {
+    padding: 15px 38px;
+    font-size: 1.05rem;
+  }
+
+  &--ghost {
+    background: transparent;
+    border-color: $red-btn;
+    box-shadow: none;
+    color: $red-btn;
+
+    &:hover {
+      background: $red-btn;
+      color: $white;
+    }
+  }
+}
+
+// Form fields
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  text-align: left;
+
+  > span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $black-light;
+
+    b {
+      color: $red-btn;
+    }
+
+    small {
+      font-weight: 400;
+      color: $gray;
+    }
+  }
+
+  input[type='text'],
+  input[type='tel'],
+  input[type='email'],
+  input[type='search'],
+  input[type='number'],
+  select,
+  textarea {
+    width: 100%;
+    margin: 0;
+    padding: 12px 14px;
+    border: 1.5px solid #d9dde2;
+    border-radius: 10px;
+    background: $white;
+    font-family: $font-roboto;
+    font-size: 1rem;
+    color: $black-light;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $red-btn;
+      box-shadow: 0 0 0 4px rgba($red-btn, 0.15);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: $black-light;
+  cursor: pointer;
+
+  input {
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: $red-btn;
+  }
+}
+
+// Badges
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: $black-light;
+  font-family: $font-roboto;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: $white;
+
+  &--available {
+    background: #2e9e57;
+  }
+
+  &--reserved {
+    background: $gold;
+    color: $black;
+  }
+
+  &--sold {
+    background: $gray;
+  }
+
+  &--deal {
+    background: $red-btn;
+  }
+
+  &--featured {
+    background: $dark;
+  }
+}
+
+// Empty state
+.empty-state {
+  max-width: 560px;
+  margin: 30px auto 10px;
+  padding: 50px 24px;
+  border-radius: $radius;
+  background: $gray-surface;
+  text-align: center;
+
+  > i {
+    font-size: 3rem;
+    color: $red-btn;
+  }
+
+  h3 {
+    margin: 14px 0 8px;
+  }
+
+  p {
+    margin: 0 0 22px;
+    color: $gray;
+  }
+}
+
+// Pagination
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 36px 0 10px;
+
+  &__item {
+    display: inline-grid;
+    place-items: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 12px;
+    border-radius: 10px;
+    background: $white;
+    box-shadow: $shadow-soft;
+    font-weight: 600;
+    color: $black-light;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+
+    &:hover:not(.is-disabled):not(.is-active) {
+      background: rgba($red-btn, 0.08);
+      color: $red-btn;
+      transform: translateY(-2px);
+    }
+
+    &.is-active {
+      background: $red-btn;
+      color: $white;
+    }
+
+    &.is-disabled {
+      opacity: 0.45;
+    }
+  }
+}
+
+// Spec table (definition list)
+.spec-table {
+  margin: 18px 0;
+  border-radius: $radius-sm;
+  background: $gray-surface;
+  overflow: hidden;
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 11px 16px;
+
+    & + div {
+      border-top: 1px solid rgba($black, 0.06);
+    }
+  }
+
+  dt {
+    color: $gray;
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 600;
+    text-align: right;
+    color: $black-light;
+  }
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  font-weight: 600;
+  color: $gray;
+  transition: color 0.2s, gap 0.2s;
+
+  &:hover {
+    gap: 12px;
+    color: $red-btn;
+  }
+}

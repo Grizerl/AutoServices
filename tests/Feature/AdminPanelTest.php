@@ -235,7 +235,7 @@ class AdminPanelTest extends TestCase
 
     public function test_public_visitors_cannot_use_admin_store_routes(): void
     {
-        $this->post('/Admin/Panel/post', ['title' => 'x', 'content_post' => 'y'])->assertRedirect(route('login'));
+        $this->post(route('post.store'), ['title' => 'x', 'content_post' => 'y'])->assertRedirect(route('login'));
         $this->assertDatabaseCount('posts', 0);
     }
 }

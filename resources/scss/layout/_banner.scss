@@ -28,6 +28,8 @@
 
 .container-nav-item {
   flex-direction: row;
+  flex-wrap: wrap;
+  max-width: calc(100% - 24px);
   padding: 6px 18px;
   position: relative;
   z-index: 2;
