@@ -1,84 +1,12 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-.footer-container {
-  padding-top: 50px;
-}
-
-.footer-flex {
-  display: flex;
-  justify-content: space-around;
-}
-
-.copy-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.copy-title {
-  font-family: $font-roboto;
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 24px;
-  text-align: left;
-  color: $black;
-}
-
-.copy-link {
-  font-family: $font-roboto;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 2.5;
-  text-align: left;
-  color: $gray;
-  transition: 0.5s;
-  cursor: pointer;
-
-  &:hover {
-    color: $red-btn;
-  }
-}
-
-.aside-copyright {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 5vh;
-  border-top: 1px solid $gray-light;
-  width: 73%;
-}
-
-.aside-copyright-text {
-  font-family: $font-stem;
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin: 15px 0;
-  color: $gray;
-}
-
-.aside-copyright-list {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  li a {
-    font-family: $font-stem;
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin: 15px;
-    color: $gray;
-    transition: 0.5s;
-
-    &:hover {
-      color: $red-btn;
-    }
-  }
-}
-
-// Contact strip shown above the footer on most pages
+// ---------------------------------------------------------------------------
+// Contact strip shown above the footer
+// ---------------------------------------------------------------------------
 .aside-container-main-info {
-  padding: 40px 0;
-  background: $red-btn;
+  padding: 44px 0;
+  background: linear-gradient(120deg, $red-btn 0%, $red-dark 100%);
 }
 
 .gc-3 {
@@ -95,25 +23,147 @@
 .fa-icon-info {
   flex: 0 0 64px;
   width: 64px;
-  font-size: xxx-large;
+  height: 64px;
+  line-height: 64px;
+  margin-right: 22px;
+  border-radius: 50%;
+  background: rgba($white, 0.16);
+  font-size: 1.7rem;
   text-align: center;
   color: $white;
-  margin-right: 25px;
+  transition: transform 0.4s $ease, background 0.3s;
+}
+
+.aside-content-info:hover .fa-icon-info {
+  transform: rotate(-8deg) scale(1.08);
+  background: rgba($white, 0.26);
 }
 
 .aside-container-title {
   font-family: $font-roboto;
   font-weight: 700;
-  font-size: 22px;
+  font-size: 20px;
+  letter-spacing: 1px;
   line-height: 1.2;
   color: $white;
-  margin: 0 0 10px;
+  margin: 0 0 8px;
 }
 
 .aside-container-info {
-  font-size: large;
-  line-height: 30px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba($white, 0.92);
+
+  a {
+    color: $white;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Footer
+// ---------------------------------------------------------------------------
+footer {
+  background: $dark;
+  color: rgba($white, 0.7);
+}
+
+.footer-container {
+  padding-top: 64px;
+}
+
+.footer-flex {
+  display: flex;
+  justify-content: space-around;
+  gap: 24px;
+}
+
+.copy-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.copy-title {
+  position: relative;
+  margin: 0 0 14px;
+  padding-bottom: 12px;
+  font-family: $font-roboto;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
   color: $white;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 34px;
+    height: 3px;
+    border-radius: 3px;
+    background: $red-btn;
+  }
+}
+
+.copy > div .copy-title {
+  margin-top: 28px;
+}
+
+.copy-link {
+  font-family: $font-roboto;
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 2.3;
+  text-align: left;
+  color: rgba($white, 0.68);
+  transition: color 0.25s, padding 0.25s;
+  cursor: pointer;
+
+  &:hover {
+    padding-left: 6px;
+    color: $white;
+  }
+}
+
+.aside-copyright {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 48px;
+  border-top: 1px solid rgba($white, 0.12);
+  width: 73%;
+}
+
+.aside-copyright-text {
+  font-family: $font-roboto;
+  font-size: 0.95rem;
+  font-weight: 400;
+  margin: 18px 0;
+  color: rgba($white, 0.55);
+}
+
+.aside-copyright-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  li a {
+    font-family: $font-roboto;
+    font-size: 0.95rem;
+    font-weight: 400;
+    margin: 18px 12px;
+    color: rgba($white, 0.55);
+    transition: color 0.25s;
+
+    &:hover {
+      color: $white;
+    }
+  }
 }
 
 @include max($bp-xl) {
@@ -123,7 +173,7 @@
 
   .gc-3 {
     grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+    gap: 28px;
   }
 }
 
@@ -139,6 +189,19 @@
 
   .copy-title {
     text-align: center;
+
+    &::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .copy-link {
+    text-align: center;
+
+    &:hover {
+      padding-left: 0;
+    }
   }
 
   .aside-copyright {
@@ -151,7 +214,7 @@
 @include max($bp-md) {
   .gc-3 {
     grid-template-columns: 1fr;
-    gap: 25px;
+    gap: 26px;
   }
 
   .aside-content-info {
@@ -159,22 +222,23 @@
   }
 
   .fa-icon-info {
-    flex-basis: 52px;
-    width: 52px;
-    font-size: 2.6rem;
+    flex-basis: 54px;
+    width: 54px;
+    height: 54px;
+    line-height: 54px;
+    font-size: 1.4rem;
     margin-right: 16px;
   }
 
   .aside-container-info {
     font-size: 1rem;
-    line-height: 1.6;
   }
 }
 
 @include max($bp-xs) {
   .footer-flex {
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 18px;
   }
 
   .aside-copyright-list {

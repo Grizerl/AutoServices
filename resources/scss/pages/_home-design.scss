@@ -1,0 +1,372 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ===========================================================================
+// Home page: visual layer (loaded after the base layout in _home.scss)
+// ===========================================================================
+.page-home {
+  // -------------------------------------------------------------------------
+  // Hero
+  // -------------------------------------------------------------------------
+  .back-img-slide-1,
+  .back-img-slide-2 {
+    isolation: isolate;
+
+    // dark gradient keeps the text readable on any photo
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(100deg, rgba($dark, 0.78) 0%, rgba($dark, 0.42) 55%, rgba($dark, 0.12) 100%);
+    }
+  }
+
+  .slide-1-title,
+  .slide-2-title {
+    text-shadow: 0 4px 24px rgba($black, 0.45);
+  }
+
+  // text enters when its slide becomes active
+  .swiper-slide-active {
+    .slide-1-title,
+    .slide-2-title {
+      animation: fade-up 0.9s $ease 0.1s both;
+    }
+
+    .slide-1-text,
+    .slide-2-text {
+      animation: fade-up 0.9s $ease 0.3s both;
+    }
+
+    .slide-1-btn,
+    .slide-2-btn {
+      animation: fade-up 0.9s $ease 0.5s both;
+    }
+  }
+
+  .slide-1-btn,
+  .slide-2-btn,
+  .aside-btn,
+  .section-advantages-card-btn {
+    border-radius: 999px;
+    padding: 14px 38px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    background: linear-gradient(135deg, $red-btn, $red-dark);
+    box-shadow: $shadow-red;
+    transition: transform 0.3s $ease, box-shadow 0.3s $ease, background 0.3s;
+
+    &:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, $red, $red-btn);
+      box-shadow: 0 14px 30px rgba($red-btn, 0.5);
+    }
+  }
+
+  .swiper-1 .swiper-button-prev,
+  .swiper-1 .swiper-button-next {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba($white, 0.14);
+    backdrop-filter: blur(6px);
+    transition: background 0.3s, transform 0.3s;
+
+    &::after {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    &:hover {
+      background: $red-btn;
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Intro cards
+  // -------------------------------------------------------------------------
+  .card {
+    border-radius: $radius;
+    box-shadow: $shadow-card;
+    transition: transform 0.4s $ease, box-shadow 0.4s $ease;
+
+    &:hover {
+      transform: translateY(-14px);
+      box-shadow: $shadow-lift;
+    }
+
+    > div:first-child {
+      display: grid;
+      place-items: center;
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background: rgba($red-btn, 0.1);
+      transition: background 0.3s, transform 0.4s $ease;
+
+      i {
+        font-size: 2.2rem;
+        transition: color 0.3s;
+      }
+    }
+
+    &:hover > div:first-child {
+      background: $red-btn;
+      transform: scale(1.08) rotate(-6deg);
+
+      i {
+        color: $white;
+      }
+    }
+
+    h2 {
+      margin: 6px 0 10px;
+      font-size: 1.5rem;
+      color: $black-light;
+    }
+  }
+
+  .card-pseudo-btn a {
+    border-radius: 0 0 $radius $radius;
+  }
+
+  // -------------------------------------------------------------------------
+  // About block
+  // -------------------------------------------------------------------------
+  .aside-title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.15;
+  }
+
+  .aside-subtitle {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 999px;
+    background: rgba($red-btn, 0.1);
+    letter-spacing: 0.5px;
+  }
+
+  .img-aside-one,
+  .img-aside-two {
+    border: 6px solid $white;
+    box-shadow: $shadow-lift;
+    animation: float 7s ease-in-out infinite;
+  }
+
+  .img-aside-two {
+    animation-delay: -3.5s;
+  }
+
+  // -------------------------------------------------------------------------
+  // Support grid
+  // -------------------------------------------------------------------------
+  .section-support-container {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba($dark, 0.6);
+    }
+
+    > * {
+      position: relative;
+    }
+  }
+
+  .section-support-subtitle {
+    letter-spacing: 0.5px;
+  }
+
+  .card-support {
+    border-radius: $radius;
+    box-shadow: $shadow-card;
+    transition: transform 0.4s $ease, box-shadow 0.4s $ease;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-lift;
+    }
+
+    > i {
+      display: inline-grid;
+      place-items: center;
+      width: 76px;
+      height: 76px;
+      margin-bottom: 10px;
+      border-radius: 50%;
+      background: rgba($red-btn, 0.1);
+      font-size: 1.9rem;
+      transition: background 0.3s, color 0.3s, transform 0.4s $ease;
+    }
+
+    &:hover > i {
+      background: $red-btn;
+      color: $white;
+      transform: rotateY(360deg);
+    }
+
+    h2 {
+      margin: 6px 0 10px;
+      font-size: 1.35rem;
+      color: $black-light;
+    }
+
+    .card-p {
+      margin-bottom: 0;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Advantages
+  // -------------------------------------------------------------------------
+  .section-advantages-card-list {
+    justify-content: space-between;
+    border: 0;
+    border-left: 5px solid $red-btn;
+    border-radius: $radius-sm;
+    background: $white;
+    box-shadow: $shadow-soft;
+    transition: transform 0.35s $ease, box-shadow 0.35s $ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: $shadow-card;
+    }
+  }
+
+  .section-advantages-card-list > div:nth-child(2) {
+    flex: 1;
+  }
+
+  .section-advantages-card-title {
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+    letter-spacing: 0.6px;
+    color: $black-light;
+  }
+
+  .section-advantages-card-p {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: $gray;
+  }
+
+  // -------------------------------------------------------------------------
+  // Testimonials and team
+  // -------------------------------------------------------------------------
+  .sc-ClieSwip {
+    padding: 50px 10px 40px;
+    margin: 0 -10px;
+  }
+
+  .swiper-slide-content {
+    border: 0;
+    border-radius: $radius;
+    padding: 22px 22px 18px;
+    box-shadow: $shadow-card;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: $shadow-lift;
+    }
+  }
+
+  .swiper-img-box {
+    border-radius: 50%;
+  }
+
+  .star-content {
+    color: $gold;
+  }
+
+  .team-container {
+    overflow: hidden;
+    border-radius: $radius;
+    box-shadow: $shadow-card;
+
+    > div:first-child {
+      overflow: hidden;
+    }
+
+    .member-img {
+      display: block;
+      border-radius: 0;
+      transition: transform 0.7s $ease;
+    }
+
+    &:hover .member-img {
+      transform: scale(1.07);
+    }
+  }
+
+  .mySwiper.SwiperTeam {
+    padding: 6px 10px 20px;
+    margin: 0 -10px;
+  }
+
+  .swiper-button-prev-2,
+  .swiper-button-next-2 {
+    border-radius: $radius-sm;
+    background: $red-btn;
+    color: $white;
+    box-shadow: $shadow-red;
+  }
+
+  // -------------------------------------------------------------------------
+  // Booking form
+  // -------------------------------------------------------------------------
+  .section-contact-container-form {
+    border-top: 0;
+    border-radius: $radius;
+    background: rgba($white, 0.97);
+    box-shadow: $shadow-lift;
+
+    input,
+    .section-contact-form-comment {
+      border: 1.5px solid #d9dde2;
+      border-radius: 10px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+
+      &:focus {
+        border-color: $red-btn;
+        box-shadow: 0 0 0 4px rgba($red-btn, 0.15);
+      }
+    }
+  }
+
+  .section-contact-form-btn {
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(135deg, $red-btn, $red-dark);
+    box-shadow: $shadow-red;
+    transition: transform 0.3s $ease, box-shadow 0.3s;
+
+    &:hover {
+      animation: none;
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, $red, $red-btn);
+      box-shadow: 0 14px 30px rgba($red-btn, 0.5);
+      border-color: transparent;
+    }
+  }
+
+  // Touch devices have no hover: show the card buttons right away
+  @media (hover: none) {
+    .card-btn-active {
+      position: static;
+      margin-top: 16px;
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: none;
+    }
+  }
+}

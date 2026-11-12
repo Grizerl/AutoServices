@@ -431,6 +431,11 @@
     font-weight: 500;
     font-size: 14px;
     color: $black;
+    transition: box-shadow 0.2s;
+
+    &:focus {
+      box-shadow: 0 0 0 4px rgba($red-btn, 0.35);
+    }
   }
 
   .ask-question-form-textarea {
@@ -488,15 +493,17 @@
     font-weight: 600;
     background: transparent;
     color: $white;
-    border: 4px solid $red-btn;
+    border: 3px solid $red-btn;
+    border-radius: 999px;
     text-align: center;
-    padding: 5px 35px;
+    padding: 6px 38px;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.4s;
 
     &:hover {
-      border-radius: 15px;
       background: $red-btn;
+      box-shadow: $shadow-red;
+      transform: translateY(-2px);
     }
   }
 
@@ -572,7 +579,15 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding: 18px;
     text-align: center;
+    border-radius: $radius;
+    transition: transform 0.4s $ease, box-shadow 0.4s $ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: $shadow-card;
+    }
   }
 
   .section-partners-container {
@@ -602,8 +617,16 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    overflow: hidden;
     text-align: center;
+    border-radius: $radius;
     background: $black-panel;
+    transition: transform 0.4s $ease, box-shadow 0.4s $ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba($red-btn, 0.35);
+    }
   }
 
   .logo-partners {

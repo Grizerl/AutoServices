@@ -382,48 +382,5 @@
     </div>
 </div>  
 </section>
-<section>
-<!-- Contact info section -->
-   <div class="aside-container-main-info">
-      <div class="container">
-         <div class="gc-3">
-            <div class="aside-content-info">
-            <i class="fa-solid fa-map-location-dot fa-icon-info"></i>
-            <div>
-               <h3 class="aside-container-title">ADDRESS:</h3>
-               <p class="aside-container-info">Mulatol Pakar Matha, Dhaka Bus<br> Stand Road, 5400</p>
-            </div>
-            </div>
-            <div class="aside-content-info">
-            <i class="fa-solid fa-phone-volume fa-icon-info"></i>
-            <div>
-               <h3 class="aside-container-title">PHONES:</h3>
-               <p class="aside-container-info">
-                  <a style="color:#fff" href="tel:0950660959">+380 95 066 09 59</a>
-                  <a style="color:#fff; margin-left:10px;" href="tel:0950650385">+380 95 065 03 85</a>
-                  <br>
-                  <a style="color:#fff" href="tel:0950564505">+380 95 056 46 05</a>
-               </p>
-            </div>
-            </div>
-            <div class="aside-content-info">
-            <i class="fa-solid fa-calendar-check fa-icon-info"></i>
-            <div>
-               <h3 class="aside-container-title">WORKING TIME:</h3>
-               <p class="aside-container-info">Monday–Saturday: 08:00–18:00;<br> Friday - Closed</p>
-            </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   @if ($errors->any())
-       <div class="alert alert-danger">
-           <ul>
-               @foreach ($errors->all() as $error)
-                   <li>{{ $error }}</li>
-               @endforeach
-           </ul>
-       </div>
-   @endif
-</section>
+@include('partials.contact-strip')
 @endsection

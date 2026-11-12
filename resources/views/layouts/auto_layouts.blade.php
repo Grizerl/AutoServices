@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script>document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -41,7 +42,7 @@
         <ul class="top-left">
             <li>
                 <i style="color:#fff;" class="fa-solid fa-house"></i>
-                <a href="https://google.com.ua/maps/place/%D0%9A%D0%B8%D1%97%D0%B2,+02000/@50.4018377,30.2208891,11z/data=!3m1!4b1!4m12!1m5!3m4!2zNTDCsDQ1JzMzLjciTiAyNcKwMTYnMzguNyJF!8m2!3d50.759347!4d25.277409!3m5!1s0x40d4cf4ee15a4505:0x764931d2170146fe!8m2!3d50.4503596!4d30.5245025!16zL20vMDJzbjM0?entry=ttu&g_ep=EgoyMDI0MDgyMC4xIKXMDSoASAFQAw%3D%3D">Car Service Floor UK</a>
+                <a href="https://google.com.ua/maps/place/%D0%9A%D0%B8%D1%97%D0%B2,+02000/@50.4018377,30.2208891,11z/data=!3m1!4b1!4m12!1m5!3m4!2zNTDCsDQ1JzMzLjciTiAyNcKwMTYnMzguNyJF!8m2!3d50.759347!4d25.277409!3m5!1s0x40d4cf4ee15a4505:0x764931d2170146fe!8m2!3d50.4503596!4d30.5245025!16zL20vMDJzbjM0?entry=ttu&g_ep=EgoyMDI0MDgyMC4xIKXMDSoASAFQAw%3D%3D">Kyiv, Ukraine</a>
             </li>
             <li>
                 <i style="color:#fff;" class="fa-solid fa-phone"></i>
@@ -72,18 +73,19 @@
     </div>
 </div>
 <!-- Main Container -->
+<header class="site-header" data-site-header>
 <div class="container">
     <div class="navbar-content">
         <div class="main-logo">
-            <h2 class="logo-slogan">Auto Service</h2>
+            <a class="logo-slogan" href="{{ route('home_auto') }}"><i class="fa-solid fa-car-side"></i> Auto <span>Service</span></a>
         </div>
         <div class="nav-bar-collapse">
             <ul class="nav-content">
                 <li class="nav-item">
-                    <a class="nav-link" tabindex="1" href="{{route('home_auto')}}">Home</a>
+                    <a @class(['nav-link', 'is-active' => request()->routeIs('home_auto')]) href="{{ route('home_auto') }}">Home</a>
                 </li>
                 <li class="nav-item menu-item">
-                    <a class="nav-link" tabindex="2" href="{{ route('home_auto') }}#about">About us<i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
+                    <a @class(['nav-link', 'is-active' => request()->routeIs('vision', 'history')]) href="{{ route('home_auto') }}#about">About us<i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
                         <ul class="sub-menu">
                             <li>
                                 <a href="{{route('vision')}}">Company news</a></li>
@@ -92,10 +94,10 @@
                         </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" tabindex="3" href="{{ route('home_auto') }}#client-say">Reviews</a>
+                    <a class="nav-link" href="{{ route('home_auto') }}#client-say">Reviews</a>
                 </li>
                 <li class="nav-item menu-item">
-                    <a class="nav-link" tabindex="4" href="{{ route('home_auto') }}#contacts">Contacts <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
+                    <a @class(['nav-link', 'is-active' => request()->routeIs('contacts')]) href="{{ route('home_auto') }}#contacts">Contacts <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
                         <ul class="sub-menu">
                             <li>
                                 <a href="{{route('contacts')}}">More detailed information</a>
@@ -103,7 +105,7 @@
                         </ul>
                 </li>
                 <li class="nav-item menu-item">
-                    <a class="nav-link" tabindex="5" href="{{ route('offer') }}">Pages <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
+                    <a @class(['nav-link', 'is-active' => request()->routeIs('offer', 'plan', 'partners')]) href="{{ route('offer') }}">Pages <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
                         <ul class="sub-menu">
                             <li>
                                 <a href="{{route('offer')}}">Car for sale</a>
@@ -132,7 +134,7 @@
         <div class="menu-backdrop" data-menu-backdrop></div>
         <nav class="menu-container" id="mobile-menu" aria-label="Mobile menu">
             <div class="adaptive-logo">
-                <h2 class="logo-slogan">Auto Service</h2>
+                <a class="logo-slogan" href="{{ route('home_auto') }}"><i class="fa-solid fa-car-side"></i> Auto <span>Service</span></a>
                 <button type="button" class="close-btn" aria-label="Close menu">&times;</button>
             </div>
             <ul class="menu">
@@ -179,7 +181,7 @@
         </nav>
     </div>
 </div>
-</div>
+</header>
     @yield('content')
 <footer>
     <div class="footer-container">
@@ -231,8 +233,8 @@
                     <a href="tel:+380950660959"><span class="copy-link">Tel: +380 95 066 09 59</span></a>
                     <a href="tel:+380950650385"><span class="copy-link">Telegram: +380 95 065 03 85</span></a>
                     <a href="mailto:autorepaire@gmail.com"><span class="copy-link">autorepaire@gmail.com</span></a>
-                    <a href="https://google.com.ua/maps/place/%D0%9A%D0%B8%D1%97%D0%B2,+02000/@50.4018377,30.2208891,11z/data=!3m1!4b1!4m12!1m5!3m4!2zNTDCsDQ1JzMzLjciTiAyNcKwMTYnMzguNyJF!8m2!3d50.759347!4d25.277409!3m5!1s0x40d4cf4ee15a4505:0x764931d2170146fe!8m2!3d50.4503596!4d30.5245025!16zL20vMDJzbjM0?entry=ttu&g_ep=EgoyMDI0MDgyMC4xIKXMDSoASAFQAw%3D%3D"><span class="copy-link">50°45'33.7"N 25°16'38.7"E</span></a>
-                    <span class="copy-link">Producing Future Beats</span>
+                    <span class="copy-link">Kyiv, Ukraine</span>
+                    <span class="copy-link">Mon–Sat: 08:00–18:00</span>
                 </div>
             </div>
         </div>
@@ -262,6 +264,7 @@
 </aside>
 </footer>
 </div>
+<button type="button" class="to-top" aria-label="Back to top" data-to-top><i class="fa-solid fa-arrow-up"></i></button>
 <script src="{{ asset('assets/js/index.js') }}"></script>
 @stack('scripts')
 </body>

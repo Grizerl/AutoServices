@@ -16,6 +16,11 @@ $red-btn: #db2d2e;
 $red-title: #ee0e39;
 $red-accent: #e80e38;
 
+$dark: #121417;
+$dark-soft: #1b1f24;
+$gold: #f5a623;
+$red-dark: #a81e1f;
+
 // Typography
 $font-stem: 'Assistant', sans-serif;
 $font-roboto: 'Roboto', sans-serif;
@@ -35,10 +40,17 @@ $bp-xs: 450px;
 // Motion
 $transition-fast: 0.3s ease-in-out;
 $transition-base: 0.5s;
+$ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+// Shape
+$radius: 14px;
+$radius-sm: 8px;
 
 // Shadows
-$shadow-card: 0 0 30px 0 rgba($black, 0.1);
-$shadow-soft: 0 0 20px 0 rgba($black, 0.08);
+$shadow-card: 0 10px 30px rgba($black, 0.08);
+$shadow-soft: 0 6px 18px rgba($black, 0.07);
+$shadow-lift: 0 18px 40px rgba($black, 0.16);
+$shadow-red: 0 10px 24px rgba($red-btn, 0.35);
 
 // Assets (served from /public)
 $img-path: '/assets/images';

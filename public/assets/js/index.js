@@ -57,6 +57,7 @@
             var clientCount = slideCount(clients);
             new Swiper(clients, {
                 loop: clientCount > 4,
+                centerInsufficientSlides: true,
                 spaceBetween: 25,
                 speed: 800,
                 autoplay: clientCount > 1 ? { delay: 3500, disableOnInteraction: false } : false,
@@ -75,6 +76,7 @@
             var teamCount = slideCount(team);
             new Swiper(team, {
                 loop: teamCount > 3,
+                centerInsufficientSlides: true,
                 spaceBetween: 25,
                 speed: 800,
                 autoplay: teamCount > 1 ? { delay: 3500, disableOnInteraction: false } : false,
@@ -156,9 +158,103 @@
         });
     }
 
+    // ---------------------------------------------------------------- header + back to top
+    function initScrollUi() {
+        var header = document.querySelector('[data-site-header]');
+        var toTop = document.querySelector('[data-to-top]');
+        var ticking = false;
+
+        var update = function () {
+            var y = window.pageYOffset || document.documentElement.scrollTop;
+            if (header) { header.classList.toggle('is-scrolled', y > 8); }
+            if (toTop) { toTop.classList.toggle('is-visible', y > 600); }
+            ticking = false;
+        };
+
+        window.addEventListener('scroll', function () {
+            if (!ticking) {
+                ticking = true;
+                window.requestAnimationFrame(update);
+            }
+        }, { passive: true });
+        update();
+
+        if (toTop) {
+            toTop.addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }
+
+    // ---------------------------------------------------------------- scroll reveal
+    // [selector, animation, stagger in ms between siblings]
+    var REVEAL = [
+        ['.page-home .card', 'fade-up', 120],
+        ['.page-home .card-support', 'fade-up', 90],
+        ['.page-home .section-advantages-card-list', 'fade-up', 100],
+        ['.page-home .section-support-content-title, .page-home .section-advantages-title, .page-home .section-client-content, .page-home .section-member-title, .page-home .sc-CoNtn', 'fade-up', 0],
+        ['.page-home .sc-AbOgs > div:first-child', 'fade-right', 0],
+        ['.page-home .sc-AbOgs > div:last-child', 'fade-left', 0],
+        ['.page-home .sc-Fvrha', 'fade-right', 0],
+        ['.page-home .section-contact-container-form', 'fade-left', 0],
+        ['.page-offer .sn-title-container, .page-plan .section-element-title-conteiner', 'fade-up', 0],
+        ['.page-offer .shop-car-card-container', 'fade-up', 110],
+        ['.page-plan .section-element-navbar-conteiner', 'fade-up', 0],
+        ['.page-plan .card-items-pricing', 'fade-up', 120],
+        ['.page-partners .section-licenses-content, .page-partners .section-partners-title', 'fade-up', 0],
+        ['.page-partners .charter-box-first-img, .page-partners .charter-box-second-img', 'zoom-in', 80],
+        ['.page-partners .partners-box-first-img, .page-partners .partners-box-second-img', 'zoom-in', 80],
+        ['.page-history .section-gallery-title, .page-history .section-gallery-subtitle, .page-history .section-about-company-title', 'fade-up', 0],
+        ['.page-history .gallery-img', 'zoom-in', 70],
+        ['.page-history .section-form-container', 'fade-up', 0],
+        ['.page-news .section-about-news-title, .page-news .section-about-news-subtitle, .page-news .swiper-news-container', 'fade-up', 0],
+        ['.page-news .section-faq-title, .page-news .section-faq-subtitle', 'fade-up', 0],
+        ['.page-news .header-hidden-container', 'fade-up', 80],
+        ['.page-contacts .title-contact-page, .page-contacts .subtitle-contact-page, .page-contacts .section-contact-header-container', 'fade-up', 0],
+        ['.page-contacts .title-question-page, .page-contacts .subtitle-question-page, .page-contacts .form-ask-question', 'fade-up', 0],
+        ['.page-error .section-media-container > *', 'fade-up', 120]
+    ];
+
+    function initReveal() {
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce || !('IntersectionObserver' in window)) { return; }
+
+        // tag the targets (stagger siblings that share a parent)
+        REVEAL.forEach(function (rule) {
+            var counters = new Map();
+            document.querySelectorAll(rule[0]).forEach(function (el) {
+                if (el.hasAttribute('data-animate')) { return; }
+                var n = counters.get(el.parentElement) || 0;
+                counters.set(el.parentElement, n + 1);
+                el.setAttribute('data-animate', rule[1]);
+                if (rule[2]) { el.style.setProperty('--delay', Math.min(n, 6) * rule[2] + 'ms'); }
+            });
+        });
+
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) { return; }
+                var el = entry.target;
+                el.classList.add('is-visible');
+                observer.unobserve(el);
+                // hand the element back to its own hover transitions once revealed
+                var delay = parseInt(el.style.getPropertyValue('--delay'), 10) || 0;
+                setTimeout(function () {
+                    el.removeAttribute('data-animate');
+                    el.classList.remove('is-visible');
+                    el.style.removeProperty('--delay');
+                }, 900 + delay);
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('[data-animate]').forEach(function (el) { observer.observe(el); });
+    }
+
     ready(function () {
         initSliders();
         initMenu();
         initForms();
+        initScrollUi();
+        initReveal();
     });
 })();

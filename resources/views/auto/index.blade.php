@@ -15,7 +15,7 @@
                            <div class="container">
                               <div class="slide-1-content"> 
                                  <h2 class="slide-1-title">Technicians<br>for service</h2>
-                                 <p class="slide-1-text">Perspicis unde omne iste natus error sit voluptatem acntium<br>doloremque laudanum totam</p>
+                                 <p class="slide-1-text">Certified mechanics, honest prices and a written<br>warranty on every job we do.</p>
                                  <a class="slide-1-btn" href="#contacts">Book An Appointment</a>
                             </div>
                            </div>
@@ -27,7 +27,7 @@
                            <div class="container">
                               <div class="slide-2-content"> 
                                 <h2 class="slide-2-title">Best mechanical<br>for service</h2>
-                                <p class="slide-2-text">Perspicis unde omne iste natus error sit voluptatem acntium<br>doloremque laudanum totam</p>
+                                <p class="slide-2-text">Modern diagnostic equipment and quality parts<br>for any make and model.</p>
                                 <a class="slide-2-btn" href="{{route('vision')}}">More Information +</a>
                               </div>
                            </div>
@@ -51,7 +51,7 @@
                   <i class="fa-solid fa-car-rear"></i>
                </div> 
                 <h2>Appointment</h2>
-                <p class="card-p">All One-time purchase of in the amount <br> more.</p>
+                <p class="card-p">Pick a convenient time and our team will take care of your car.</p>
                 <div class="card-btn-active">
                   <div class="card-pseudo-btn">
                      <a href="#contacts">Booking Now</a>
@@ -64,7 +64,7 @@
                   <i class="fa-solid fa-gear"></i>
                </div> 
                 <h2>Service Packages</h2>
-                <p class="card-p">All One-time purchase of in the amount<br> more.</p>
+                <p class="card-p">Browse cars for sale and monthly maintenance plans.</p>
                 <div class="card-btn-active">
                   <div class="card-pseudo-btn">
                      <a href="{{route('offer')}}">Offer Now</a>
@@ -77,7 +77,7 @@
                   <i class="fa-solid fa-screwdriver-wrench"></i>
                </div> 
                 <h2>Find A Repair</h2>
-                <p class="card-p">All One-time purchase of in the amount <br> more.</p>
+                <p class="card-p">Describe the problem and get a quick, transparent estimate.</p>
                 <div class="card-btn-active">
                     <div class="card-pseudo-btn"><a href="{{route('contacts')}}">Contact Us</a></div>
                 </div>
@@ -122,32 +122,32 @@
                <div class="card-support">
                   <i class="fa-solid fa-screwdriver-wrench"></i>
                   <h2>Repair & Change</h2>
-                  <p class="card-p cd-p">One-time purchase info the amount more international friendly doctors</p>
+                  <p class="card-p cd-p">From quick fixes to full overhauls, done on time and to spec.</p>
                </div>
                <div class="card-support">
                   <i class="fa-regular fa-compass"></i>
-                  <h2>Laser cutting of metal</h2>
-                  <p class="card-p cd-p">One-time purchase info the amount more international friendly doctors</p>
+                  <h2>Body Repair</h2>
+                  <p class="card-p cd-p">Dent removal, welding and painting that restores the original look.</p>
                </div>
                <div class="card-support">
                   <i class="fa-solid fa-car-rear"></i>
-                  <h2>Confirm For Services</h2>
-                  <p class="card-p cd-p">One-time purchase info the amount more international friendly doctors</p>
+                  <h2>Fast Booking</h2>
+                  <p class="card-p cd-p">Confirm your visit online and skip the waiting line.</p>
                </div>
                <div class="card-support">
                <i class="fa-solid fa-hammer"></i>
                <h2>Warranty on Service</h2>
-               <p class="card-p cd-p">One-time purchase info the amount more international friendly doctors</p>
+               <p class="card-p cd-p">Every job is covered by a written warranty.</p>
                </div>
                <div class="card-support">
                   <i class="fa-solid fa-gears"></i>
                   <h2>Free Diagnosis</h2>
-                  <p class="card-p cd-p">One-time purchase info the amount more international friendly doctors</p>
+                  <p class="card-p cd-p">Computer diagnostics at no cost when you repair with us.</p>
                </div>
                <div class="card-support">
                   <i class="fa-solid fa-life-ring"></i>
-                  <h2>Lifetime Warranty</h2>
-                  <p class="card-p cd-p">One-time purchase info the amount more international friendly doctors</p>
+                  <h2>Roadside Support</h2>
+                  <p class="card-p cd-p">Stuck on the road? Call us and we will help you get moving.</p>
                </div>
             </div>
          </div>
@@ -169,7 +169,7 @@
                   </div>
                <div>
                   <h3 class="section-advantages-card-title">QUALITY SUPPORT</h3>
-                  <p class="section-advantages-card-p">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
+                  <p class="section-advantages-card-p">Friendly specialists answer your questions and keep you informed at every step.</p>
                </div>
                </div>
                <div class="section-advantages-card-list">
@@ -178,7 +178,7 @@
                   </div>
                <div>
                   <h3 class="section-advantages-card-title">SERVICE VARIETY</h3>
-                  <p class="section-advantages-card-p">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
+                  <p class="section-advantages-card-p">Engine, brakes, suspension, A/C and electronics: one workshop for every job.</p>
                </div>
                </div>
                <div class="section-advantages-card-list">
@@ -186,8 +186,8 @@
                      <i class="fa-solid fa-life-ring fa-i"></i>
                   </div>
                <div>
-                  <h3 class="section-advantages-card-title">LIFETIME WARRANTY</h3>
-                  <p class="section-advantages-card-p">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
+                  <h3 class="section-advantages-card-title">WRITTEN WARRANTY</h3>
+                  <p class="section-advantages-card-p">All work and installed parts come with a written warranty.</p>
                </div>
                </div>
                <div class="section-advantages-card-list">
@@ -196,7 +196,7 @@
                   </div>
                <div>
                   <h3 class="section-advantages-card-title">CAR MAKES</h3>
-                  <p class="section-advantages-card-p">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
+                  <p class="section-advantages-card-p">We service everything from compact city cars to SUVs and light commercial vehicles.</p>
                </div>
                </div>
             </div>
@@ -212,10 +212,10 @@
    <div class="section-client-container">
       <div class="container">
          <div class="section-client-content">
-            <h2 class="section-client-title">Hackery</h2>
+            <h2 class="section-client-title">Testimonials</h2>
             <h3 class="section-client-subtitle">Our Client Says</h3>
                <p class="section-client-text">
-                  Quality auto repair services. Vehicle owners in the Derrick, MD area should be well aware of the Dynamic automotive brand of service. We strive to go above and beyond for our customers.
+                  Drivers trust us with their cars because we explain every repair, stick to the estimate and stand behind our work.
                </p>
          </div>
          <div class="swiper mySwiper sc-ClieSwip"> <!-- Swiper for client testimonials -->
@@ -336,38 +336,5 @@
       </div>
    </div>
 </section>
-<section>
-<!-- Contact info section -->
-   <div class="aside-container-main-info">
-      <div class="container">
-         <div class="gc-3">
-            <div class="aside-content-info">
-               <i class="fa-solid fa-map-location-dot fa-icon-info"></i>
-            <div>
-               <h3 class="aside-container-title">ADDRESS:</h3>
-               <p class="aside-container-info">Mulatol Pakar Matha, Dhaka Bus<br> Stand Road, 5400</p>
-            </div>
-            </div>
-            <div class="aside-content-info">
-               <i class="fa-solid fa-phone-volume fa-icon-info"></i>
-               <div>
-                  <h3 class="aside-container-title">PHONES:</h3>
-                  <p class="aside-container-info">
-                     <a style="color:#fff" href="tel:0950660959">+380 95 066 09 59</a>
-                     <a style="color:#fff; margin-left:10px;" href="tel:0950650385">+380 95 065 03 85</a><br>
-                     <a style="color:#fff" href="tel:0950564505">+380 95 056 46 05</a>
-                  </p>
-               </div>
-            </div>
-            <div class="aside-content-info">
-               <i class="fa-solid fa-calendar-check fa-icon-info"></i>
-               <div>
-                  <h3 class="aside-container-title">WORKING TIME:</h3>
-                  <p class="aside-container-info">Monday–Saturday: 08:00–18:00;<br> Friday - Closed</p>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
+@include('partials.contact-strip')
 @endsection
