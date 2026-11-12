@@ -31,6 +31,7 @@
                   ['September 20, 2024', 'Autumn tyre check is open', 'Cooler weather means less grip. Bring your car for a free tread depth and pressure check, and book the seasonal tyre change before the first frost to skip the queues.'],
                   ['September 12, 2024', 'New diagnostic equipment in the workshop', 'We have added a new multi-brand scanner. It reads error codes of most makes and models and lets our mechanics find hidden faults faster, so you pay only for the work that is really needed.'],
                   ['August 30, 2024', 'Monthly subscription plans are here', 'Pay a fixed amount per month and let us keep your car in shape: scheduled inspections, fluids and priority booking. Choose Basic, Standard or Premium on the Subscription page.'],
+                  ['September 2, 2024', 'Free brake check week', 'Squeaking or a longer stopping distance? All week long our mechanics inspect pads, discs and brake fluid free of charge and give you a clear written report.'],
                   ['August 18, 2024', 'Check your air conditioning before summer ends', 'A weak A/C is often a sign of low refrigerant or a clogged cabin filter. Book a quick A/C check and keep your car comfortable all year round.'],
                ] as [$date, $title, $text])
                   <article class="swiper-slide news-card">

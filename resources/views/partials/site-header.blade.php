@@ -63,45 +63,48 @@
             <button type="button" class="burger-menu" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
-            <div class="menu-backdrop" data-menu-backdrop></div>
-            <nav class="menu-container" id="mobile-menu" aria-label="Mobile menu">
-                <div class="adaptive-logo">
-                    <a class="logo-slogan" href="{{ route('home_auto') }}"><i class="fa-solid fa-car-side"></i> Auto <span>Service</span></a>
-                    <button type="button" class="close-btn" aria-label="Close menu">&times;</button>
-                </div>
-                <ul class="menu">
-                    <li class="adaptive-item">
-                        <a class="nav-link sc-FDFgh" href="{{ route('home_auto') }}">Home</a>
-                    </li>
-                    <li class="adaptive-item">
-                        <details>
-                            <summary class="nav-link sc-FDFgh">About</summary>
-                            <ul class="adaptive-sub">
-                                <li><a href="{{ route('history') }}">About the company</a></li>
-                                <li><a href="{{ route('vision') }}">News &amp; FAQ</a></li>
-                                <li><a href="{{ route('partners') }}">Partners</a></li>
-                            </ul>
-                        </details>
-                    </li>
-                    <li class="adaptive-item">
-                        <a class="nav-link sc-FDFgh" href="{{ route('offer') }}">Cars for sale</a>
-                    </li>
-                    <li class="adaptive-item">
-                        <a class="nav-link sc-FDFgh" href="{{ route('plan') }}">Subscription</a>
-                    </li>
-                    <li class="adaptive-item">
-                        <a class="nav-link sc-FDFgh" href="{{ route('home_auto') }}#client-say">Reviews</a>
-                    </li>
-                    <li class="adaptive-item">
-                        <a class="nav-link sc-FDFgh" href="{{ route('contacts') }}">Contact</a>
-                    </li>
-                    <li class="adaptive-item adaptive-item--sales">
-                        <a class="btn-nav btn-nav--block" href="{{ route('home_auto') }}#contacts">Book a repair</a>
-                        <span class="adaptive-link">Call us</span>
-                        <a href="tel:+380950660959" class="adaptive-link-number">+380 95 066 09 59</a>
-                    </li>
-                </ul>
-            </nav>
         </div>
     </div>
 </header>
+
+<!-- Mobile drawer: kept outside <header> because its backdrop-filter would trap position:fixed -->
+<div class="menu-backdrop" data-menu-backdrop></div>
+<nav class="menu-container" id="mobile-menu" aria-label="Mobile menu">
+    <div class="adaptive-logo">
+        <a class="logo-slogan" href="{{ route('home_auto') }}"><i class="fa-solid fa-car-side"></i> Auto <span>Service</span></a>
+        <button type="button" class="close-btn" aria-label="Close menu">&times;</button>
+    </div>
+    <ul class="menu">
+        <li class="adaptive-item">
+            <a class="nav-link sc-FDFgh" href="{{ route('home_auto') }}">Home</a>
+        </li>
+        <li class="adaptive-item">
+            <details>
+                <summary class="nav-link sc-FDFgh">About</summary>
+                <ul class="adaptive-sub">
+                    <li><a href="{{ route('history') }}">About the company</a></li>
+                    <li><a href="{{ route('vision') }}">News &amp; FAQ</a></li>
+                    <li><a href="{{ route('partners') }}">Partners</a></li>
+                </ul>
+            </details>
+        </li>
+        <li class="adaptive-item">
+            <a class="nav-link sc-FDFgh" href="{{ route('offer') }}">Cars for sale</a>
+        </li>
+        <li class="adaptive-item">
+            <a class="nav-link sc-FDFgh" href="{{ route('plan') }}">Subscription</a>
+        </li>
+        <li class="adaptive-item">
+            <a class="nav-link sc-FDFgh" href="{{ route('home_auto') }}#client-say">Reviews</a>
+        </li>
+        <li class="adaptive-item">
+            <a class="nav-link sc-FDFgh" href="{{ route('contacts') }}">Contact</a>
+        </li>
+        <li class="adaptive-item adaptive-item--sales">
+            <a class="btn-nav btn-nav--block" href="{{ route('home_auto') }}#contacts">Book a repair</a>
+            <span class="adaptive-link">Call us</span>
+            <a href="tel:+380950660959" class="adaptive-link-number">+380 95 066 09 59</a>
+        </li>
+    </ul>
+</nav>
+
