@@ -1,22 +1,14 @@
 @extends('layouts.admin_layouts')
-@section('title',' Car Services and Mechanic')
+@section('title', 'Add post')
 @section('content')
-<div class="card card-primary">
-              <form action="{{route('post.store')}}" method="post">
-                @csrf
-                <div class="card-body">
-                  <div class="form-group">
-                    <label>Title post</label>
-                    <input name="title" type="text" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label>Content post</label>
-                    <input name="content_post" type="text" class="form-control">
-                  </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Create post</button>
-                </div>
-              </form>
-            </div>
+<section class="content">
+  <div class="container-fluid">
+    <div class="card card-primary">
+      <div class="card-header"><h3 class="card-title">Add post</h3></div>
+      <form action="{{ route('post.store') }}" method="post">
+        @include('admin.post._form', ['submit' => 'Create post'])
+      </form>
+    </div>
+  </div>
+</section>
 @endsection

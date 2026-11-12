@@ -2,32 +2,29 @@
 
 namespace App\Services;
 
-use App\Models\Client;
-use App\Models\Members;
-use App\Models\repair;
-use App\Models\User;
+use App\Models\Contact;
+use App\Models\Repair;
 use Illuminate\Support\Facades\Auth;
 
+/** Data shown in the admin layout (header notifications and sidebar). */
 class AdminPanel
 {
-    public function index()
+    public function index(): array
     {
-        $users = Auth::user()->name;
         return [
-            'users'=>$users,
+            'users' => Auth::user()?->name,
         ];
     }
-    public function show()
+
+    public function show(): array
     {
-        $amount=Client::count()+Members::count()+repair::count();
-        $client=Client::count();
-        $members=Members::count();
-        $repair=repair::count();
+        $pending = Repair::where('done', Repair::STATUS_PENDING)->count();
+        $questions = Contact::count();
+
         return [
-            'amount'=>$amount,
-            'client'=>$client,
-            'members'=>$members,
-            'repair'=>$repair,
+            'amount' => $pending + $questions,
+            'pending' => $pending,
+            'questions' => $questions,
         ];
     }
 }

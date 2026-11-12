@@ -3,80 +3,48 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClientRequest;
 use App\Models\Client;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ClientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): View
     {
-        $client = Client::all();
-        return view('admin.client.index',[
-            'client'=>$client,
+        return view('admin.client.index', [
+            'client' => Client::latest()->paginate(15),
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): View
     {
         return view('admin.client.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(ClientRequest $request): RedirectResponse
     {
-        $client = new Client();
-        $client->name = $request->name;
-        $client->role = $request->role;
-        $client->commentars = $request->commentars; 
-        $client->save();
-        return redirect()->back();
-        
+        Client::create($request->validated());
+
+        return redirect()->route('client.index')->with('success', 'The review has been created.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Client $client)
+    public function edit(Client $client): View
     {
-        //
+        return view('admin.client.edit', ['client' => $client]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Client $client)
+    public function update(ClientRequest $request, Client $client): RedirectResponse
     {
-        return view('admin.client.edit',[
-            'client'=>$client,
-        ]);
+        $client->update($request->validated());
+
+        return redirect()->route('client.index')->with('success', 'The review has been updated.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Client $client)
-    {
-        $client->name = $request->name;
-        $client->role = $request->role;
-        $client->commentars = $request->commentars; 
-        $client->save();
-        return redirect()->back();
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Client $client)
+    public function destroy(Client $client): RedirectResponse
     {
         $client->delete();
-        return redirect()->back();
+
+        return redirect()->route('client.index')->with('success', 'The review has been deleted.');
     }
 }

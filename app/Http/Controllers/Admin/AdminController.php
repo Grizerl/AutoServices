@@ -4,24 +4,23 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
+use App\Models\Contact;
 use App\Models\Members;
 use App\Models\Post;
-use App\Models\repair;
-use Illuminate\Http\Request;
+use App\Models\Repair;
+use Illuminate\Contracts\View\View;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        $post=Post::count();
-        $client=Client::count();
-        $members=Members::count();
-        $repair=repair::count();
-        return view('admin.index',[
-            'post'=>$post,
-            'client'=>$client,
-            'members'=>$members,
-            'repair'=>$repair,
+        return view('admin.index', [
+            'post' => Post::count(),
+            'client' => Client::count(),
+            'members' => Members::count(),
+            'repair' => Repair::count(),
+            'contact' => Contact::count(),
+            'pending' => Repair::where('done', Repair::STATUS_PENDING)->count(),
         ]);
     }
 }

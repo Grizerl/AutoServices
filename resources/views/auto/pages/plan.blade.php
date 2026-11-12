@@ -39,18 +39,18 @@
         <div class="section-element-navbar-conteiner">
             <ul class="section-element-nav">
                 <li class="element-nav-item">
-                    <a id="btn-silver-plan" class="element-nav-link" ><strong>Silver Package</strong></a>
+                    <a data-plan-tab="silver" href="#" id="btn-silver-plan" class="element-nav-link" ><strong>Silver Package</strong></a>
                 </li>
                 <li class="element-nav-item">
-                    <a id="btn-platinum-plan" class="element-nav-link active" ><strong>Platinum Package</strong></a>
+                    <a data-plan-tab="platinum" href="#" id="btn-platinum-plan" class="element-nav-link active" ><strong>Platinum Package</strong></a>
                 </li>
                 <li class="element-nav-item">
-                    <a id="btn-gold-plan" class="element-nav-link" ><strong>Gold Package</strong></a>
+                    <a data-plan-tab="gold" href="#" id="btn-gold-plan" class="element-nav-link" ><strong>Gold Package</strong></a>
                 </li>
             </ul>
         </div>
         <div>
-        <div id="card-silver" class="section-card-list-pricing">
+        <div data-plan-panel="silver" id="card-silver" class="section-card-list-pricing">
             <div class="section-card-list-pricing-plan-content">
                 <div  class="card-items-pricing">
                     <div class="with-pricing-icon"><i class="fa-solid fa-snowflake"></i></div>
@@ -85,7 +85,7 @@
                             </li>
                         </ul>
                     </div>
-                    <button class="btn-pricing-card" type="submit">Buy now</button>
+                    <a class="btn-pricing-card" href="{{ route('home_auto') }}#contacts">Buy now</a>
                 </div>
                 <div class="card-items-pricing">
                     <div class="with-pricing-icon"><i class="fa-regular fa-money-bill-1"></i></div>
@@ -120,7 +120,7 @@
                             </li>
                         </ul>
                     </div>
-                    <button class="btn-pricing-card" type="submit">Buy now</button>
+                    <a class="btn-pricing-card" href="{{ route('home_auto') }}#contacts">Buy now</a>
                 </div>
                 <div class="card-items-pricing">
                     <div class="with-pricing-icon"><i class="fa-solid fa-star"></i></div>
@@ -155,12 +155,12 @@
                             </li>
                         </ul>
                     </div>
-                    <button class="btn-pricing-card"  type="submit">Buy now</button>
+                    <a class="btn-pricing-card" href="{{ route('home_auto') }}#contacts">Buy now</a>
                 </div>
             </div>
         </div>
             <!--  -->
-        <div id="card-platinum" class="section-card-list-pricing show">
+        <div data-plan-panel="platinum" id="card-platinum" class="section-card-list-pricing show">
            <div class="section-card-list-pricing-plan-content">
                 <div class="card-items-pricing">
                     <div class="with-pricing-icon"><i class="fa-solid fa-fire"></i></div>
@@ -195,7 +195,7 @@
                             </li>
                         </ul>
                     </div>
-                    <button class="btn-pricing-card" type="submit">Buy now</button>
+                    <a class="btn-pricing-card" href="{{ route('home_auto') }}#contacts">Buy now</a>
                 </div>
                 <div class="card-items-pricing">
                     <div class="with-pricing-icon"><i class="fa-solid fa-bolt"></i></div>
@@ -230,7 +230,7 @@
                             </li>
                         </ul>
                     </div>
-                    <button class="btn-pricing-card" type="submit">Buy now</button>
+                    <a class="btn-pricing-card" href="{{ route('home_auto') }}#contacts">Buy now</a>
                 </div>
                 <div class="card-items-pricing">
                     <div class="with-pricing-icon"><i class="fa-solid fa-star"></i></div>
@@ -265,11 +265,11 @@
                             </li>
                         </ul>
                     </div>
-                    <button class="btn-pricing-card"  type="submit">Buy now</button>
+                    <a class="btn-pricing-card" href="{{ route('home_auto') }}#contacts">Buy now</a>
                 </div>
            </div>
         </div>
-        <div id="card-gold" class="section-card-list-pricing">
+        <div data-plan-panel="gold" id="card-gold" class="section-card-list-pricing">
             <div class="section-card-list-pricing-plan-content">
                 <div class="card-items-pricing">
                     <div class="with-pricing-icon"><i class="fa-solid fa-layer-group"></i></div>
@@ -304,7 +304,7 @@
                             </li>
                         </ul>
                     </div>
-                    <button class="btn-pricing-card" type="submit">Buy now</button>
+                    <a class="btn-pricing-card" href="{{ route('home_auto') }}#contacts">Buy now</a>
                 </div>
                 <div class="card-items-pricing">
                     <div class="with-pricing-icon"><i class="fa-solid fa-joint"></i></div>
@@ -339,7 +339,7 @@
                             </li>
                         </ul>
                     </div>
-                    <button class="btn-pricing-card" type="submit">Buy now</button>
+                    <a class="btn-pricing-card" href="{{ route('home_auto') }}#contacts">Buy now</a>
                 </div>
                 <div class="card-items-pricing">
                     <div class="with-pricing-icon"><i class="fa-solid fa-star"></i></div>
@@ -374,7 +374,7 @@
                             </li>
                         </ul>
                     </div>
-                    <button class="btn-pricing-card"  type="submit">Buy now</button>
+                    <a class="btn-pricing-card" href="{{ route('home_auto') }}#contacts">Buy now</a>
                 </div>
             </div>
         </div>

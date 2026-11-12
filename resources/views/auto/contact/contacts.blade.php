@@ -56,33 +56,44 @@
       </div>
    </div>
 </section>
-<section>
+<section id="ask-question">
    <div>
       <div class="section-header-ask-question-banner">
          <div class="container">
-            <div style=" display: flex; align-items: center; justify-content: center; flex-direction: column;">
+            <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
                <h1 class="title-question-page">ASK A QUESTION</h1>
                <h3 class="subtitle-question-page">Our managers will gladly answer your <br> questions and help you choose.</h3>
             </div>
             <div class="section-ask-question-form">
-               <form class="form-ask-question" action="{{route('contact.store')}}" method="post" novalidate>
+               <form class="form-ask-question" action="{{ route('contact.store') }}" method="post" data-submit-once>
                   @csrf
+
+                  @if (session('success'))
+                     <div class="form-alert form-alert--success" role="status">{{ session('success') }}</div>
+                  @endif
+
                   <label class="ask-question-form-title" for="name">Your name:<span>*</span></label>
-                  <input class="ask-question-form-input" id="name" name="name" required type="text">
+                  <input @class(['ask-question-form-input', 'is-invalid' => $errors->has('name')]) id="name" name="name" type="text" value="{{ old('name') }}" required minlength="2" maxlength="60" autocomplete="name">
+                  @error('name')<p class="field-error">{{ $message }}</p>@enderror
 
                   <label class="ask-question-form-title" for="phone">Phone:<span>*</span></label>
-                  <input class="ask-question-form-input" id="phone" name="phone" required type="tel">
+                  <input @class(['ask-question-form-input', 'is-invalid' => $errors->has('phone')]) id="phone" name="phone" type="tel" value="{{ old('phone') }}" required maxlength="20" autocomplete="tel" placeholder="+380 95 066 09 59">
+                  @error('phone')<p class="field-error">{{ $message }}</p>@enderror
 
                   <label class="ask-question-form-title" for="email">E-mail:</label>
-                  <input class="ask-question-form-input" id="email" name="email" required type="email">
+                  <input @class(['ask-question-form-input', 'is-invalid' => $errors->has('email')]) id="email" name="email" type="email" value="{{ old('email') }}" maxlength="255" autocomplete="email">
+                  @error('email')<p class="field-error">{{ $message }}</p>@enderror
 
                   <label class="ask-question-form-title" for="message">Message:<span>*</span></label>
-                  <input class="ask-question-form-input" id="message" name="message" required type="text">
+                  <textarea @class(['ask-question-form-input', 'ask-question-form-textarea', 'is-invalid' => $errors->has('message')]) id="message" name="message" rows="4" required minlength="5" maxlength="1000">{{ old('message') }}</textarea>
+                  @error('message')<p class="field-error">{{ $message }}</p>@enderror
 
-                  <div style="display: flex; align-items: center; width: 100%; margin-top:15px;">
-                     <input class="ask-question-form-checkbox" id="checkbox"  name="subscribe" value="1" type="checkbox">
-                     <label class="ask-question-form-title ask-ques-check-tit" for="checkbox">I agree to the <span>processing of personal data</span></label>
+                  <div class="ask-question-consent">
+                     <input class="ask-question-form-checkbox" id="consent" name="consent" value="1" type="checkbox" @checked(old('consent')) required>
+                     <label class="ask-question-form-title ask-ques-check-tit" for="consent">I agree to the <span>processing of personal data</span></label>
                   </div>
+                  @error('consent')<p class="field-error">{{ $message }}</p>@enderror
+
                   <div class="section-form-btn">
                      <span>* Required field</span>
                      <button class="btn-form" type="submit">Send</button>

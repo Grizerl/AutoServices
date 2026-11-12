@@ -1,68 +1,29 @@
 @extends('layouts.admin_layouts')
-@section('title', 'Car Services and Mechanic')
+@section('title', 'Repair request')
 @section('content')
-<div class="header-view-container">
-   <div class="view-content">
-      <div>
-         <img class="view-img-car" src="/assets/images/Car-repaire.png" alt="Images Car">
+<section class="content">
+  <div class="container-fluid">
+    <div class="header-view-container">
+      <div class="view-content">
+        <div>
+          <img class="view-img-car" src="{{ asset('assets/images/Car-repaire.png') }}" alt="Car">
+        </div>
+        <div>
+          <h2 class="view-title">Repair request #{{ $repair->id }}</h2>
+          <ul class="view-list">
+            <li class="view-item"><b>Customer name: </b><span>{{ $repair->name }}</span></li>
+            <li class="view-item"><b>Phone number: </b><a href="tel:{{ preg_replace('/[^\d+]/', '', $repair->telephone) }}">{{ $repair->telephone }}</a></li>
+            <li class="view-item"><b>Car: </b><span>{{ $repair->car }}</span></li>
+            <li class="view-item"><b>Problem: </b><span>{{ $repair->comment }}</span></li>
+            <li class="view-item"><b>Price: </b><span>${{ number_format($repair->price) }}</span></li>
+            <li class="view-item"><b>Status: </b><span>{{ $repair->status_label }}</span></li>
+            <li class="view-item"><b>Received: </b><span>{{ $repair->created_at?->format('Y-m-d H:i') }}</span></li>
+          </ul>
+          <a href="{{ route('repair.edit', $repair) }}" class="btn btn-info"><i class="fas fa-pencil-alt"></i> Edit</a>
+          <a href="{{ route('repair.index') }}" class="btn btn-default">Back to list</a>
+        </div>
       </div>
-      <div>
-         <h2 class="view-title">Portfolio Information</h2>
-         <div>
-            <ul class="view-list">
-               <li class="view-item">
-                  <b>Customer Name: </b><span>{{$repair->name}}</span>
-               </li>
-               <li class="view-item">
-                  <b>Phone number: </b><span>{{$repair->telephone}}</span>
-               </li>
-               <li class="view-item">
-                  <b>Car Name: </b><span>{{$repair->car}}</span>
-               </li>
-               <li class="view-item">
-                  <b>Problem Name: </b><span>{{$repair->comment}}</span>
-               </li>
-               <li class="view-item">
-                  <b>Price: </b><span>{{$repair->price}}$</span>
-               </li>
-               <li class="view-item">
-                  <b>Status: </b><span>{{$repair->done}}</span>
-               </li>
-            </ul>
-         </div>
-      </div>
-   </div>
-   <div>
-      <h1>Demo Media Title 3</h1>
-      <div class="prots-contentg">
-         <p><strong>Project Description</strong><br>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, natus numquam unde qui pariatur porro necessitatibus harum libero commodi rem veritatis in nisi vero odit tenetur esse quidem inventore ex. Sunt nam mollitia, accusantium voluptates recusandae dolor isbus the necessitatibus praesentium excepturi earum sint inventore aperiam? Aperiam dolores
-         </p>
-         <p><strong>Project Strategy</strong><br>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, natus numquam unde qui pariatur porro necessitatibus harum libero commodi rem veritatis in nisi vero odit tenetur esse quidem inventore ex. Sunt nam mollitia, accusantium voluptates recusandae dolor isbus the necessitatibus praesentium excepturi earum sint inventore aperiam? Aperiam dolores
-         </p>
-         <p><strong>Project Challenge</strong><br>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus corporis minima, maiores. Doloribus ab et repudiandae molestiae. Quibusdam, tempora, amet.
-         </p>
-         <ul>
-            <li>Nanotechnology immersion information</li>
-            <li>Bring to the table survival strategies</li>
-            <li>Capitalize on low hanging identify</li>
-            <li>Leverage agile frameworks to provide</li>
-         </ul>
-         <ul>
-            <li>Nanotechnology immersion information</li>
-            <li>Bring to the table survival strategies</li>
-            <li>Capitalize on low hanging identify</li>
-            <li>Leverage agile frameworks to provide</li>
-         </ul>
-         <p><strong>Project Solution</strong><br>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, natus numquam unde qui pariatur porro necessitatibus harum libero commodi rem veritatis in nisi vero odit tenetur esse quidem inventore ex. Sunt nam mollitia, accusantium voluptates recusandae dolor isbus the necessitatibus praesentium excepturi earum sint inventore aperiam? Aperiam dolores
-         </p>
-         <p><strong>Project Result</strong><br>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, natus numquam unde qui pariatur porro necessitatibus harum libero commodi rem veritatis in nisi vero odit tenetur esse quidem inventore ex. Sunt nam mollitia, accusantium voluptates recusandae dolor isbus the necessitatibus praesentium excepturi earum sint inventore aperiam? Aperiam dolores
-         </p>
-      </div>
-   </div>
-</div>
+    </div>
+  </div>
+</section>
 @endsection

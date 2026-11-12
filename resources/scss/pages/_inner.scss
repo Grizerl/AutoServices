@@ -430,7 +430,31 @@
     color: $black;
   }
 
+  .ask-question-form-textarea {
+    resize: vertical;
+    min-height: 110px;
+    font-family: $font-sans;
+  }
+
+  .ask-question-consent {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .form-ask-question {
+    .field-error {
+      color: #ff9c9d;
+    }
+
+    .form-alert {
+      margin-bottom: 25px;
+    }
+  }
+
   .ask-question-form-checkbox {
+    flex: 0 0 18px;
     width: 18px;
     height: 18px;
     margin: 0 10px 0 0;

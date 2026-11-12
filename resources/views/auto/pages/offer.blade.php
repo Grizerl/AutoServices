@@ -42,7 +42,7 @@
                         <h3 class="car-model">Model - Santro BS6</h3>
                         <h1 class="car-price">9500$ <span class="old-price">9500$</span></h1>
                         <p class="car-description">Get Exchange bonus up to worth $ 20,000/-</p>
-                        <button class="btn-st-car" type="submit">Click here</button>
+                        <a class="btn-st-car" href="{{ route('home_auto') }}#contacts">Click here</a>
                     </div>
                 </div>
                 <div class="shop-car-card-container">
@@ -52,7 +52,7 @@
                         <h3 class="car-model">Model - Santro BS6 AMT Auto</h3>
                         <h1 class="car-price">3150$ <span class="old-price">2950$</span></h1>
                         <p class="car-description">Get Exchange bonus up to worth $ 20,000/-</p>
-                        <button  class="btn-st-car" type="submit">Click here</button>
+                        <a class="btn-st-car" href="{{ route('home_auto') }}#contacts">Click here</a>
                     </div>
                 </div>
                 <div class="shop-car-card-container">
@@ -62,7 +62,7 @@
                         <h3 class="car-model">Model - Grand i10 Nios</h3>
                         <h1 class="car-price">650$ <span class="old-price">600$</span></h1>
                         <p class="car-description">Get Exchange bonus up to worth $ 20,000/-</p>
-                        <button  class="btn-st-car" type="submit">Click here</button>
+                        <a class="btn-st-car" href="{{ route('home_auto') }}#contacts">Click here</a>
                     </div>
                 </div>
                 <div class="shop-car-card-container">
@@ -72,7 +72,7 @@
                         <h3 class="car-model">Model - Aura BS6</h3>
                         <h1 class="car-price">1100$ <span class="old-price">950$</span></h1>
                         <p class="car-description">Get Exchange bonus up to worth $ 20,000/-</p>
-                        <button  class="btn-st-car" type="submit">Click here</button>
+                        <a class="btn-st-car" href="{{ route('home_auto') }}#contacts">Click here</a>
                     </div>
                 </div>
                 <div class="shop-car-card-container">
@@ -82,7 +82,7 @@
                         <h3 class="car-model">Model - Santro BS6</h3>
                         <h1 class="car-price">1830$<span class="old-price">1700$</span></h1>
                         <p class="car-description">Get Exchange bonus up to worth $ 20,000/-</p>
-                        <button  class="btn-st-car" type="submit">Click here</button>
+                        <a class="btn-st-car" href="{{ route('home_auto') }}#contacts">Click here</a>
                     </div>
                 </div>
                 <div class="shop-car-card-container">
@@ -92,7 +92,7 @@
                         <h3 class="car-model">Model - Santro BS6</h3>
                         <h1 class="car-price">2000$ <span class="old-price">1550$</span></h1>
                         <p class="car-description">Get Exchange bonus up to worth $ 20,000/-</p>
-                        <button  class="btn-st-car" type="submit">Click here</button>
+                        <a class="btn-st-car" href="{{ route('home_auto') }}#contacts">Click here</a>
                     </div>
                 </div>
                     </div>

@@ -1,26 +1,14 @@
 @extends('layouts.admin_layouts')
-@section('title',' Car Services and Mechanic')
+@section('title', 'Add review')
 @section('content')
-<div class="card card-primary">
-              <form action="{{route('client.store')}}" method="post">
-                @csrf
-                <div class="card-body">
-                  <div class="form-group">
-                    <label>Customer name</label>
-                    <input name="name" type="text" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label>Role</label>
-                    <input name="role" type="text" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label>Comment</label>
-                    <input name="commentars" type="text" class="form-control">
-                  </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Create response</button>
-                </div>
-              </form>
-            </div>
+<section class="content">
+  <div class="container-fluid">
+    <div class="card card-primary">
+      <div class="card-header"><h3 class="card-title">Add review</h3></div>
+      <form action="{{ route('client.store') }}" method="post">
+        @include('admin.client._form', ['submit' => 'Create review'])
+      </form>
+    </div>
+  </div>
+</section>
 @endsection
