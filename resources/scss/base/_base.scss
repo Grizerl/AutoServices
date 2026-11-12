@@ -12,10 +12,20 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-html,
-body {
+html {
   scroll-behavior: smooth;
+  scroll-padding-top: 90px; // sticky header
+}
+
+body {
   overflow-x: hidden;
+}
+
+// `clip` (unlike `hidden`) keeps position: sticky working
+@supports (overflow: clip) {
+  body {
+    overflow-x: clip;
+  }
 }
 
 body {
@@ -44,8 +54,7 @@ select {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html,
-  body {
+  html {
     scroll-behavior: auto;
   }
 
@@ -93,4 +102,18 @@ form {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+::selection {
+  background: $red-btn;
+  color: $white;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid rgba($red-btn, 0.55);
+  outline-offset: 2px;
 }

@@ -192,3 +192,30 @@ $admin-card-shadow: 0 4px 10px rgba($black, 0.1);
     padding: 0.5rem 0.4rem;
   }
 }
+
+// ---------------------------------------------------------------------------
+// Brand accents (match the public site)
+// ---------------------------------------------------------------------------
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active {
+  background-color: $red-btn;
+  color: $white;
+  box-shadow: 0 6px 16px rgba($red-btn, 0.35);
+}
+
+.card-primary:not(.card-outline) > .card-header {
+  background-color: $red-btn;
+}
+
+.main-sidebar .brand-link .fa-user-secret {
+  color: $red;
+}
+
+.small-box {
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba($black, 0.18);
+  }
+}

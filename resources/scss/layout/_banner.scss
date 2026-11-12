@@ -12,8 +12,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: $black;
-    opacity: 0.65;
+    background: linear-gradient(180deg, rgba($dark, 0.55) 0%, rgba($dark, 0.85) 100%);
     z-index: 1;
   }
 }
@@ -29,17 +28,22 @@
 
 .container-nav-item {
   flex-direction: row;
-  padding: 0;
+  padding: 6px 18px;
   position: relative;
   z-index: 2;
+  border-radius: 999px;
+  background: rgba($white, 0.12);
+  backdrop-filter: blur(6px);
 }
 
 .sc-ttl-cont {
   text-align: center;
   position: relative;
   z-index: 2;
-  font-size: 40px;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 0.5px;
   color: $white;
+  animation: fade-up 0.8s $ease both;
 }
 
 .cont-list {

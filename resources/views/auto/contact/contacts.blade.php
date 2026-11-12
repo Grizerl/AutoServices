@@ -46,7 +46,7 @@
                      <i class="fa-solid fa-envelope fa-contac"></i><a href="mailto:autorepaire@gmail.com">autorepaire@gmail.com</a>
                   </li>
                   <li>
-                     <i class="fa-solid fa-hotel fa-contac"></i><a>Mulatol Pakar Matha 5400</a>
+                     <i class="fa-solid fa-hotel fa-contac"></i><a>Kyiv, Ukraine, 02000</a>
                   </li>
                </ul>
                <h3 class="contact-title-main-info">Working hours</h3>
