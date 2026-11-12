@@ -3,16 +3,18 @@ document.addEventListener('DOMContentLoaded', function () {
     var news = document.querySelector('.news-slider');
     if (news && typeof Swiper !== 'undefined') {
         new Swiper(news, {
+            loop: true,
             slidesPerView: 1,
+            slidesPerGroup: 1,
             spaceBetween: 24,
             speed: 600,
-            autoHeight: false,
-            autoplay: { delay: 6000, disableOnInteraction: true },
+            grabCursor: true,
+            autoplay: { delay: 7000, disableOnInteraction: true, pauseOnMouseEnter: true },
             navigation: { nextEl: '.news-next', prevEl: '.news-prev' },
             pagination: { el: '.news-pagination', clickable: true },
             breakpoints: {
-                768: { slidesPerView: 2 },
-                1100: { slidesPerView: 3 },
+                768: { slidesPerView: 2, slidesPerGroup: 2 },
+                1100: { slidesPerView: 3, slidesPerGroup: 3 },
             },
         });
     }

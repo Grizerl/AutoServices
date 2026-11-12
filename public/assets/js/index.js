@@ -61,9 +61,9 @@
                 navigation: { nextEl: '.review-next', prevEl: '.review-prev' },
                 pagination: { el: '.review-pagination', clickable: true },
                 breakpoints: {
-                    0: { slidesPerView: 1 },
-                    768: { slidesPerView: 2 },
-                    1100: { slidesPerView: 3 },
+                    0: { slidesPerView: 1, slidesPerGroup: 1 },
+                    768: { slidesPerView: 2, slidesPerGroup: 1 },
+                    1100: { slidesPerView: 3, slidesPerGroup: 1 },
                 },
             });
         }

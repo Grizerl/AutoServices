@@ -57,3 +57,9 @@
     background: $red-btn;
   }
 }
+
+// Swiper locks the controls when every slide is already visible
+.slider-nav__btn.swiper-button-lock,
+.swiper-pagination.swiper-pagination-lock {
+  display: none;
+}
