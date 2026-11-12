@@ -6,18 +6,7 @@
 @section('content')
 @php($sold = $car->status === \App\Models\Car::STATUS_SOLD)
 <div class="wrapper">
-   <div class="banner-area">
-      <div class="container-area">
-         <h2 class="sc-ttl-cont">{{ $car->title }}</h2>
-         <ul class="container-nav-item">
-            <li><a class="cont-list" href="{{ route('home_auto') }}">Home</a></li>
-            <li class="cont-list"><i class="fas fa-angle-right"></i></li>
-            <li><a class="cont-list" href="{{ route('offer') }}">Cars for sale</a></li>
-            <li class="cont-list"><i class="fas fa-angle-right"></i></li>
-            <li><span class="cont-list">{{ $car->title }}</span></li>
-         </ul>
-      </div>
-   </div>
+   <x-page-banner :title="$car->title" :crumbs="[['Cars for sale', route('offer')], [$car->title]]" />
 
    <section class="car-detail">
       <div class="container">
@@ -37,7 +26,7 @@
             </div>
 
             <div class="car-detail__info" data-animate="fade-left">
-               <h1 class="car-detail__title">{{ $car->title }} <small>{{ $car->year }}</small></h1>
+               <h2 class="car-detail__title">{{ $car->title }} <small>{{ $car->year }}</small></h2>
 
                <p class="car-detail__price">
                   <strong>${{ number_format($car->price) }}</strong>
@@ -93,12 +82,15 @@
             @if (session('success'))
                <div class="form-alert form-alert--success" role="status"><i class="fa-solid fa-circle-check"></i> {{ session('success') }}</div>
             @endif
+            @if ($errors->any() && ! $errors->has('car'))
+               <div class="form-alert form-alert--error" role="alert"><i class="fa-solid fa-triangle-exclamation"></i> Please correct the highlighted fields.</div>
+            @endif
             @error('car')
                <div class="form-alert form-alert--error" role="alert">{{ $message }}</div>
             @enderror
 
             @unless ($sold)
-               <form class="request-form" action="{{ route('car.inquire', $car) }}" method="post" data-submit-once>
+               <form class="request-form" action="{{ route('car.inquire', $car) }}" method="post" novalidate data-ajax data-validate>
                   @csrf
                   <div class="request-form__row">
                      <label class="field-group">
@@ -123,7 +115,7 @@
                      @error('message')<p class="field-error">{{ $message }}</p>@enderror
                   </label>
                   <label class="check">
-                     <input type="checkbox" name="consent" value="1" @checked(old('consent')) required>
+                     <input type="checkbox" name="consent" value="1" @checked(old('consent')) @class(['is-invalid' => $errors->has('consent')])>
                      <span>I agree to the processing of my personal data</span>
                   </label>
                   @error('consent')<p class="field-error">{{ $message }}</p>@enderror

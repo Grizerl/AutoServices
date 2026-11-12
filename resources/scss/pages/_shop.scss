@@ -71,6 +71,15 @@
     }
   }
 
+  #catalog-results {
+    transition: opacity 0.2s;
+
+    &.is-loading {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+  }
+
   .catalog__count {
     min-height: 1.5em;
     margin: 18px 0 14px;
@@ -86,6 +95,7 @@
   }
 
   .car-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -147,6 +157,14 @@
     &__title {
       margin: 0 0 12px;
       font-size: 1.3rem;
+
+      // stretched link: the whole card opens the car page
+      a::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+      }
 
       a {
         color: $black-light;

@@ -117,3 +117,7 @@ summary:focus-visible {
   outline: 3px solid rgba($red-btn, 0.55);
   outline-offset: 2px;
 }
+
+[hidden] {
+  display: none !important;
+}

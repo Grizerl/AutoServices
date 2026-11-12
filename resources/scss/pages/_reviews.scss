@@ -1,0 +1,151 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ===========================================================================
+// Home: testimonials
+// ===========================================================================
+.reviews {
+  padding: 70px 0 80px;
+  background: $gray-surface;
+
+  &__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
+
+    .sn-title,
+    .sn-subtitle {
+      text-align: left;
+    }
+
+    .sn-subtitle {
+      margin-bottom: 10px;
+    }
+  }
+
+  .catalog__lead--left {
+    margin-left: 0;
+    text-align: left;
+  }
+
+  .review-slider {
+    padding: 8px 4px 4px;
+    margin: 0 -4px;
+  }
+
+  // beat the generic home .swiper-slide rule (centered text, 18px)
+  .review-card {
+    text-align: left;
+    font-size: 1rem;
+    border-radius: $radius;
+  }
+
+  // slides stretch to the same height
+  .review-slider .swiper-slide {
+    display: flex;
+    height: auto;
+  }
+}
+
+.review-card {
+  position: relative;
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  width: 100%;
+  padding: 30px 28px 24px;
+  border-radius: $radius;
+  background: $white;
+  box-shadow: $shadow-card;
+  transition: transform 0.35s $ease, box-shadow 0.35s $ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadow-lift;
+  }
+
+  &__quote {
+    position: absolute;
+    top: 24px;
+    right: 26px;
+    font-size: 2.6rem;
+    color: rgba($red-btn, 0.12);
+  }
+
+  &__stars {
+    display: flex;
+    gap: 3px;
+    margin: 0 0 16px;
+    padding: 0;
+    font-size: 0.95rem;
+    color: $gold;
+  }
+
+  &__text {
+    flex: 1;
+    margin: 0 0 22px;
+    font-family: $font-roboto;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: $black-light;
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 18px;
+    border-top: 1px solid rgba($black, 0.08);
+  }
+
+  &__avatar {
+    display: grid;
+    flex: 0 0 48px;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $red-btn, $red-dark);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $white;
+  }
+
+  &__who {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+
+    strong {
+      font-size: 1rem;
+      color: $black-light;
+    }
+
+    small {
+      font-size: 0.85rem;
+      color: $gray;
+    }
+  }
+
+  &__date {
+    align-self: flex-start;
+    margin-top: 4px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    color: $gray-light;
+  }
+}
+
+@include max($bp-md) {
+  .reviews {
+    padding: 50px 0 56px;
+
+    &__head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+}

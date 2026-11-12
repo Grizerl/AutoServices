@@ -6,16 +6,12 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title', 'Admin') | Auto Service Admin</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- AdminLTE theme + plugins -->
   <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <link rel="icon" type="image/png" href="{{ asset('assets/images/circle.png') }}">
 
-  @vite('resources/scss/admin.scss')
+  @vite(['resources/js/admin.js', 'resources/scss/admin.scss'])
   @inject('adminPanel', 'App\Services\AdminPanel')
   @php($notifications = $adminPanel->show())
 </head>
@@ -240,7 +236,6 @@
 <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <script src="{{ asset('assets/dist/js/adminlte.js') }}"></script>
-<script src="https://kit.fontawesome.com/46a432ef36.js" crossorigin="anonymous"></script>
 <script>
   // Prevent double submits and confirm destructive actions
   $(function () {

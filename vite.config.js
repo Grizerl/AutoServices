@@ -9,8 +9,10 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/js/app.js',
                 // Public website
+                'resources/js/site.js',
                 'resources/scss/site.scss',
                 // Admin panel overrides (on top of AdminLTE)
+                'resources/js/admin.js',
                 'resources/scss/admin.scss',
             ],
             refresh: true,

@@ -1,5 +1,9 @@
 @use '../abstracts/variables' as *;
 
+.no-preload .preload {
+  display: none;
+}
+
 .preload {
   position: fixed;
   inset: 0;

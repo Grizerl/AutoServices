@@ -6,18 +6,7 @@
 @section('content')
 @php($selected = old('billing_period', $period))
 <div class="wrapper">
-   <div class="banner-area">
-      <div class="container-area">
-         <h2 class="sc-ttl-cont">Subscribe</h2>
-         <ul class="container-nav-item">
-            <li><a class="cont-list" href="{{ route('home_auto') }}">Home</a></li>
-            <li class="cont-list"><i class="fas fa-angle-right"></i></li>
-            <li><a class="cont-list" href="{{ route('plan') }}">Subscription</a></li>
-            <li class="cont-list"><i class="fas fa-angle-right"></i></li>
-            <li><span class="cont-list">{{ $plan->name }}</span></li>
-         </ul>
-      </div>
-   </div>
+   <x-page-banner title="Subscribe" :crumbs="[['Subscription', route('plan')], [$plan->name]]" />
 
    <section class="checkout" id="checkout">
       <div class="container">
@@ -43,7 +32,11 @@
                <h2>Your details</h2>
                <p class="checkout__note"><i class="fa-solid fa-circle-info"></i> Nothing is charged online. After you send the request a manager will call you to confirm the start date and payment method.</p>
 
-               <form action="{{ route('plan.subscribe', $plan) }}" method="post" data-submit-once>
+               @if ($errors->any())
+                  <div class="form-alert form-alert--error" role="alert"><i class="fa-solid fa-triangle-exclamation"></i> Please correct the highlighted fields.</div>
+               @endif
+
+               <form action="{{ route('plan.subscribe', $plan) }}" method="post" novalidate data-ajax data-ajax-replace=".checkout__form" data-validate>
                   @csrf
 
                   <fieldset class="period-picker">
@@ -92,7 +85,7 @@
                   </label>
 
                   <label class="check">
-                     <input type="checkbox" name="consent" value="1" @checked(old('consent')) required>
+                     <input type="checkbox" name="consent" value="1" @checked(old('consent')) @class(['is-invalid' => $errors->has('consent')])>
                      <span>I agree to the processing of my personal data</span>
                   </label>
                   @error('consent')<p class="field-error">{{ $message }}</p>@enderror

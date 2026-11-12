@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 
 class ContactController extends Controller
@@ -16,7 +17,7 @@ class ContactController extends Controller
     }
 
     /** Store a question sent from the public contact form. */
-    public function store(ContactRequest $request): RedirectResponse
+    public function store(ContactRequest $request): RedirectResponse|JsonResponse
     {
         $data = $request->validated();
 
@@ -27,7 +28,12 @@ class ContactController extends Controller
             'message' => $data['message'],
         ]);
 
-        return redirect(route('contacts').'#ask-question')
-            ->with('success', 'Thank you! Your question has been sent. A manager will contact you soon.');
+        $message = 'Thank you! Your question has been sent. A manager will contact you soon.';
+
+        if ($request->wantsJson()) {
+            return response()->json(['message' => $message]);
+        }
+
+        return redirect(route('contacts').'#ask-question')->with('success', $message);
     }
 }

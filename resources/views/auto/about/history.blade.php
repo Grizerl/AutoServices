@@ -6,22 +6,7 @@
 
 @section('content')
 <div class="wrapper">
-   <div class="banner-area">
-      <div class="container-area">
-         <h2 class="sc-ttl-cont">About us</h2>
-         <div>
-            <ul class="container-nav-item">
-               <li>
-                  <a class="cont-list" href="{{ route('home_auto') }}">Home</a>
-               </li>
-               <li class="cont-list"><i class="fas fa-angle-right"></i></li>
-               <li>
-                  <a class="cont-list">About the company</a>
-               </li>
-            </ul>
-         </div>
-      </div>
-   </div>
+   <x-page-banner title="About the Company" :crumbs="[['About the company']]" />
 <section>
    <div class="gallery-container">
       <div>
