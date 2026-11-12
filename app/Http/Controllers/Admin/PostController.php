@@ -3,77 +3,58 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): View
     {
-        $post_content=Post::all();
-        return view('admin.post.index',[
-            'post_content'=>$post_content,
+        return view('admin.post.index', [
+            'post_content' => Post::latest()->paginate(15),
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): View
     {
         return view('admin.post.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(PostRequest $request): RedirectResponse
     {
-        $post_content= new Post();
-        $post_content->title=$request->title;
-        $post_content->content=$request->content_post;
-        $post_content->save();
-        return redirect()->back();
-    }
+        $data = $request->validated();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Post $post)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Post $post)
-    {
-        return view('admin.post.edit',[
-            'post'=>$post,
+        Post::create([
+            'title' => $data['title'],
+            'content' => $data['content_post'],
         ]);
+
+        return redirect()->route('post.index')->with('success', 'The post has been created.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Post $post)
+    public function edit(Post $post): View
     {
-        $post->title=$request->title;
-        $post->content=$request->content_post;
-        $post->save();
-        return redirect()->back();
+        return view('admin.post.edit', ['post' => $post]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Post $post)
+    public function update(PostRequest $request, Post $post): RedirectResponse
+    {
+        $data = $request->validated();
+
+        $post->update([
+            'title' => $data['title'],
+            'content' => $data['content_post'],
+        ]);
+
+        return redirect()->route('post.index')->with('success', 'The post has been updated.');
+    }
+
+    public function destroy(Post $post): RedirectResponse
     {
         $post->delete();
-        return redirect()->back();
+
+        return redirect()->route('post.index')->with('success', 'The post has been deleted.');
     }
 }

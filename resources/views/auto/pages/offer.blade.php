@@ -1,155 +1,104 @@
 @extends('layouts.auto_layouts')
 
-@section('title', 'Автосервіс - Car Services and Mechanic')
-
-@section('link')
-<link rel="stylesheet" href="{{ asset('assets/css/index.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/page/page.css') }}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-<script src="{{ asset('assets/js/index.js') }}"></script>
-@endsection
+@section('title', 'Cars for Sale - Auto Service')
+@section('body-class', 'page-offer')
 
 @section('content')
-
 <div class="wrapper">
-   <div class="banner-area">
-      <div class="container-area">
-         <h2 class="sc-ttl-cont">Offer</h2>
-         <div>
-            <ul class="container-nav-item">
-               <li>
-                  <a class="cont-list" href="{{ route('home_auto') }}">Home</a>
-               </li>
-               <li class="cont-list">
-                    <i class="fas fa-angle-right"></i>
-                </li>
-               <li>
-                  <a class="cont-list">Offer</a>
-               </li>
-            </ul>
-         </div>
-      </div>
-   </div>
-<section>
-    <div class="sn-offer-media-container">
-        <div class="container">
-            <div class="sn-title-container">
-            <h2 class="sn-title">BIG OFFER</h2>
-            <h3 class="sn-subtitle">Car Discount <span class="sn-discount">15%</span>Offers</h3>
-            </div>
-            <div class="shop_header">
-                <div class="shop_container">
-                    <div class="shop_content">
-                <div class="shop-car-card-container">
-                    <img src="/assets/auto sale/car1.jpg" alt="">
-                    <div>
-                        <h2 class="car-brand">SANTRO</h2>
-                        <h3 class="car-model">Model - Santro BS6</h3>
-                        <h1 class="car-price">9500$ <span class="old-price">9500$</span></h1>
-                        <p class="car-description">Get Exchange bonus up to worth $ 20,000/-</p>
-                        <button class="btn-st-car" type="submit">Click here</button>
-                    </div>
-                </div>
-                <div class="shop-car-card-container">
-                    <img src="/assets/auto sale/car2.jpg" alt="">
-                    <div>
-                        <h2 class="car-brand">SANTRO</h2>
-                        <h3 class="car-model">Model - Santro BS6 AMT Auto</h3>
-                        <h1 class="car-price">3150$ <span class="old-price">2950$</span></h1>
-                        <p class="car-description">Get Exchange bonus up to worth $ 20,000/-</p>
-                        <button  class="btn-st-car" type="submit">Click here</button>
-                    </div>
-                </div>
-                <div class="shop-car-card-container">
-                    <img src="/assets/auto sale/car3.jpg" alt="">
-                    <div>
-                        <h2 class="car-brand">SANTRO</h2>
-                        <h3 class="car-model">Model - Grand i10 Nios</h3>
-                        <h1 class="car-price">650$ <span class="old-price">600$</span></h1>
-                        <p class="car-description">Get Exchange bonus up to worth $ 20,000/-</p>
-                        <button  class="btn-st-car" type="submit">Click here</button>
-                    </div>
-                </div>
-                <div class="shop-car-card-container">
-                    <img src="/assets/auto sale/car4.jpg" alt="">
-                    <div>
-                        <h2 class="car-brand">SANTRO</h2>
-                        <h3 class="car-model">Model - Aura BS6</h3>
-                        <h1 class="car-price">1100$ <span class="old-price">950$</span></h1>
-                        <p class="car-description">Get Exchange bonus up to worth $ 20,000/-</p>
-                        <button  class="btn-st-car" type="submit">Click here</button>
-                    </div>
-                </div>
-                <div class="shop-car-card-container">
-                    <img src="/assets/auto sale/car5.jpg" alt="">
-                    <div>
-                        <h2 class="car-brand">SANTRO</h2>
-                        <h3 class="car-model">Model - Santro BS6</h3>
-                        <h1 class="car-price">1830$<span class="old-price">1700$</span></h1>
-                        <p class="car-description">Get Exchange bonus up to worth $ 20,000/-</p>
-                        <button  class="btn-st-car" type="submit">Click here</button>
-                    </div>
-                </div>
-                <div class="shop-car-card-container">
-                    <img src="/assets/auto sale/car6.jpg" alt="">
-                    <div>
-                        <h2  class="car-brand">SANTRO</h2>
-                        <h3 class="car-model">Model - Santro BS6</h3>
-                        <h1 class="car-price">2000$ <span class="old-price">1550$</span></h1>
-                        <p class="car-description">Get Exchange bonus up to worth $ 20,000/-</p>
-                        <button  class="btn-st-car" type="submit">Click here</button>
-                    </div>
-                </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section> 
-<!-- Contact info section -->
-   <div class="aside-container-main-info">
+   <x-page-banner title="Cars for Sale" :crumbs="[['Cars for sale']]" />
+
+   <section class="catalog">
       <div class="container">
-         <div class="gc-3">
-            <div class="aside-content-info">
-            <i class="fa-solid fa-map-location-dot fa-icon-info"></i>
-            <div>
-               <h3 class="aside-container-title">ADDRESS:</h3>
-               <p class="aside-container-info">Mulatol Pakar Matha, Dhaka Bus<br> Stand Road, 5400</p>
+         <div class="sn-title-container">
+            <h2 class="sn-title">OUR CARS</h2>
+            <h3 class="sn-subtitle">Find your next car</h3>
+            <p class="catalog__lead">Every car is checked by our mechanics before it goes on sale. Found one you like? Send a request and a manager will call you back.</p>
+         </div>
+
+         <form class="catalog-filters" method="get" action="{{ route('offer') }}" aria-label="Filter cars" data-ajax-filters>
+            <div class="catalog-filters__grid">
+               <label class="field-group field-group--wide">
+                  <span>Search</span>
+                  <input type="search" name="q" value="{{ $filters['q'] }}" placeholder="Brand or model" maxlength="60">
+               </label>
+               <label class="field-group">
+                  <span>Brand</span>
+                  <select name="brand">
+                     <option value="">All brands</option>
+                     @foreach ($brands as $brand)
+                        <option value="{{ $brand }}" @selected($filters['brand'] === $brand)>{{ $brand }}</option>
+                     @endforeach
+                  </select>
+               </label>
+               <label class="field-group">
+                  <span>Fuel</span>
+                  <select name="fuel">
+                     <option value="">Any fuel</option>
+                     @foreach (\App\Models\Car::FUELS as $key => $label)
+                        <option value="{{ $key }}" @selected($filters['fuel'] === $key)>{{ $label }}</option>
+                     @endforeach
+                  </select>
+               </label>
+               <label class="field-group">
+                  <span>Transmission</span>
+                  <select name="transmission">
+                     <option value="">Any</option>
+                     @foreach (\App\Models\Car::TRANSMISSIONS as $key => $label)
+                        <option value="{{ $key }}" @selected($filters['transmission'] === $key)>{{ $label }}</option>
+                     @endforeach
+                  </select>
+               </label>
+               <label class="field-group">
+                  <span>Max price, $</span>
+                  <input type="number" name="max_price" value="{{ $filters['max_price'] }}" min="1" step="500" placeholder="e.g. 10000">
+               </label>
+               <label class="field-group">
+                  <span>Sort by</span>
+                  <select name="sort">
+                     @foreach (\App\Models\Car::SORTS as $key => $label)
+                        <option value="{{ $key }}" @selected($filters['sort'] === $key)>{{ $label }}</option>
+                     @endforeach
+                  </select>
+               </label>
             </div>
+            <div class="catalog-filters__actions">
+               <label class="check">
+                  <input type="checkbox" name="status" value="available" @checked($filters['status'] === 'available')>
+                  <span>Available only</span>
+               </label>
+               <div>
+                  <button type="submit" class="btn-car">Apply filters</button>
+                  <a class="btn-car btn-car--ghost" href="{{ route('offer') }}" data-filters-reset @if (! $hasFilters && $filters['sort'] === 'newest') hidden @endif>Reset</a>
+               </div>
             </div>
-            <div class="aside-content-info">
-            <i class="fa-solid fa-phone-volume fa-icon-info"></i>
-            <div>
-               <h3 class="aside-container-title">PHONES:</h3>
-               <p class="aside-container-info">
-                  <a style="color:#fff" href="tel:0950660959">+380 95 066 09 59</a>
-                  <a style="color:#fff; margin-left:10px;" href="tel:0950650385">+380 95 065 03 85</a>
-                  <br>
-                  <a style="color:#fff" href="tel:0950564505">+380 95 056 46 05</a>
-               </p>
+         </form>
+
+         <div id="catalog-results" aria-live="polite">
+         <p class="catalog__count">
+            @if ($cars->total())
+               Showing {{ $cars->firstItem() }}–{{ $cars->lastItem() }} of {{ $cars->total() }} {{ \Illuminate\Support\Str::plural('car', $cars->total()) }}
+            @endif
+         </p>
+
+         @if ($cars->count())
+            <div class="car-grid">
+               @foreach ($cars as $car)
+                  @include('auto.cars._card', ['car' => $car])
+               @endforeach
             </div>
+
+            {{ $cars->links('partials.pagination') }}
+         @else
+            <div class="empty-state">
+               <i class="fa-solid fa-car-burst"></i>
+               <h3>{{ $hasFilters ? 'No cars match your filters' : 'No cars for sale right now' }}</h3>
+               <p>{{ $hasFilters ? 'Try removing some filters or searching for a different brand.' : 'New cars are added regularly. Leave us a request and we will let you know when something suitable arrives.' }}</p>
+               <a class="btn-car" href="{{ $hasFilters ? route('offer') : route('home_auto').'#contacts' }}">{{ $hasFilters ? 'Clear filters' : 'Contact us' }}</a>
             </div>
-            <div class="aside-content-info">
-            <i class="fa-solid fa-calendar-check fa-icon-info"></i>
-            <div>
-               <h3 class="aside-container-title">WORKING TIME:</h3>
-               <p class="aside-container-info">Monday–Saturday: 08:00–18:00;<br> Friday - Closed</p>
-            </div>
-            </div>
+         @endif
          </div>
       </div>
-   </div>
-   @if ($errors->any())
-       <div class="alert alert-danger">
-           <ul>
-               @foreach ($errors->all() as $error)
-                   <li>{{ $error }}</li>
-               @endforeach
-           </ul>
-       </div>
-   @endif
-</section>
+   </section>
+</div>
+@include('partials.contact-strip')
 @endsection

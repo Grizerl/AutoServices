@@ -5,93 +5,76 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MembersRequest;
 use App\Models\Members;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class MembersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): View
     {
-       $members=Members::all();
-       return view('admin.members.index',[
-        'members'=>$members,
-       ]);
+        return view('admin.members.index', [
+            'members' => Members::latest()->paginate(15),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): View
     {
         return view('admin.members.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(MembersRequest $request)
+    public function store(MembersRequest $request): RedirectResponse
     {
-        $validDate=$request->validated();
-        $members= new Members();
-        $members->name=$validDate['name'];
-        $members->phone_number=$validDate['phone'];
-        $members->age=$validDate['age'];
-        $members->img=$validDate['img'];
-        $members->place_of_residence=$validDate['residence'];
-        $members->role=$validDate['role'];
-        $members->save();
-        return redirect()->back();
-    }
+        $data = $request->validated();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Members $member)
-    {
-        return view('admin.members.views',[
-            'member'=>$member,
+        Members::create([
+            'name' => $data['name'],
+            'phone_number' => $data['phone'],
+            'age' => $data['age'],
+            'place_of_residence' => $data['residence'],
+            'role' => $data['role'],
+            'img' => $request->file('image')->store(Members::IMAGE_DIRECTORY, Members::IMAGE_DISK),
         ]);
+
+        return redirect()->route('members.index')->with('success', 'The member has been added.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-  // MembersController.php
-
-public function edit(Members $member)
-{
-    return view('admin.members.edit', [
-        'member' => $member,
-    ]);
-}
-
-public function update(MembersRequest $request, Members $member)
-{
-    // Validate the request data
-    $validDate=$request->validated();
-
-    // Update the member's details
-    $member->name = $request->input('name');
-    $member->phone_number = $request->input('phone');
-    $member->age = $request->input('age');
-    $member->place_of_residence = $request->input('residence');
-    $member->img = $request->input('img');
-    $member->role = $request->input('role');
-    $member->save();
-
-    // Redirect or return response
-    return redirect()->route('members.edit', $member->id);
-}
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Members $member)
+    public function show(Members $member): View
     {
-        $member->delete();
-        return redirect()->route('members.index');
+        return view('admin.members.views', ['member' => $member]);
     }
-    
+
+    public function edit(Members $member): View
+    {
+        return view('admin.members.edit', ['member' => $member]);
+    }
+
+    public function update(MembersRequest $request, Members $member): RedirectResponse
+    {
+        $data = $request->validated();
+
+        $attributes = [
+            'name' => $data['name'],
+            'phone_number' => $data['phone'],
+            'age' => $data['age'],
+            'place_of_residence' => $data['residence'],
+            'role' => $data['role'],
+        ];
+
+        if ($request->hasFile('image')) {
+            $member->deleteImageFile();
+            $attributes['img'] = $request->file('image')->store(Members::IMAGE_DIRECTORY, Members::IMAGE_DISK);
+        }
+
+        $member->update($attributes);
+
+        return redirect()->route('members.index')->with('success', 'The member has been updated.');
+    }
+
+    public function destroy(Members $member): RedirectResponse
+    {
+        $member->deleteImageFile();
+        $member->delete();
+
+        return redirect()->route('members.index')->with('success', 'The member has been deleted.');
+    }
 }

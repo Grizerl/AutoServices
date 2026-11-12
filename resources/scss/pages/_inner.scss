@@ -1,0 +1,186 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ===========================================================================
+// About the company (/AutoStyle/About/History)
+// ===========================================================================
+.page-history {
+  .gallery-container {
+    padding-top: 30px;
+    padding-bottom: 45px;
+  }
+
+  .section-gallery-title {
+    @include heading-underline;
+    font-family: $font-roboto;
+    font-size: 33px;
+    font-weight: 700;
+    margin-top: 7vh;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  .section-gallery-subtitle {
+    font-family: $font-roboto;
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .grid-box {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .first-box,
+  .second-box {
+    text-align: center;
+  }
+
+  .gallery-img {
+    padding: 0 5px;
+  }
+
+  .section-about-company {
+    position: relative;
+    padding: 4vh 0 20vh;
+    background: url('#{$img-path}/porsche-normal.png') no-repeat 0 0 / cover;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: $black;
+      opacity: 0.6;
+    }
+  }
+
+  .section-about-company-title {
+    position: relative;
+    z-index: 1;
+    font-family: $font-roboto;
+    font-size: 36px;
+    font-weight: 700;
+    color: $white;
+    padding-top: 10vh;
+    text-align: center;
+  }
+
+  .section-form-container {
+    position: relative;
+    z-index: 1;
+    @include flex-center;
+
+    p {
+      position: relative;
+      font-family: $font-sans;
+      font-weight: 500;
+      font-size: 16px;
+      padding: 35px;
+      border: 3px solid $red-btn;
+      color: $white;
+      background: transparent;
+      border-radius: 50px 0 50px 0;
+    }
+  }
+
+  @include max($bp-xs) {
+    .section-about-company {
+      padding: 4vh 0 10vh;
+    }
+
+    .section-about-company-title {
+      padding-top: 5vh;
+    }
+
+    .gallery-img {
+      padding: 0;
+    }
+  }
+}
+
+// ===========================================================================
+// 404 (error page)
+// ===========================================================================
+.page-error {
+  .section-error-area {
+    width: 100%;
+    background: url('#{$img-path}/error-baner.png') no-repeat center / cover;
+  }
+
+  .section-media-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15vh;
+  }
+
+  .media-title {
+    position: relative;
+    font-family: $font-roboto;
+    font-size: 11rem;
+    font-weight: 700;
+    color: $red-btn;
+    margin-top: 10vh;
+    margin-left: 15vh;
+
+    &::after {
+      content: '404';
+      position: absolute;
+      left: 4px;
+      top: 2px;
+      font-size: 10.6rem;
+      color: $white;
+    }
+  }
+
+  .media-text-info {
+    font-family: $font-sans;
+    font-size: 48px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-left: 15vh;
+    color: $white;
+
+    span {
+      color: $red-btn;
+    }
+  }
+
+  .media-text {
+    font-family: $font-sans;
+    font-size: 21px;
+    font-weight: 500;
+    margin-left: 15vh;
+    margin-bottom: 5vh;
+    color: $white;
+  }
+
+  .media-psevdo-btn {
+    border: 4px solid $red-btn;
+    padding: 10px 30px;
+    margin-left: 15vh;
+    font-family: $font-roboto;
+    font-size: 14px;
+    font-weight: 700;
+    color: $white;
+    text-transform: uppercase;
+    transition: 0.5s;
+
+    &:hover {
+      border-radius: 15px;
+      background: $red-btn;
+    }
+  }
+
+  @include max(700px) {
+    .media-title,
+    .media-text-info,
+    .media-text,
+    .media-psevdo-btn {
+      margin-left: 0;
+    }
+  }
+}

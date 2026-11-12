@@ -1,0 +1,123 @@
+@use '../abstracts/variables' as *;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px; // sticky header
+}
+
+body {
+  overflow-x: hidden;
+}
+
+// `clip` (unlike `hidden`) keeps position: sticky working
+@supports (overflow: clip) {
+  body {
+    overflow-x: clip;
+  }
+}
+
+body {
+  font-family: $font-roboto;
+  font-size: 16px;
+  line-height: 1.5;
+  color: $black-light;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+iframe,
+video {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+h1, h2, h3, h4, h5, h6,
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  font-style: normal;
+  font-family: $font-roboto;
+  line-height: 1.2;
+  font-weight: 700;
+  font-size: 25px;
+  margin: 15px 0;
+  transition: 0.5s;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+
+  @media screen and (max-width: 600px) {
+    padding: 0 1rem;
+  }
+}
+
+// Generic stacked form (home booking form, contact form)
+form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+::selection {
+  background: $red-btn;
+  color: $white;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid rgba($red-btn, 0.55);
+  outline-offset: 2px;
+}
+
+[hidden] {
+  display: none !important;
+}

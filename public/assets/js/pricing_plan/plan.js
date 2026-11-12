@@ -1,41 +1,37 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const btn_silver = document.getElementById("btn-silver-plan");
-    const btn_platinum = document.getElementById("btn-platinum-plan");
-    const btn_gold = document.getElementById("btn-gold-plan");
+// Subscription plans: switch between monthly and yearly prices without reloading.
+// Without JavaScript the toggle buttons are plain links (?period=yearly) and still work.
+document.addEventListener('DOMContentLoaded', function () {
+    var root = document.querySelector('[data-plans]');
+    if (!root) { return; }
 
-    const card_silver = document.getElementById("card-silver");
-    const card_platinum = document.getElementById("card-platinum");
-    const card_gold = document.getElementById("card-gold");
+    var buttons = root.querySelectorAll('[data-period-btn]');
+    var links = root.querySelectorAll('[data-checkout-link]');
 
-    const hideAllCardsAndResetButtons = () => {
-        card_silver.classList.remove('show');
-        card_platinum.classList.remove('show');
-        card_gold.classList.remove('show');
+    function setPeriod(period) {
+        root.setAttribute('data-period', period);
 
-        btn_silver.classList.remove('active');
-        btn_platinum.classList.remove('active');
-        btn_gold.classList.remove('active');
-    };
+        buttons.forEach(function (btn) {
+            var active = btn.getAttribute('data-period-btn') === period;
+            btn.classList.toggle('is-active', active);
+            btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
 
-    btn_silver.addEventListener('click', (event) => {
-        event.preventDefault();
-        hideAllCardsAndResetButtons();
-        card_silver.classList.add('show');
-        btn_silver.classList.add('active');
-    });
+        // keep the "Choose" buttons pointing at the selected period
+        links.forEach(function (link) {
+            link.setAttribute('href', link.getAttribute('data-base') + '?period=' + period);
+        });
 
-    btn_platinum.addEventListener('click', (event) => {
-        event.preventDefault();
-        hideAllCardsAndResetButtons();
-        card_platinum.classList.add('show');
-        btn_platinum.classList.add('active');
-    });
+        if (window.history && window.history.replaceState) {
+            var url = new URL(window.location.href);
+            url.searchParams.set('period', period);
+            window.history.replaceState(null, '', url);
+        }
+    }
 
-    btn_gold.addEventListener('click', (event) => {
-        event.preventDefault();
-        hideAllCardsAndResetButtons();
-        card_gold.classList.add('show');
-        btn_gold.classList.add('active');
+    buttons.forEach(function (btn) {
+        btn.addEventListener('click', function (event) {
+            event.preventDefault();
+            setPeriod(btn.getAttribute('data-period-btn'));
+        });
     });
 });
-

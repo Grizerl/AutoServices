@@ -1,0 +1,176 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ===========================================================================
+// Partners (/Pages/Partners)
+// ===========================================================================
+.page-partners {
+  .licenses {
+    padding: 70px 0 50px;
+    background: $white;
+  }
+
+  .license-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 36px;
+  }
+
+  .license-card {
+    position: relative;
+    padding: 32px 22px 26px;
+    border: 1px solid rgba($black, 0.07);
+    border-radius: $radius;
+    background: $white;
+    box-shadow: $shadow-soft;
+    text-align: center;
+    transition: transform 0.35s $ease, box-shadow 0.35s $ease, border-color 0.3s;
+
+    &:hover {
+      transform: translateY(-6px);
+      border-color: rgba($red-btn, 0.4);
+      box-shadow: $shadow-lift;
+    }
+
+    &__icon {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba($red-btn, 0.1);
+      font-size: 0.9rem;
+      color: $red-btn;
+    }
+
+    img {
+      width: 110px;
+      margin: 0 auto 6px;
+    }
+
+    h4 {
+      margin: 8px 0 4px;
+      font-size: 1.3rem;
+    }
+
+    p {
+      margin: 0;
+      color: $gray;
+    }
+  }
+
+  .partner-brands {
+    padding: 70px 0 80px;
+    background: $gray-surface;
+  }
+
+  .partner-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 36px;
+  }
+
+  .partner-card {
+    padding: 22px 22px 20px;
+    border-radius: $radius;
+    background: $white;
+    box-shadow: $shadow-card;
+    text-align: center;
+    transition: transform 0.35s $ease, box-shadow 0.35s $ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: $shadow-lift;
+
+      img {
+        filter: none;
+        opacity: 1;
+        transform: scale(1.05);
+      }
+    }
+
+    &__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 150px;
+      overflow: hidden;
+
+      // hard pixel limits: the source logos range from 184px to 3500px wide
+      img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 150px;
+        object-fit: contain;
+        filter: grayscale(1);
+        opacity: 0.75;
+        transition: filter 0.4s, opacity 0.4s, transform 0.4s $ease;
+      }
+    }
+
+    h4 {
+      margin: 8px 0 0;
+      font-size: 1.1rem;
+      color: $black-light;
+    }
+  }
+
+  .partner-cta {
+    margin-top: 56px;
+    padding: 40px 24px;
+    border-radius: $radius;
+    background: linear-gradient(120deg, $red-btn 0%, $red-dark 100%);
+    box-shadow: $shadow-red;
+    text-align: center;
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 1.7rem;
+      color: $white;
+    }
+
+    p {
+      margin: 0 0 22px;
+      color: rgba($white, 0.9);
+    }
+
+    .btn-car {
+      background: $white;
+      box-shadow: none;
+      color: $red-btn;
+
+      &:hover {
+        background: $dark;
+        color: $white;
+      }
+    }
+  }
+
+  @include max($bp-lg) {
+    .license-grid,
+    .partner-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include max($bp-sm) {
+    .license-grid,
+    .partner-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .licenses {
+      padding: 50px 0 36px;
+    }
+
+    .partner-brands {
+      padding: 50px 0 56px;
+    }
+  }
+}

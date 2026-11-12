@@ -1,0 +1,723 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ===========================================================================
+// Home page (/AutoStyle)
+// ===========================================================================
+.page-home {
+  // -------------------------------------------------------------------------
+  // Hero slider
+  // -------------------------------------------------------------------------
+  .swiper-1 {
+    height: 100%;
+    width: 100%;
+  }
+
+  .sc-ban-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    background: $red-btn;
+    color: $white;
+    height: 60px;
+    width: 60px;
+    border-radius: 8px;
+  }
+
+  .back-img-slide-1,
+  .back-img-slide-2 {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    min-height: 520px;
+  }
+
+  .back-img-slide-1,
+  .section-support-container {
+    background: url('#{$img-path}/hackery-slider1.jpg') no-repeat center / 100% 100%;
+  }
+
+  .back-img-slide-2 {
+    background: url('#{$img-path}/hackery-slider2.jpg') no-repeat center / 100% 100%;
+  }
+
+  .slide-1-content,
+  .slide-2-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: clamp(7rem, 22vh, 15rem);
+  }
+
+  .slide-1-content {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .slide-2-content {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .slide-1-title,
+  .slide-2-title {
+    font-family: $font-sans;
+    color: $white;
+    font-size: clamp(2.8rem, 9vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 16px;
+  }
+
+  .slide-1-text,
+  .slide-2-text {
+    font-family: $font-roboto;
+    font-size: 1.15rem;
+    color: $white;
+    margin-bottom: 35px;
+  }
+
+  .slide-1-btn,
+  .slide-2-btn,
+  .aside-btn {
+    @include btn-red;
+    font-size: 1.25rem;
+    font-weight: 400;
+    padding: 12px 40px;
+    margin-right: 20px;
+    text-align: center;
+  }
+
+  .slide-1-btn:hover,
+  .slide-2-btn:hover {
+    background: $red;
+    box-shadow: 0 0 15px $white;
+  }
+
+  // Button with a sliding "»" arrow
+  .animation-btn span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+
+    &::after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -15px;
+      transition: 1s;
+    }
+  }
+
+  .animation-btn:hover span {
+    padding-right: 25px;
+
+    &::after {
+      opacity: 1;
+      right: 0;
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Intro cards
+  // -------------------------------------------------------------------------
+  .section-about-card-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 45px;
+  }
+
+  .card {
+    position: relative;
+    bottom: 5vh;
+    z-index: 9999;
+    text-align: center;
+    padding: 50px 30px;
+    background: $white;
+    box-shadow: 0 0 30px 0 rgba($black, 0.1);
+    transition: 1s;
+
+    &:hover {
+      transform: translateY(-40px);
+
+      .card-btn-active {
+        bottom: 1px;
+        opacity: 1;
+      }
+    }
+  }
+
+  // Shared icon styling (cards, support list, advantages)
+  .fa-car-rear,
+  .fa-gear,
+  .fa-screwdriver-wrench,
+  .fa-compass,
+  .fa-hammer,
+  .fa-gears,
+  .fa-life-ring,
+  .fa-headset {
+    font-size: 3.3rem;
+    color: $red-btn;
+  }
+
+  .card-p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #363636;
+  }
+
+  .card-btn-active {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .card-pseudo-btn a {
+    display: block;
+    background: $red-btn;
+    border-radius: 3px;
+    color: $white;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 17px 30px;
+    text-align: center;
+    transition: background 0.25s, color 0.25s;
+
+    &:hover {
+      background: $black-light;
+      color: $white;
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // About block
+  // -------------------------------------------------------------------------
+  .aside-container-section-card {
+    padding-top: 50px;
+    padding-bottom: 45px;
+  }
+
+  .sc-AbOgs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .aside-subtitle {
+    font-family: $font-roboto;
+    font-size: 17px;
+    font-weight: 500;
+    color: $red-btn;
+  }
+
+  .aside-title {
+    font-family: $font-roboto;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: $black-light;
+    padding: 10px 0;
+  }
+
+  .aside-text {
+    font-family: $font-roboto;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 30px;
+    margin-bottom: 35px;
+    width: 80%;
+    color: $gray;
+  }
+
+  .img-aside-one,
+  .img-aside-two {
+    max-width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .img-aside-one {
+    width: 265px;
+  }
+
+  .img-aside-two {
+    width: 340px;
+  }
+
+  // -------------------------------------------------------------------------
+  // Support
+  // -------------------------------------------------------------------------
+  #support {
+    padding-top: 60px;
+  }
+
+  .section-support-content-title {
+    @include flex-center(column);
+    color: $white;
+    padding-top: 30px;
+  }
+
+  .section-support-title {
+    font-size: 23px;
+    font-weight: 700;
+  }
+
+  .section-support-subtitle {
+    font-size: 50px;
+    padding: 5px 0;
+  }
+
+  .card-support-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding-top: 15px;
+    padding-bottom: 50px;
+  }
+
+  .card-support {
+    position: relative;
+    text-align: center;
+    padding: 40px 25px;
+    border-radius: 8px;
+    background: $white;
+    box-shadow: 0 0 30px 0 rgba($black, 0.1);
+    transition: 1s;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: $red-btn;
+      border-radius: 5px;
+      transform: translateX(-50%);
+      transition: width 1s ease;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+
+  .cd-p {
+    color: $gray-light;
+  }
+
+  // -------------------------------------------------------------------------
+  // Advantages
+  // -------------------------------------------------------------------------
+  .section-advantages-conteiner {
+    padding-top: 35px;
+    padding-bottom: 20px;
+    background: $gray-surface;
+  }
+
+  .section-advantages-title {
+    text-align: center;
+    font-family: $font-stem;
+    font-size: 3rem;
+    font-weight: 700;
+    color: $black;
+  }
+
+  .section-advantages-card-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding-top: 30px;
+    padding-bottom: 35px;
+  }
+
+  .section-advantages-card-list {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row-reverse;
+    border: 2px solid $red-btn;
+    padding: 25px 30px;
+  }
+
+  .fa-i {
+    padding: 8px;
+    margin: 0 0 25px 30px;
+    border-radius: 8px;
+    transition: 1s;
+
+    &:hover {
+      background: $red-btn;
+      color: $white;
+    }
+  }
+
+  .sc-CoNtn {
+    text-align: center;
+    padding: 10px 0 30px;
+  }
+
+  .section-advantages-card-btn {
+    @include btn-red;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 12px 40px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: rgba($white, 0.3);
+      border-radius: 5px;
+      opacity: 0.7;
+      transition: height 1.2s ease;
+      z-index: 0;
+    }
+
+    &:hover::before {
+      height: 100%;
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Before / after slider
+  // -------------------------------------------------------------------------
+  .car-section {
+    padding-top: 30px;
+  }
+
+  .swiper-button-prev-2,
+  .swiper-button-next-2 {
+    font-family: $font-sans;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    border: none;
+    transition: 0.5s;
+
+    &::after {
+      content: '';
+    }
+
+    &:hover {
+      background: $black-light;
+      color: $white;
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Team slider
+  // -------------------------------------------------------------------------
+  .section-member-container {
+    padding-bottom: 50px;
+    background: $gray-surface;
+  }
+
+  .section-member-title {
+    color: $red-btn;
+    font-size: 45px;
+    font-weight: 700;
+    padding: 7vh 0 6vh;
+    margin: 0;
+  }
+
+  .mySwiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    width: 100%;
+    border-radius: 8px;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    h3:hover {
+      cursor: pointer;
+      color: $red-btn;
+    }
+  }
+
+  .team-container {
+    background: $white;
+  }
+
+  .member-img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .media-team-container {
+    padding: 10px 0;
+  }
+
+  .section-member-role {
+    font-family: $font-sans;
+    font-size: 19px;
+    font-weight: 600;
+    color: $gray-light;
+  }
+
+  // -------------------------------------------------------------------------
+  // Booking form
+  // -------------------------------------------------------------------------
+  .section-contact-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: url('#{$img-path}/contact-bg.jpg') center / cover;
+  }
+
+  .section-contact-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 60px 0;
+  }
+
+  .section-contact-container-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 25%;
+    text-align: center;
+    border-top: 5px solid $red-btn;
+    box-shadow: 0 0 30px 0 rgba($black, 0.2);
+    padding: 35px 30px 0;
+
+    input,
+    .section-contact-form-comment {
+      width: 100%;
+      padding: 1.7vh 6vh;
+      font-size: 1.1rem;
+      font-family: $font-roboto;
+      color: #929292;
+      border: 1px solid #929292;
+      background: $white;
+      border-radius: 5px;
+      outline: none;
+      margin: 30px 0 5px;
+    }
+
+    .section-contact-form-comment {
+      padding-bottom: 10vh;
+    }
+  }
+
+  .section-contact-container-title {
+    color: $red-accent;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .section-contact-container-subtitle {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 5px 0 25px;
+  }
+
+  .section-contact-form-btn {
+    width: 100%;
+    text-align: center;
+    background: $red-btn;
+    color: $white;
+    border: 1px solid $red-btn;
+    border-radius: 20px;
+    font-size: 16px;
+    padding: 0.3vh 5.5vh;
+    margin: 25px 0;
+    line-height: 45px;
+    font-weight: 600;
+    transition: 0.5s;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &:hover {
+      animation: bounce 1s;
+      background: $black-light;
+      color: $white;
+      border-color: $black-light;
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Responsive
+  // -------------------------------------------------------------------------
+  @include max($bp-xxl) {
+    .back-img-slide-1,
+    .back-img-slide-2,
+    .section-support-container {
+      background-size: cover;
+    }
+
+    .section-contact-container-form {
+      width: 35%;
+    }
+
+    .sc-Banprev,
+    .sc-Bannext {
+      display: none;
+    }
+  }
+
+  @include max($bp-xl) {
+    .sc-AbOgs {
+      grid-template-columns: 1fr;
+      gap: 50px;
+      text-align: center;
+    }
+
+    .aside-text {
+      width: 100%;
+    }
+
+    .sc-AbOgs > div:last-child {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .card-list {
+      gap: 20px;
+    }
+
+    .card {
+      padding: 50px 15px;
+    }
+  }
+
+  @include max($bp-lg) {
+    .card-support-list {
+      gap: 15px;
+    }
+
+    .sc-Fvrha {
+      display: none;
+    }
+
+    .section-contact-container-form {
+      width: 90%;
+    }
+  }
+
+  @include max($bp-md) {
+    .card-support-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .section-advantages-card-content {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+  }
+
+  @include max($bp-sm) {
+    .card-support-list,
+    .card-list {
+      grid-template-columns: 1fr;
+    }
+
+    .section-about-card-content {
+      display: block;
+    }
+
+    .img-aside-one,
+    .img-aside-two {
+      width: min(100%, 300px);
+    }
+
+    .slide-1-btn,
+    .slide-2-btn,
+    .aside-btn {
+      margin-right: 0;
+      padding: 12px 28px;
+    }
+
+    .slide-1-content,
+    .slide-2-content {
+      padding: 0 4px;
+    }
+
+    .star-container {
+      justify-content: space-between;
+    }
+
+    .section-support-subtitle,
+    .section-client-subtitle {
+      text-align: center;
+      font-size: 40px;
+      padding: 5px 0;
+    }
+
+    .slide-1-content,
+    .slide-2-content {
+      align-items: center;
+    }
+
+    .slide-1-text,
+    .slide-2-text,
+    .slide-1-title,
+    .slide-2-title {
+      text-align: center;
+    }
+
+    .section-member-title {
+      text-align: center;
+      font-size: 40px;
+    }
+  }
+
+  @include max($bp-xs) {
+    .slide-1-content,
+    .slide-2-content {
+      margin-top: 7rem;
+    }
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-20px);
+  }
+
+  80% {
+    transform: translateY(-10px);
+  }
+}

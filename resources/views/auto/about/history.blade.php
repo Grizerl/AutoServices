@@ -1,38 +1,19 @@
 @extends('layouts.auto_layouts')
 
-@section('title', 'Автосервіс - Car Services and Mechanic')
+@section('title', 'About the Company - Auto Service')
+@section('body-class', 'page-history')
 
-@section('link')
-<link rel="stylesheet" href="{{ asset('assets/css/index.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/about/history.css') }}">
-<script src="{{ asset('assets/js/index.js') }}"></script>
-@endsection
 
 @section('content')
 <div class="wrapper">
-   <div class="banner-area">
-      <div class="container-area">
-         <h2 class="sc-ttl-cont">About us</h2>
-         <div>
-            <ul class="container-nav-item">
-               <li>
-                  <a class="cont-list" href="{{ route('home_auto') }}">Home</a>
-               </li>
-               <li class="cont-list"><i class="fas fa-angle-right"></i></li>
-               <li>
-                  <a class="cont-list">About the company</a>
-               </li>
-            </ul>
-         </div>
-      </div>
-   </div>
+   <x-page-banner title="About the Company" :crumbs="[['About the company']]" />
 <section>
    <div class="gallery-container">
       <div>
          <div>
             <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; ">
-            <h1 class="section-gallery-title">Автотовари: Аксесуари,<br> Розхідники та Багато Іншого</h1>
-            <h3 class="section-gallery-subtitle">PROAuto - це спеціалізований інтернет магазин затребуваних <br> товарів для автомобілів.</h3>
+            <h1 class="section-gallery-title">Auto Goods: Accessories,<br> Consumables and Much More</h1>
+            <h3 class="section-gallery-subtitle">PROAuto is a specialised online store of in-demand <br> products for cars.</h3>
             </div>
             <div class="grid-box">
                <div class="first-box">
@@ -54,13 +35,13 @@
    <div>
       <div class="section-about-company">
          <div class="container">
-            <h1 class="section-about-company-title">Про компанію</h1>
+            <h1 class="section-about-company-title">About the company</h1>
             <div class="section-form-container">
                <p>
-               Ми раді вітати Вас на нашому сайті.<br><br>
-               Компанія «PROавто» - це надійні, якісні акумулятори в широкому асортименті, різноманітні за формою та характеристиками, а також якісні масла та автохімія іменитих брендів.<br><br>
-               Мережа магазинів «PROавто» понад 20 років займається продажем автомобільних акумуляторів, масел, витратних матеріалів, хімією та аксесуарів. Ми зарекомендували себе як надійна компанія, фахівці якої завжди готові проконсультувати з будь-якого питання: від підбору автощіток до рекомендацій щодо підбору акумулятора для Вашого автомобіля. Ми цінуємо свою репутацію та даємо гарантію на весь асортимент продукції, представленої на нашому сайті!<br><br>
-               Переконайтеся у цьому самі!
+               We are glad to welcome you to our website.<br><br>
+               PROauto offers reliable, high-quality car batteries in a wide range of shapes and specifications, as well as quality oils and car chemicals from well-known brands.<br><br>
+               The PROauto store network has been selling car batteries, oils, consumables, chemicals and accessories for more than 20 years. We have proven ourselves as a reliable company whose specialists are always ready to advise on any question: from choosing wiper blades to recommending the right battery for your car. We value our reputation and guarantee the entire range of products presented on our website!<br><br>
+               See for yourself!
                </p>
             </div>
          </div>

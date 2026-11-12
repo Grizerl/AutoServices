@@ -2,182 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script>document.documentElement.classList.add('js');try{if(sessionStorage.getItem('preloaded')){document.documentElement.classList.add('no-preload');}else{sessionStorage.setItem('preloaded','1');}}catch(e){}</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Swiper.js CSS and JS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/swiper@11.1.9/swiper-bundle.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- Link to Custom CSS -->
-    <link rel="stylesheet" href="./assets/css/index.css">
-    <link rel="icon" type="png" href="/assets/images/website-logo.png">
-    <!-- FontAwesome Icons -->
-    <script src="https://kit.fontawesome.com/46a432ef36.js" crossorigin="anonymous"></script>
-    <!-- Additional CSS Links -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Everything is self-hosted: fonts, icons and Swiper are bundled by Vite -->
+    @vite(['resources/js/site.js', 'resources/scss/site.scss'])
+
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/website-logo.png') }}">
+
     @yield('link')
 
     <title>@yield('title')</title>
 </head>
-<body>
+<body class="@yield('body-class')">
 <div class="App">
 <!-- Preloader -->
     <div class="preload" data-preload>
         <div class="preloader-content">
             <p class="text">Loading</p>
-            <img class="circle" src="../../../assets/images/circle.png" alt="Preload">
+            <img class="circle" src="{{ asset('assets/images/circle.png') }}" alt="Preload">
         </div>
     </div>
-<!-- Advertising Line -->
-<div class="advertising-line">
-    <div class="row">
-        <ul class="top-left">
-            <li>
-                <i style="color:#fff;" class="fa-solid fa-house"></i>
-                <a href="https://google.com.ua/maps/place/%D0%9A%D0%B8%D1%97%D0%B2,+02000/@50.4018377,30.2208891,11z/data=!3m1!4b1!4m12!1m5!3m4!2zNTDCsDQ1JzMzLjciTiAyNcKwMTYnMzguNyJF!8m2!3d50.759347!4d25.277409!3m5!1s0x40d4cf4ee15a4505:0x764931d2170146fe!8m2!3d50.4503596!4d30.5245025!16zL20vMDJzbjM0?entry=ttu&g_ep=EgoyMDI0MDgyMC4xIKXMDSoASAFQAw%3D%3D">Car Service Floor UK</a>
-            </li>
-            <li>
-                <i style="color:#fff;" class="fa-solid fa-phone"></i>
-                <a  href="tel:+380950660959">+38(095)-066-09-59</a>
-            </li>
-            <li>
-                <i style="color:#fff;" class="fa-solid fa-envelope"></i>
-                <a  href="mailto:autorepaire@gmail.com">autorepaire@gmail.com</a>
-            </li>
-        </ul>
-        <ul class="top-right">
-            <li>
-                <a title="Facebook" href="#"><i class="fab fa-facebook-f"></i></a>
-            </li>
-            <li>
-                <a title="Twitter" href="#"><i class="fab fa-x-twitter"></i></a>
-            </li>
-            <li>
-                <a title="Instagram" href="#"><i class="fab fa-instagram"></i></a>
-            </li>
-            <li>
-                <a title="Google Plus" href="#"><i class="fab fa-google-plus-g"></i></a>
-            </li>
-            <li>
-                <a title="Dribbble" href="#"><i class="fab fa-dribbble"></i></a>
-            </li>
-        </ul>
-    </div>
-</div>
-<!-- Main Container -->
-<div class="container">
-    <div class="navbar-content">
-        <div class="main-logo">
-            <h2 class="logo-slogan">Автосервіс</h2>
-        </div>
-        <div class="nav-bar-collapse">
-            <ul class="nav-content">
-                <li class="nav-item">
-                    <a class="nav-link" tabindex="1" href="{{route('home_auto')}}">Home</a>
-                </li>
-                <li class="nav-item menu-item">
-                    <a class="nav-link" tabindex="2" id="about-link" href="#about">About us<i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="{{route('vision')}}">Сompany news</a></li>
-                            <li>
-                                <a href="{{route('history')}}">About the company</a></li>
-                        </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" tabindex="3" id="client-say-link" href="#client-say">Reviews</a>
-                </li>
-                <li class="nav-item menu-item">
-                    <a class="nav-link" tabindex="4" href="#contacts">Contacts <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="{{route('contacts')}}">More detailed information</a>
-                            </li>
-                        </ul>
-                </li>
-                <li class="nav-item menu-item">
-                    <a class="nav-link" tabindex="5" href="#">Pages <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="{{route('offer')}}">Car for sale</a>
-                            </li>
-                            <li>
-                                <a href="{{route('plan')}}">Monthly subscription</a>
-                            </li>
-                            <li>
-                                <a href="{{route('partners')}}">Partners of the company</a>
-                            </li>
-                        </ul>
-                </li>
-                <li class="nav-item">
-                    <span class="nav-link lk-content">Cлужба продаж
-                        <div style="padding-top:5px;">
-                            <a href="tel:+380950660959" class="nav-link-number">+380 95 066 09 59</a> 
-                        </div>
-                    </span>
-                </li>
-            </ul>
-        </div>
-    <!-- Burger menu -->
-        <div class="burger-menu">
-            <span class="burger-icon">
-                <i class="fa-solid fa-bars"></i>
-            </span>
-        </div>
-        <div class="menu-container">
-            <div class="adaptive-logo">
-                <h2 class="logo-slogan">Автосервіс</h2>
-                <div class="close-btn">&times;</div>
-            </div>
-            <ul class="menu">
-                <li class="adaptive-item">
-                    <a class="nav-link sc-FDFgh" tabindex="1" href="{{route('home_auto')}}">Home</a>
-                </li>
-                <li class="adaptive-item menu-item">
-                    <a class="nav-link sc-FDFgh" tabindex="2" id="about-link" href="#about">About us<i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
-                        <ul class="sub-menu sc-FAFfgd">
-                            <li>
-                                <a href="{{route('vision')}}">Сompany news</a>
-                            </li>
-                            <li>
-                                <a href="{{route('history')}}">About the company</a>
-                            </li>
-                        </ul>
-                </li>
-                <li class="adaptive-item">
-                    <a class="nav-link sc-FDFgh" tabindex="3" id="client-say-link" href="#client-say">Reviews</a>
-                </li>
-                <li class="adaptive-item menu-item">
-                    <a class="nav-link sc-FDFgh" tabindex="4" href="#contacts">Contacts <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
-                        <ul class="sub-menu sc-FAFfgd">
-                            <li>
-                                <a href="{{route('contacts')}}">More detailed information</a>
-                            </li>
-                        </ul>
-                </li>
-                <li class="adaptive-item menu-item">
-                    <a class="nav-link sc-FDFgh" tabindex="5" href="#">Pages <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
-                        <ul class="sub-menu sc-FAFfgd">
-                            <li>
-                                <a href="{{route('offer')}}">Car for sale</a>
-                            </li>
-                            <li>
-                                <a href="{{route('plan')}}">Monthly subscription</a>
-                            </li>
-                            <li>
-                                <a href="{{route('partners')}}">Partners of the company</a>
-                            </li>
-                        </ul>
-                </li>
-                <li class="adaptive-item">
-                    <span class="adaptive-link">Cлужба продаж</span>
-                    <div style="text-align: left;  margin-top: 20px;  margin-left: 15px; ">
-                        <a href="tel:+380950660959" class="adaptive-link-number">+380 95 066 09 59</a> 
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-</div>
+@include('partials.site-header')
     @yield('content')
 <footer>
     <div class="footer-container">
@@ -185,8 +32,8 @@
             <div class="copy">
                 <h3 class="copy-title">Skills</h3>
                     <div class="copy-list">
-                        <span class="copy-link">Sale of cars</span>
-                        <span class="copy-link">Сar repair</span>
+                        <a href="{{ route('offer') }}"><span class="copy-link">Sale of cars</span></a>
+                        <a href="{{ route('home_auto') }}#contacts"><span class="copy-link">Car repair</span></a>
                     </div>
         <!-- Community Section -->
         <div>
@@ -229,8 +76,8 @@
                     <a href="tel:+380950660959"><span class="copy-link">Tel: +380 95 066 09 59</span></a>
                     <a href="tel:+380950650385"><span class="copy-link">Telegram: +380 95 065 03 85</span></a>
                     <a href="mailto:autorepaire@gmail.com"><span class="copy-link">autorepaire@gmail.com</span></a>
-                    <a href="https://google.com.ua/maps/place/%D0%9A%D0%B8%D1%97%D0%B2,+02000/@50.4018377,30.2208891,11z/data=!3m1!4b1!4m12!1m5!3m4!2zNTDCsDQ1JzMzLjciTiAyNcKwMTYnMzguNyJF!8m2!3d50.759347!4d25.277409!3m5!1s0x40d4cf4ee15a4505:0x764931d2170146fe!8m2!3d50.4503596!4d30.5245025!16zL20vMDJzbjM0?entry=ttu&g_ep=EgoyMDI0MDgyMC4xIKXMDSoASAFQAw%3D%3D"><span class="copy-link">50°45'33.7"N 25°16'38.7"E</span></a>
-                    <span class="copy-link">Producing Future Beats</span>
+                    <span class="copy-link">Kyiv, Ukraine</span>
+                    <span class="copy-link">Mon–Sat: 08:00–18:00</span>
                 </div>
             </div>
         </div>
@@ -260,6 +107,8 @@
 </aside>
 </footer>
 </div>
-<script src="./assets/js/index.js"></script>
+<button type="button" class="to-top" aria-label="Back to top" data-to-top><i class="fa-solid fa-arrow-up"></i></button>
+<script src="{{ asset('assets/js/index.js') }}"></script>
+@stack('scripts')
 </body>
 </html>

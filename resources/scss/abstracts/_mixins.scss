@@ -1,0 +1,46 @@
+@use 'sass:math';
+@use 'variables' as *;
+
+// Media query helper: @include max($bp-lg) { ... }
+@mixin max($width) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin flex-center($direction: row) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: $direction;
+}
+
+// Underlined section heading used across inner pages
+@mixin heading-underline($offset: 0) {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: $offset;
+    width: 100%;
+    height: 3px;
+    background: $red-btn;
+  }
+}
+
+// Solid red call-to-action button
+@mixin btn-red {
+  background: $red-btn;
+  color: $white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: $transition-base;
+}
+
+// Dark photographic background with sizing defaults
+@mixin cover-bg($url, $color: $black) {
+  background: $color url($url) center / cover no-repeat;
+}
