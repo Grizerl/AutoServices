@@ -226,48 +226,53 @@
    </div>
 </section>
 @endif
-<section id="client-say"> 
-<!-- Client testimonials section -->
-   <div class="section-client-container">
-      <div class="container">
-         <div class="section-client-content">
-            <h2 class="section-client-title">Testimonials</h2>
-            <h3 class="section-client-subtitle">Our Client Says</h3>
-               <p class="section-client-text">
-                  Drivers trust us with their cars because we explain every repair, stick to the estimate and stand behind our work.
-               </p>
+<section id="client-say" class="reviews">
+<!-- Client testimonials -->
+   <div class="container">
+      <div class="reviews__head">
+         <div>
+            <h2 class="sn-title">TESTIMONIALS</h2>
+            <h3 class="sn-subtitle">What our clients say</h3>
+            <p class="catalog__lead catalog__lead--left">Drivers trust us with their cars because we explain every repair, stick to the estimate and stand behind our work.</p>
          </div>
-         <div class="swiper mySwiper sc-ClieSwip"> <!-- Swiper for client testimonials -->
+         @if ($client->count() > 1)
+            <div class="slider-nav" aria-label="Reviews navigation">
+               <button type="button" class="slider-nav__btn review-prev" aria-label="Previous review"><i class="fa-solid fa-arrow-left"></i></button>
+               <button type="button" class="slider-nav__btn review-next" aria-label="Next review"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+         @endif
+      </div>
+
+      @if ($client->isEmpty())
+         <div class="empty-state">
+            <i class="fa-regular fa-comments"></i>
+            <h3>No reviews yet</h3>
+            <p>Be the first to share your experience with us.</p>
+         </div>
+      @else
+         <div class="swiper review-slider">
             <div class="swiper-wrapper">
                @foreach ($client as $item)
-                  <div class="swiper-slide">
-                     <div class="swiper-slide-content">
-                        <div class="slider-client-content">
-                           <div class="img-slider-container">
-                              <img class="swiper-img-box" src="/assets/images/hackery-user.png" alt="User Male Icon">
-                           </div>
-                        <div>
-                           <h6 style="text-align: center;" class="swiper-name-box">{{ $item->name }}</h6>
-                           <span class="swiper-role-box">{{ $item->role }}</span>
-                        </div>
-                        </div>
-                        <p class="swiper-text-box">{{ $item->commentars }}</p>
-                        <div class="star-container">
-                           <h5 class="swiper-date-box">{{ $item->created_at?->format('M j, Y') }}</h5>
-                              <ul class="star-content">
-                                 <li><i class="fa-solid fa-star"></i></li>
-                                 <li><i class="fa-solid fa-star"></i></li>
-                                 <li><i class="fa-solid fa-star"></i></li>
-                                 <li><i class="fa-solid fa-star"></i></li>
-                                 <li><i class="fa-solid fa-star"></i></li>
-                              </ul>
-                        </div>
+                  <article class="swiper-slide review-card">
+                     <i class="fa-solid fa-quote-right review-card__quote" aria-hidden="true"></i>
+                     <ul class="review-card__stars" aria-label="5 out of 5 stars">
+                        @for ($i = 0; $i < 5; $i++)<li><i class="fa-solid fa-star"></i></li>@endfor
+                     </ul>
+                     <p class="review-card__text">{{ $item->commentars }}</p>
+                     <div class="review-card__author">
+                        <span class="review-card__avatar" aria-hidden="true">{{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr($item->name, 0, 1)) }}</span>
+                        <span class="review-card__who">
+                           <strong>{{ $item->name }}</strong>
+                           <small>{{ $item->role }}</small>
+                        </span>
+                        <time class="review-card__date" datetime="{{ $item->created_at?->toDateString() }}">{{ $item->created_at?->format('M j, Y') }}</time>
                      </div>
-                  </div>
+                  </article>
                @endforeach
             </div>
+            <div class="swiper-pagination review-pagination"></div>
          </div>
-      </div>
+      @endif
    </div>
 </section>
 <section class="car-section">
@@ -329,25 +334,28 @@
             <h1 class="section-contact-container-title">Contact us</h1>
             <h2 class="section-contact-container-subtitle">Get In Touch</h2>
             @if (session('success'))
-               <div class="form-alert form-alert--success" role="status">{{ session('success') }}</div>
+               <div class="form-alert form-alert--success" role="status"><i class="fa-solid fa-circle-check"></i> {{ session('success') }}</div>
             @endif
-            <form action="{{ route('repair.store') }}" method="post" data-submit-once>
+            @if ($errors->any())
+               <div class="form-alert form-alert--error" role="alert"><i class="fa-solid fa-triangle-exclamation"></i> Please correct the highlighted fields.</div>
+            @endif
+            <form action="{{ route('repair.store') }}" method="post" novalidate data-ajax data-validate>
                @csrf
                <div class="field">
-                  <input name="name" type="text" placeholder="Your name*" value="{{ old('name') }}" required minlength="2" maxlength="60" autocomplete="name" @class(['is-invalid' => $errors->has('name')])>
-                  @error('name')<p class="field-error">{{ $message }}</p>@enderror
+                  <input name="name" type="text" placeholder="Your name*" value="{{ old('name') }}" maxlength="60" autocomplete="name" aria-label="Your name" aria-invalid="{{ $errors->has('name') ? 'true' : 'false' }}" @class(['is-invalid' => $errors->has('name')])>
+                  @error('name')<p class="field-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</p>@enderror
                </div>
                <div class="field">
-                  <input name="phone" type="tel" placeholder="Your phone number*" value="{{ old('phone') }}" required maxlength="20" autocomplete="tel" @class(['is-invalid' => $errors->has('phone')])>
-                  @error('phone')<p class="field-error">{{ $message }}</p>@enderror
+                  <input name="phone" type="tel" placeholder="Your phone number*" value="{{ old('phone') }}" maxlength="20" autocomplete="tel" aria-label="Your phone number" aria-invalid="{{ $errors->has('phone') ? 'true' : 'false' }}" @class(['is-invalid' => $errors->has('phone')])>
+                  @error('phone')<p class="field-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</p>@enderror
                </div>
                <div class="field">
-                  <input name="car" type="text" placeholder="Your car*" value="{{ old('car') }}" required minlength="2" maxlength="100" @class(['is-invalid' => $errors->has('car')])>
-                  @error('car')<p class="field-error">{{ $message }}</p>@enderror
+                  <input name="car" type="text" placeholder="Your car*" value="{{ old('car') }}" maxlength="100" aria-label="Your car" aria-invalid="{{ $errors->has('car') ? 'true' : 'false' }}" @class(['is-invalid' => $errors->has('car')])>
+                  @error('car')<p class="field-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</p>@enderror
                </div>
                <div class="field">
-                  <input name="comment" type="text" placeholder="Your problem*" value="{{ old('comment') }}" required minlength="6" maxlength="500" @class(['section-contact-form-comment', 'is-invalid' => $errors->has('comment')])>
-                  @error('comment')<p class="field-error">{{ $message }}</p>@enderror
+                  <input name="comment" type="text" placeholder="Your problem*" value="{{ old('comment') }}" maxlength="500" aria-label="Your problem" aria-invalid="{{ $errors->has('comment') ? 'true' : 'false' }}" @class(['section-contact-form-comment', 'is-invalid' => $errors->has('comment')])>
+                  @error('comment')<p class="field-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</p>@enderror
                </div>
                <button type="submit" class="section-contact-form-btn">Send Request</button>
             </form>

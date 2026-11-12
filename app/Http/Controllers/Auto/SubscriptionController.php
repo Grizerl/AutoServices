@@ -7,6 +7,7 @@ use App\Http\Requests\SubscribeRequest;
 use App\Models\Subscription;
 use App\Models\SubscriptionPlan;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,7 @@ class SubscriptionController extends Controller
         ]);
     }
 
-    public function store(SubscribeRequest $request, SubscriptionPlan $plan): RedirectResponse
+    public function store(SubscribeRequest $request, SubscriptionPlan $plan): RedirectResponse|JsonResponse
     {
         abort_unless($plan->is_active, 404);
 
@@ -48,6 +49,15 @@ class SubscriptionController extends Controller
             'car' => $data['car'],
             'notes' => $data['notes'] ?? null,
         ]);
+
+        // AJAX submit: return the confirmation markup so the page does not reload
+        if ($request->wantsJson()) {
+            return response()->json([
+                'message' => 'Your subscription request has been received.',
+                'reference' => $subscription->reference,
+                'html' => view('auto.subscriptions._summary', ['subscription' => $subscription])->render(),
+            ]);
+        }
 
         return redirect()->route('plan.thanks', $subscription->reference);
     }

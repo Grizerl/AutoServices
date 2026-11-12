@@ -1,0 +1,59 @@
+@use '../abstracts/variables' as *;
+
+// ---------------------------------------------------------------------------
+// Round prev/next buttons shared by the news and review sliders
+// ---------------------------------------------------------------------------
+.slider-nav {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+
+  &__btn {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border: 1.5px solid rgba($black, 0.12);
+    border-radius: 50%;
+    background: $white;
+    box-shadow: $shadow-soft;
+    font-size: 15px;
+    color: $black-light;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s, opacity 0.25s;
+
+    &:hover:not(.swiper-button-disabled) {
+      background: $red-btn;
+      border-color: $red-btn;
+      color: $white;
+      transform: translateY(-2px);
+    }
+
+    &.swiper-button-disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+  }
+}
+
+// Pagination dots (Swiper)
+.swiper-pagination {
+  position: static;
+  margin-top: 26px;
+  text-align: center;
+
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px !important;
+    background: rgba($black, 0.2);
+    opacity: 1;
+    transition: width 0.3s, background 0.3s;
+  }
+
+  .swiper-pagination-bullet-active {
+    width: 28px;
+    border-radius: 6px;
+    background: $red-btn;
+  }
+}

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CarInquiryRequest;
 use App\Models\Car;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -46,9 +47,16 @@ class CarController extends Controller
     }
 
     /** Store a "Request this car" inquiry. */
-    public function inquire(CarInquiryRequest $request, Car $car): RedirectResponse
+    public function inquire(CarInquiryRequest $request, Car $car): RedirectResponse|JsonResponse
     {
         if ($car->status === Car::STATUS_SOLD) {
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'message' => 'Sorry, this car has already been sold.',
+                    'errors' => ['car' => ['Sorry, this car has already been sold.']],
+                ], 422);
+            }
+
             return redirect(route('car.show', $car).'#request')
                 ->withErrors(['car' => 'Sorry, this car has already been sold.']);
         }
@@ -62,8 +70,13 @@ class CarController extends Controller
             'message' => $data['message'] ?? null,
         ]);
 
-        return redirect(route('car.show', $car).'#request')
-            ->with('success', 'Thank you! Your request has been sent. A manager will contact you shortly.');
+        $message = 'Thank you! Your request has been sent. A manager will contact you shortly.';
+
+        if ($request->wantsJson()) {
+            return response()->json(['message' => $message]);
+        }
+
+        return redirect(route('car.show', $car).'#request')->with('success', $message);
     }
 
     /**

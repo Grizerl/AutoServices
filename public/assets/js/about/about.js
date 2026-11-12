@@ -1,36 +1,31 @@
-// News slider + FAQ accordion (About > Company news)
+// News slider + FAQ (News & FAQ page)
 document.addEventListener('DOMContentLoaded', function () {
-    var news = document.querySelector('.mySwiper-3');
+    var news = document.querySelector('.news-slider');
     if (news && typeof Swiper !== 'undefined') {
         new Swiper(news, {
-            navigation: {
-                nextEl: '.swiper-news-container .swiper-button-next',
-                prevEl: '.swiper-news-container .swiper-button-prev',
+            slidesPerView: 1,
+            spaceBetween: 24,
+            speed: 600,
+            autoHeight: false,
+            autoplay: { delay: 6000, disableOnInteraction: true },
+            navigation: { nextEl: '.news-next', prevEl: '.news-prev' },
+            pagination: { el: '.news-pagination', clickable: true },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1100: { slidesPerView: 3 },
             },
         });
     }
 
-    document.querySelectorAll('.according-bth').forEach(function (btn) {
-        var content = btn.parentElement.nextElementSibling;
-        if (!content) { return; }
-
-        btn.setAttribute('role', 'button');
-        btn.setAttribute('tabindex', '0');
-        btn.setAttribute('aria-expanded', 'false');
-
-        var toggle = function () {
-            var open = !content.style.maxHeight;
-            btn.classList.toggle('active', open);
-            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-            content.style.maxHeight = open ? content.scrollHeight + 'px' : null;
-        };
-
-        btn.addEventListener('click', toggle);
-        btn.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                toggle();
-            }
-        });
-    });
+    // FAQ: native <details>; keep a single answer open at a time
+    var faq = document.querySelector('[data-faq]');
+    if (faq) {
+        faq.addEventListener('toggle', function (event) {
+            var opened = event.target;
+            if (!opened.open) { return; }
+            faq.querySelectorAll('details[open]').forEach(function (item) {
+                if (item !== opened) { item.removeAttribute('open'); }
+            });
+        }, true);
+    }
 });

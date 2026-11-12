@@ -2,26 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script>document.documentElement.classList.add('js');</script>
+    <script>document.documentElement.classList.add('js');try{if(sessionStorage.getItem('preloaded')){document.documentElement.classList.add('no-preload');}else{sessionStorage.setItem('preloaded','1');}}catch(e){}</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Open+Sans:wght@300..800&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
-    <!-- Swiper -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.1.9/swiper-bundle.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11.1.9/swiper-bundle.min.js"></script>
-
-    <!-- Site styles (SCSS compiled by Vite) -->
-    @vite('resources/scss/site.scss')
+    <!-- Everything is self-hosted: fonts, icons and Swiper are bundled by Vite -->
+    @vite(['resources/js/site.js', 'resources/scss/site.scss'])
 
     <link rel="icon" type="image/png" href="{{ asset('assets/images/website-logo.png') }}">
-
-    <!-- FontAwesome Icons -->
-    <script src="https://kit.fontawesome.com/46a432ef36.js" crossorigin="anonymous"></script>
 
     @yield('link')
 
@@ -36,152 +24,7 @@
             <img class="circle" src="{{ asset('assets/images/circle.png') }}" alt="Preload">
         </div>
     </div>
-<!-- Advertising Line -->
-<div class="advertising-line">
-    <div class="row">
-        <ul class="top-left">
-            <li>
-                <i style="color:#fff;" class="fa-solid fa-house"></i>
-                <a href="https://google.com.ua/maps/place/%D0%9A%D0%B8%D1%97%D0%B2,+02000/@50.4018377,30.2208891,11z/data=!3m1!4b1!4m12!1m5!3m4!2zNTDCsDQ1JzMzLjciTiAyNcKwMTYnMzguNyJF!8m2!3d50.759347!4d25.277409!3m5!1s0x40d4cf4ee15a4505:0x764931d2170146fe!8m2!3d50.4503596!4d30.5245025!16zL20vMDJzbjM0?entry=ttu&g_ep=EgoyMDI0MDgyMC4xIKXMDSoASAFQAw%3D%3D">Kyiv, Ukraine</a>
-            </li>
-            <li>
-                <i style="color:#fff;" class="fa-solid fa-phone"></i>
-                <a  href="tel:+380950660959">+38(095)-066-09-59</a>
-            </li>
-            <li>
-                <i style="color:#fff;" class="fa-solid fa-envelope"></i>
-                <a  href="mailto:autorepaire@gmail.com">autorepaire@gmail.com</a>
-            </li>
-        </ul>
-        <ul class="top-right">
-            <li>
-                <a title="Facebook" href="#"><i class="fab fa-facebook-f"></i></a>
-            </li>
-            <li>
-                <a title="Twitter" href="#"><i class="fab fa-x-twitter"></i></a>
-            </li>
-            <li>
-                <a title="Instagram" href="#"><i class="fab fa-instagram"></i></a>
-            </li>
-            <li>
-                <a title="Google Plus" href="#"><i class="fab fa-google-plus-g"></i></a>
-            </li>
-            <li>
-                <a title="Dribbble" href="#"><i class="fab fa-dribbble"></i></a>
-            </li>
-        </ul>
-    </div>
-</div>
-<!-- Main Container -->
-<header class="site-header" data-site-header>
-<div class="container">
-    <div class="navbar-content">
-        <div class="main-logo">
-            <a class="logo-slogan" href="{{ route('home_auto') }}"><i class="fa-solid fa-car-side"></i> Auto <span>Service</span></a>
-        </div>
-        <div class="nav-bar-collapse">
-            <ul class="nav-content">
-                <li class="nav-item">
-                    <a @class(['nav-link', 'is-active' => request()->routeIs('home_auto')]) href="{{ route('home_auto') }}">Home</a>
-                </li>
-                <li class="nav-item menu-item">
-                    <a @class(['nav-link', 'is-active' => request()->routeIs('vision', 'history')]) href="{{ route('home_auto') }}#about">About us<i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="{{route('vision')}}">Company news</a></li>
-                            <li>
-                                <a href="{{route('history')}}">About the company</a></li>
-                        </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home_auto') }}#client-say">Reviews</a>
-                </li>
-                <li class="nav-item menu-item">
-                    <a @class(['nav-link', 'is-active' => request()->routeIs('contacts')]) href="{{ route('home_auto') }}#contacts">Contacts <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="{{route('contacts')}}">More detailed information</a>
-                            </li>
-                        </ul>
-                </li>
-                <li class="nav-item menu-item">
-                    <a @class(['nav-link', 'is-active' => request()->routeIs('offer', 'plan', 'partners')]) href="{{ route('offer') }}">Pages <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="{{route('offer')}}">Car for sale</a>
-                            </li>
-                            <li>
-                                <a href="{{route('plan')}}">Monthly subscription</a>
-                            </li>
-                            <li>
-                                <a href="{{route('partners')}}">Partners of the company</a>
-                            </li>
-                        </ul>
-                </li>
-                <li class="nav-item">
-                    <span class="nav-link lk-content">Sales department
-                        <div style="padding-top:5px;">
-                            <a href="tel:+380950660959" class="nav-link-number">+380 95 066 09 59</a> 
-                        </div>
-                    </span>
-                </li>
-            </ul>
-        </div>
-    <!-- Burger menu (mobile) -->
-        <button type="button" class="burger-menu" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-        <div class="menu-backdrop" data-menu-backdrop></div>
-        <nav class="menu-container" id="mobile-menu" aria-label="Mobile menu">
-            <div class="adaptive-logo">
-                <a class="logo-slogan" href="{{ route('home_auto') }}"><i class="fa-solid fa-car-side"></i> Auto <span>Service</span></a>
-                <button type="button" class="close-btn" aria-label="Close menu">&times;</button>
-            </div>
-            <ul class="menu">
-                <li class="adaptive-item">
-                    <a class="nav-link sc-FDFgh" href="{{ route('home_auto') }}">Home</a>
-                </li>
-                <li class="adaptive-item">
-                    <details>
-                        <summary class="nav-link sc-FDFgh">About us</summary>
-                        <ul class="adaptive-sub">
-                            <li><a href="{{ route('home_auto') }}#about">Overview</a></li>
-                            <li><a href="{{ route('vision') }}">Company news</a></li>
-                            <li><a href="{{ route('history') }}">About the company</a></li>
-                        </ul>
-                    </details>
-                </li>
-                <li class="adaptive-item">
-                    <a class="nav-link sc-FDFgh" href="{{ route('home_auto') }}#client-say">Reviews</a>
-                </li>
-                <li class="adaptive-item">
-                    <details>
-                        <summary class="nav-link sc-FDFgh">Contacts</summary>
-                        <ul class="adaptive-sub">
-                            <li><a href="{{ route('home_auto') }}#contacts">Book a repair</a></li>
-                            <li><a href="{{ route('contacts') }}">More detailed information</a></li>
-                        </ul>
-                    </details>
-                </li>
-                <li class="adaptive-item">
-                    <details>
-                        <summary class="nav-link sc-FDFgh">Pages</summary>
-                        <ul class="adaptive-sub">
-                            <li><a href="{{ route('offer') }}">Car for sale</a></li>
-                            <li><a href="{{ route('plan') }}">Monthly subscription</a></li>
-                            <li><a href="{{ route('partners') }}">Partners of the company</a></li>
-                        </ul>
-                    </details>
-                </li>
-                <li class="adaptive-item adaptive-item--sales">
-                    <span class="adaptive-link">Sales department</span>
-                    <a href="tel:+380950660959" class="adaptive-link-number">+380 95 066 09 59</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</div>
-</header>
+@include('partials.site-header')
     @yield('content')
 <footer>
     <div class="footer-container">

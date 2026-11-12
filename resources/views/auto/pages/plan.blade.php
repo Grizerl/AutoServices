@@ -9,16 +9,7 @@
 
 @section('content')
 <div class="wrapper">
-   <div class="banner-area">
-      <div class="container-area">
-         <h2 class="sc-ttl-cont">Subscription Plans</h2>
-         <ul class="container-nav-item">
-            <li><a class="cont-list" href="{{ route('home_auto') }}">Home</a></li>
-            <li class="cont-list"><i class="fas fa-angle-right"></i></li>
-            <li><span class="cont-list">Subscription</span></li>
-         </ul>
-      </div>
-   </div>
+   <x-page-banner title="Subscription Plans" :crumbs="[['Subscription']]" />
 
    <section class="plans" data-plans data-period="{{ $period }}">
       <div class="container">

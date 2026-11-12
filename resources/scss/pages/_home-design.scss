@@ -278,31 +278,6 @@
   // -------------------------------------------------------------------------
   // Testimonials and team
   // -------------------------------------------------------------------------
-  .sc-ClieSwip {
-    padding: 50px 10px 40px;
-    margin: 0 -10px;
-  }
-
-  .swiper-slide-content {
-    border: 0;
-    border-radius: $radius;
-    padding: 22px 22px 18px;
-    box-shadow: $shadow-card;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: $shadow-lift;
-    }
-  }
-
-  .swiper-img-box {
-    border-radius: 50%;
-  }
-
-  .star-content {
-    color: $gold;
-  }
-
   .team-container {
     overflow: hidden;
     border-radius: $radius;

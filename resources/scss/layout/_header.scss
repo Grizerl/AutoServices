@@ -2,59 +2,77 @@
 @use '../abstracts/mixins' as *;
 
 // ---------------------------------------------------------------------------
-// Top advertising bar
+// Top bar
 // ---------------------------------------------------------------------------
-.advertising-line,
-.advertising-line .row,
-.top-left,
-.top-right {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  background: $dark;
-}
+.topbar {
+  background: linear-gradient(90deg, $red-dark 0%, $red-btn 100%);
+  color: rgba($white, 0.95);
+  font-family: $font-roboto;
+  font-size: 13.5px;
 
-.advertising-line .row {
-  padding: 10px 0;
-  width: 100%;
-}
-
-.top-left a {
-  color: rgba($white, 0.9);
-  margin: 0 20px 0 5px;
-  font-size: 14px;
-  font-family: $font-sans;
-  transition: color 0.2s;
-
-  &:hover {
-    color: $white;
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 40px;
   }
-}
 
-.top-left i {
-  color: $red !important; // beats the inline white from the template
-}
-
-.top-right a {
-  display: inline-grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  margin-right: 8px;
-  border-radius: 50%;
-  background: rgba($white, 0.08);
-  transition: background 0.25s, transform 0.25s;
-
-  &:hover {
-    background: $red-btn;
-    transform: translateY(-2px);
+  &__info,
+  &__social {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
   }
-}
 
-.top-right i {
-  color: $white;
-  margin: 0;
-  font-size: 13px;
+  &__info {
+    gap: 4px 24px;
+
+    li,
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: rgba($white, 0.95);
+    }
+
+    a {
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    i {
+      font-size: 12px;
+      opacity: 0.85;
+    }
+  }
+
+  &__social {
+    gap: 6px;
+
+    a {
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba($white, 0.16);
+      font-size: 12px;
+      color: $white;
+      transition: background 0.25s, color 0.25s, transform 0.25s;
+
+      &:hover {
+        background: $white;
+        color: $red-btn;
+        transform: translateY(-2px);
+      }
+    }
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -64,8 +82,9 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba($white, 0.95);
+  background: rgba($white, 0.96);
   backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba($black, 0.06);
   transition: box-shadow 0.3s ease;
 
   &.is-scrolled {
@@ -86,6 +105,7 @@
   font-size: 28px;
   font-weight: 800;
   letter-spacing: 0.5px;
+  white-space: nowrap;
   color: $black-light;
 
   i {
@@ -98,34 +118,46 @@
   }
 }
 
-.navbar-content,
-.nav-content,
-.nav-item {
+.navbar-content {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-}
-
-.navbar-content {
+  justify-content: space-between;
+  gap: 20px;
   padding: 10px 0;
   transition: padding 0.3s ease;
 }
 
+.nav-bar-collapse {
+  flex: 1;
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+}
+
 .nav-item {
+  display: flex;
+  align-items: center;
   font-family: $font-roboto;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
 }
 
 .nav-link {
   color: $black-light;
-  margin: 5px 18px;
+  margin: 5px 14px;
   text-align: right;
 }
 
 .nav-content > .nav-item > .nav-link {
   position: relative;
   padding: 8px 0;
+  white-space: nowrap;
   transition: color 0.25s;
 
   &::after {
@@ -149,18 +181,93 @@
   }
 }
 
-.lk-content {
-  font-size: 13.5px;
+.nav-caret {
+  margin-left: 4px;
+  font-size: 10px;
+  transition: transform 0.25s;
 }
 
-.nav-link-number {
-  font-size: 19px;
-  font-weight: bold;
-  color: $black;
-  transition: color 0.2s;
+.menu-item:hover .nav-caret {
+  transform: rotate(180deg);
+}
+
+// Right-hand call to action
+.header-cta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  &__phone {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: $black-light;
+    white-space: nowrap;
+
+    small {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: $gray;
+    }
+
+    strong {
+      display: block;
+      font-size: 16.5px;
+      font-weight: 700;
+      line-height: 1.2;
+      transition: color 0.2s;
+    }
+
+    &:hover strong {
+      color: $red-btn;
+    }
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba($red-btn, 0.1);
+    font-size: 15px;
+    color: $red-btn;
+  }
+}
+
+.btn-nav {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, $red-btn, $red-dark);
+  box-shadow: $shadow-red;
+  font-family: $font-roboto;
+  font-size: 14.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: $white;
+  transition: transform 0.3s $ease, box-shadow 0.3s;
 
   &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba($red-btn, 0.5);
+    color: $white;
+  }
+
+  &--block {
+    display: block;
+    margin-bottom: 16px;
+    text-align: center;
+    background: $white;
+    box-shadow: none;
     color: $red-btn;
+
+    &:hover {
+      color: $red-btn;
+    }
   }
 }
 
@@ -180,7 +287,8 @@
   position: absolute;
   z-index: 9999;
   top: 100%;
-  margin: 14px 0 0;
+  left: 0;
+  margin: 12px 0 0;
   width: 220px;
   padding: 10px 0;
   text-align: left;
@@ -196,10 +304,10 @@
   &::before {
     content: '';
     position: absolute;
-    top: -16px;
+    top: -14px;
     left: 0;
     right: 0;
-    height: 16px;
+    height: 14px;
   }
 
   li {
@@ -240,13 +348,20 @@
   display: none;
 }
 
-@include max($bp-lg) {
-  .nav-bar-collapse {
+@include max($bp-xl) {
+  .header-cta__phone small {
     display: none;
   }
 
-  .navbar-content {
-    justify-content: space-between;
+  .nav-link {
+    margin: 5px 9px;
+  }
+}
+
+@include max(1180px) {
+  .nav-bar-collapse,
+  .header-cta {
+    display: none;
   }
 
   .burger-menu {
@@ -316,6 +431,7 @@
   }
 
   .menu {
+    margin: 0;
     padding: 0;
   }
 
@@ -356,6 +472,8 @@
   }
 
   .adaptive-sub {
+    margin: 0;
+    padding: 0;
     background: rgba($black, 0.18);
 
     a {
@@ -369,7 +487,7 @@
   }
 
   .adaptive-item--sales {
-    padding: 16px 20px;
+    padding: 20px;
 
     .adaptive-link,
     .adaptive-link-number {
@@ -380,40 +498,31 @@
     }
 
     .adaptive-link-number {
-      margin-top: 8px;
+      margin-top: 6px;
       font-size: 1.25rem;
     }
   }
 }
 
 @include max($bp-md) {
-  .advertising-line .row {
-    flex-wrap: wrap;
-    text-align: center;
+  .topbar__social {
+    display: none;
+  }
+
+  .topbar__inner {
+    justify-content: center;
   }
 }
 
 @include max($bp-sm) {
-  .advertising-line,
-  .advertising-line .row,
-  .top-left,
-  .top-right {
+  .topbar__hide-sm {
+    display: none;
+  }
+
+  .topbar__info {
     justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .top-left {
-    flex-direction: column;
-    gap: 4px;
-    padding: 0 8px;
-  }
-
-  .top-left a {
-    margin: 0 0 0 5px;
-    font-size: 14px;
-  }
-
-  .top-right {
-    padding-top: 6px;
+    gap: 2px 16px;
+    padding: 6px 0;
+    font-size: 12.5px;
   }
 }

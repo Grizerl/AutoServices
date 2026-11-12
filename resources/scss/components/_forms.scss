@@ -29,6 +29,10 @@
   text-align: left;
 }
 
+.field-error i {
+  margin-right: 5px;
+}
+
 .field-error {
   margin: 4px 0 0;
   font-family: $font-roboto;
@@ -41,10 +45,19 @@
 input.is-invalid,
 textarea.is-invalid {
   border-color: $red-btn !important;
+  background-color: #fff6f6 !important;
   box-shadow: 0 0 0 2px rgba($red-btn, 0.2);
 }
 
 button[disabled] {
   opacity: 0.65;
   cursor: wait;
+}
+
+// A checkbox cannot take a red border: ring it instead
+.check input.is-invalid {
+  outline: 2px solid $red-btn;
+  outline-offset: 2px;
+  box-shadow: none;
+  background-color: transparent !important;
 }

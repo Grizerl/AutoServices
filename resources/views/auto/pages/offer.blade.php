@@ -5,16 +5,7 @@
 
 @section('content')
 <div class="wrapper">
-   <div class="banner-area">
-      <div class="container-area">
-         <h2 class="sc-ttl-cont">Cars for Sale</h2>
-         <ul class="container-nav-item">
-            <li><a class="cont-list" href="{{ route('home_auto') }}">Home</a></li>
-            <li class="cont-list"><i class="fas fa-angle-right"></i></li>
-            <li><span class="cont-list">Cars for sale</span></li>
-         </ul>
-      </div>
-   </div>
+   <x-page-banner title="Cars for Sale" :crumbs="[['Cars for sale']]" />
 
    <section class="catalog">
       <div class="container">
@@ -24,7 +15,7 @@
             <p class="catalog__lead">Every car is checked by our mechanics before it goes on sale. Found one you like? Send a request and a manager will call you back.</p>
          </div>
 
-         <form class="catalog-filters" method="get" action="{{ route('offer') }}" aria-label="Filter cars">
+         <form class="catalog-filters" method="get" action="{{ route('offer') }}" aria-label="Filter cars" data-ajax-filters>
             <div class="catalog-filters__grid">
                <label class="field-group field-group--wide">
                   <span>Search</span>
@@ -77,14 +68,13 @@
                </label>
                <div>
                   <button type="submit" class="btn-car">Apply filters</button>
-                  @if ($hasFilters || $filters['sort'] !== 'newest')
-                     <a class="btn-car btn-car--ghost" href="{{ route('offer') }}">Reset</a>
-                  @endif
+                  <a class="btn-car btn-car--ghost" href="{{ route('offer') }}" data-filters-reset @if (! $hasFilters && $filters['sort'] === 'newest') hidden @endif>Reset</a>
                </div>
             </div>
          </form>
 
-         <p class="catalog__count" aria-live="polite">
+         <div id="catalog-results" aria-live="polite">
+         <p class="catalog__count">
             @if ($cars->total())
                Showing {{ $cars->firstItem() }}–{{ $cars->lastItem() }} of {{ $cars->total() }} {{ \Illuminate\Support\Str::plural('car', $cars->total()) }}
             @endif
@@ -106,6 +96,7 @@
                <a class="btn-car" href="{{ $hasFilters ? route('offer') : route('home_auto').'#contacts' }}">{{ $hasFilters ? 'Clear filters' : 'Contact us' }}</a>
             </div>
          @endif
+         </div>
       </div>
    </section>
 </div>
