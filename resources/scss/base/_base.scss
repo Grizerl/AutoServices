@@ -8,10 +8,54 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 html,
 body {
   scroll-behavior: smooth;
   overflow-x: hidden;
+}
+
+body {
+  font-family: $font-roboto;
+  font-size: 16px;
+  line-height: 1.5;
+  color: $black-light;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+iframe,
+video {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -37,6 +81,10 @@ a {
   max-width: $container-width;
   margin: 0 auto;
   padding: 0 1.5rem;
+
+  @media screen and (max-width: 600px) {
+    padding: 0 1rem;
+  }
 }
 
 // Generic stacked form (home booking form, contact form)

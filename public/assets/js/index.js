@@ -105,18 +105,28 @@
         var burger = document.querySelector('.burger-menu');
         var menu = document.querySelector('.menu-container');
         var closeBtn = document.querySelector('.close-btn');
+        var backdrop = document.querySelector('[data-menu-backdrop]');
         if (!burger || !menu) { return; }
 
-        var open = function () { menu.classList.add('active'); };
-        var close = function () { menu.classList.remove('active'); };
+        var setOpen = function (isOpen) {
+            menu.classList.toggle('active', isOpen);
+            document.body.classList.toggle('menu-open', isOpen);
+            burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        };
 
-        burger.addEventListener('click', open);
-        if (closeBtn) { closeBtn.addEventListener('click', close); }
-        document.addEventListener('click', function (event) {
-            if (!menu.contains(event.target) && !burger.contains(event.target)) { close(); }
-        });
+        burger.addEventListener('click', function () { setOpen(true); });
+        if (closeBtn) { closeBtn.addEventListener('click', function () { setOpen(false); }); }
+        if (backdrop) { backdrop.addEventListener('click', function () { setOpen(false); }); }
         document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape') { close(); }
+            if (event.key === 'Escape') { setOpen(false); }
+        });
+        // close the drawer after choosing an in-page link (e.g. #contacts)
+        menu.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () { setOpen(false); });
+        });
+        // leaving the mobile breakpoint must not leave the page locked
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 1000) { setOpen(false); }
         });
     }
 

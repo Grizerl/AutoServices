@@ -9,28 +9,28 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th style="width: 1%">Id</th>
+              <th class="d-none d-md-table-cell" style="width: 1%">Id</th>
               <th>Customer name</th>
               <th>Phone</th>
-              <th>Email</th>
+              <th class="d-none d-lg-table-cell">Email</th>
               <th>Message</th>
-              <th>Received</th>
+              <th class="d-none d-lg-table-cell">Received</th>
               <th style="width: 1%"></th>
             </tr>
           </thead>
           <tbody>
             @forelse ($contact as $item)
               <tr>
-                <td>{{ $item->id }}</td>
+                <td class="d-none d-md-table-cell">{{ $item->id }}</td>
                 <td>{{ $item->name }}</td>
                 <td class="text-nowrap"><a href="tel:{{ preg_replace('/[^\d+]/', '', $item->phone) }}">{{ $item->phone }}</a></td>
-                <td>@if ($item->email)<a href="mailto:{{ $item->email }}">{{ $item->email }}</a>@else<span class="text-muted">&mdash;</span>@endif</td>
+                <td class="d-none d-lg-table-cell">@if ($item->email)<a href="mailto:{{ $item->email }}">{{ $item->email }}</a>@else<span class="text-muted">&mdash;</span>@endif</td>
                 <td style="min-width: 220px">{{ $item->message }}</td>
-                <td class="text-nowrap">{{ $item->created_at?->format('Y-m-d H:i') }}</td>
+                <td class="text-nowrap d-none d-lg-table-cell">{{ $item->created_at?->format('Y-m-d H:i') }}</td>
                 <td>
                   <form action="{{ route('contact.destroy', $item) }}" method="post" data-confirm="Delete this question?">
                     @csrf @method('DELETE')
-                    <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash"></i> Delete</button>
+                    <button class="btn btn-danger btn-sm" title="Delete" type="submit"><i class="fas fa-trash"></i><span class="d-none d-lg-inline"> Delete</span></button>
                   </form>
                 </td>
               </tr>

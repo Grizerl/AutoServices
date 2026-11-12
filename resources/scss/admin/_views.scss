@@ -126,3 +126,69 @@ $admin-card-shadow: 0 4px 10px rgba($black, 0.1);
     text-decoration: none;
   }
 }
+
+// ---------------------------------------------------------------------------
+// Responsive admin views
+// ---------------------------------------------------------------------------
+@media screen and (max-width: 767px) {
+  .header-view-container {
+    padding: 10px 0;
+  }
+
+  .view-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .view-img-car {
+    max-width: 100%;
+  }
+
+  .view-title {
+    font-size: 1.4rem;
+  }
+
+  .view-item {
+    font-size: 1rem;
+  }
+
+  .portfolio-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .view-img {
+    width: 60%;
+    max-width: 240px;
+  }
+
+  .project-section {
+    padding: 1rem;
+  }
+}
+
+// Action buttons stay on one line in tables
+.table td.text-nowrap .btn,
+.table td.text-nowrap form {
+  margin-bottom: 2px;
+}
+
+@media screen and (max-width: 575px) {
+  .content-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .card-footer .btn {
+    margin-bottom: 4px;
+  }
+
+  // keep the action buttons inside the card on narrow phones
+  .table td,
+  .table th {
+    padding: 0.5rem 0.4rem;
+  }
+}

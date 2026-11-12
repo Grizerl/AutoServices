@@ -14,28 +14,28 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th style="width: 1%">Id</th>
+              <th class="d-none d-md-table-cell" style="width: 1%">Id</th>
               <th style="width: 1%">Photo</th>
               <th>Name</th>
               <th>Role</th>
-              <th>Phone</th>
+              <th class="d-none d-lg-table-cell">Phone</th>
               <th style="width: 1%"></th>
             </tr>
           </thead>
           <tbody>
             @forelse ($members as $member)
               <tr>
-                <td>{{ $member->id }}</td>
+                <td class="d-none d-md-table-cell">{{ $member->id }}</td>
                 <td><img src="{{ $member->image_url }}" alt="{{ $member->name }}" class="img-circle" style="width: 48px; height: 48px; object-fit: cover;"></td>
                 <td>{{ $member->name }}</td>
                 <td>{{ $member->role }}</td>
-                <td>{{ $member->phone_number }}</td>
+                <td class="d-none d-lg-table-cell">{{ $member->phone_number }}</td>
                 <td class="text-nowrap">
-                  <a class="btn btn-primary btn-sm" href="{{ route('members.show', $member) }}"><i class="fas fa-folder"></i> View</a>
-                  <a class="btn btn-info btn-sm" href="{{ route('members.edit', $member) }}"><i class="fas fa-pencil-alt"></i> Edit</a>
+                  <a class="btn btn-primary btn-sm" title="View" href="{{ route('members.show', $member) }}"><i class="fas fa-folder"></i><span class="d-none d-lg-inline"> View</span></a>
+                  <a class="btn btn-info btn-sm" title="Edit" href="{{ route('members.edit', $member) }}"><i class="fas fa-pencil-alt"></i><span class="d-none d-lg-inline"> Edit</span></a>
                   <form action="{{ route('members.destroy', $member) }}" method="post" class="d-inline" data-confirm="Delete {{ $member->name }}?">
                     @csrf @method('DELETE')
-                    <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash"></i> Delete</button>
+                    <button class="btn btn-danger btn-sm" title="Delete" type="submit"><i class="fas fa-trash"></i><span class="d-none d-lg-inline"> Delete</span></button>
                   </form>
                 </td>
               </tr>

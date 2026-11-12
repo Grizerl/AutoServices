@@ -14,7 +14,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th style="width: 1%">Id</th>
+              <th class="d-none d-md-table-cell" style="width: 1%">Id</th>
               <th style="width: 25%">Title</th>
               <th>Content</th>
               <th style="width: 1%"></th>
@@ -23,14 +23,14 @@
           <tbody>
             @forelse ($post_content as $item)
               <tr>
-                <td>{{ $item->id }}</td>
+                <td class="d-none d-md-table-cell">{{ $item->id }}</td>
                 <td>{{ $item->title }}</td>
                 <td>{{ \Illuminate\Support\Str::limit($item->content, 160) }}</td>
                 <td class="text-nowrap">
-                  <a class="btn btn-info btn-sm" href="{{ route('post.edit', $item) }}"><i class="fas fa-pencil-alt"></i> Edit</a>
+                  <a class="btn btn-info btn-sm" title="Edit" href="{{ route('post.edit', $item) }}"><i class="fas fa-pencil-alt"></i><span class="d-none d-lg-inline"> Edit</span></a>
                   <form action="{{ route('post.destroy', $item) }}" method="post" class="d-inline" data-confirm="Delete this post?">
                     @csrf @method('DELETE')
-                    <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash"></i> Delete</button>
+                    <button class="btn btn-danger btn-sm" title="Delete" type="submit"><i class="fas fa-trash"></i><span class="d-none d-lg-inline"> Delete</span></button>
                   </form>
                 </td>
               </tr>
