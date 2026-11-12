@@ -93,8 +93,8 @@
             <div>
                <span class="aside-subtitle">About the company</span>
                   @foreach ($post as $posts) 
-                     <h1 class="aside-title">{!! str_replace('To', 'To<br>', e($posts->title)) !!}</h1>
-                     <p class="aside-text">{{ $posts['content'] }}</p>
+                     <h1 class="aside-title">{{ $posts->title }}</h1>
+                     <p class="aside-text">{{ $posts->content }}</p>
                   @endforeach
                <div>
                   <a href="{{route('history')}}" class="aside-btn animation-btn"><span>About More </span></a>
@@ -228,13 +228,13 @@
                               <img class="swiper-img-box" src="/assets/images/hackery-user.png" alt="User Male Icon">
                            </div>
                         <div>
-                           <h6 style="text-align: center;" class="swiper-name-box">{{ $item['name'] }}</h6>
-                           <span class="swiper-role-box">{{ $item['role'] }}</span>
+                           <h6 style="text-align: center;" class="swiper-name-box">{{ $item->name }}</h6>
+                           <span class="swiper-role-box">{{ $item->role }}</span>
                         </div>
                         </div>
-                        <p class="swiper-text-box">{{ $item['commentars'] }}</p>
+                        <p class="swiper-text-box">{{ $item->commentars }}</p>
                         <div class="star-container">
-                           <h5 class="swiper-date-box">{{ $item['formatted_date'] }}</h5>
+                           <h5 class="swiper-date-box">{{ $item->created_at?->format('M j, Y') }}</h5>
                               <ul class="star-content">
                                  <li><i class="fa-solid fa-star"></i></li>
                                  <li><i class="fa-solid fa-star"></i></li>
@@ -285,11 +285,11 @@
                   <div class="swiper-slide">
                      <div class="team-container">
                         <div>
-                           <img class="member-img" src="{{$member['img']}}" alt="Company team">
+                           <img class="member-img" src="{{ $member->image_url }}" alt="{{ $member->name }}">
                         </div>
                         <div class="media-team-container">
-                           <h3>{{$member['name']}}</h3>
-                           <span class="section-member-role">{{$member['role']}}</span>
+                           <h3>{{ $member->name }}</h3>
+                           <span class="section-member-role">{{ $member->role }}</span>
                         </div>
                      </div>
                   </div>
@@ -309,29 +309,28 @@
          <div class="section-contact-container-form">
             <h1 class="section-contact-container-title">Contact us</h1>
             <h2 class="section-contact-container-subtitle">Get In Touch</h2>
-            <form action="{{route('repair.store')}}" method="post" novalidate>
+            @if (session('success'))
+               <div class="form-alert form-alert--success" role="status">{{ session('success') }}</div>
+            @endif
+            <form action="{{ route('repair.store') }}" method="post" data-submit-once>
                @csrf
-               <input name="name" type="text" placeholder="Your name*">
-               @if($errors->has('name'))
-                  <div style="color: red; font-size: large;" class="alert alert-danger">{{$errors->first('name')}}</div>
-               @endif
-
-               <input name="phone" type="tel" placeholder="Your phone number*">
-               @if($errors->has('phone'))
-                  <div style="color: red; font-size: large;" class="alert alert-danger">{{$errors->first('phone')}}</d>
-               @endif
-
-               <input name="car" type="text" placeholder="Your auto*">
-               @if($errors->has('car'))
-                  <div style="color: red; font-size: large;" class="alert alert-danger">{{$errors->first('car')}}</div>
-               @endif
-
-               <input name="comment" class="section-contact-form-comment" type="text" placeholder="Your problem*">
-               @if($errors->has('comment'))
-                  <div style="color: red; font-size: large;" class="alert alert-danger">{{$errors->first('comment')}}</div>
-               @endif
-
-               <button type="submit" class="section-contact-form-btn" value="Send Request">Send Request</button>
+               <div class="field">
+                  <input name="name" type="text" placeholder="Your name*" value="{{ old('name') }}" required minlength="2" maxlength="60" autocomplete="name" @class(['is-invalid' => $errors->has('name')])>
+                  @error('name')<p class="field-error">{{ $message }}</p>@enderror
+               </div>
+               <div class="field">
+                  <input name="phone" type="tel" placeholder="Your phone number*" value="{{ old('phone') }}" required maxlength="20" autocomplete="tel" @class(['is-invalid' => $errors->has('phone')])>
+                  @error('phone')<p class="field-error">{{ $message }}</p>@enderror
+               </div>
+               <div class="field">
+                  <input name="car" type="text" placeholder="Your car*" value="{{ old('car') }}" required minlength="2" maxlength="100" @class(['is-invalid' => $errors->has('car')])>
+                  @error('car')<p class="field-error">{{ $message }}</p>@enderror
+               </div>
+               <div class="field">
+                  <input name="comment" type="text" placeholder="Your problem*" value="{{ old('comment') }}" required minlength="6" maxlength="500" @class(['section-contact-form-comment', 'is-invalid' => $errors->has('comment')])>
+                  @error('comment')<p class="field-error">{{ $message }}</p>@enderror
+               </div>
+               <button type="submit" class="section-contact-form-btn">Send Request</button>
             </form>
          </div>
       </div>
@@ -370,14 +369,5 @@
          </div>
       </div>
    </div>
-   @if ($errors->any())
-      <div class="alert alert-danger">
-         <ul>
-            @foreach ($errors->all() as $error)
-               <li>{{ $error }}</li>
-            @endforeach
-         </ul>
-      </div>
-   @endif
 </section>
 @endsection

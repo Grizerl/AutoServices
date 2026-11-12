@@ -113,3 +113,16 @@ $admin-card-shadow: 0 4px 10px rgba($black, 0.1);
     color: $admin-accent;
   }
 }
+
+// Sidebar "Log out" is a POST form button styled like a nav link
+.main-sidebar .nav-sidebar form .nav-link {
+  color: #c2c7d0;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: $white;
+    background: rgba($white, 0.1);
+    text-decoration: none;
+  }
+}

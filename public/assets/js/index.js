@@ -1,120 +1,154 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const preload = document.querySelector("[data-preload]");
-    setTimeout(()=>{
-        preload.classList.add("loaded");
-    },400) 
-   
-});
+/**
+ * Public website behaviour: preloader, sliders, mobile menu, form protection.
+ * Every block is guarded so the script is safe on any page.
+ */
+(function () {
+    'use strict';
 
-var Myswiper = new Swiper(".mySwiper", {
-
-    loop: true,
-    spaceBetween: 25,
-    infinite: true, 
-    autoplay: true, 
-    autoplaySpeed: 2000, 
-    speed: 1000,
-    breakpoints: {
-        1150: {
-            slidesPerView: 4
-        },
-        868: {
-            slidesPerView: 3
-        },
-        600: {
-            slidesPerView: 2
-        },
-        200: {
-            slidesPerView: 1
+    function ready(fn) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fn);
+        } else {
+            fn();
         }
     }
-                 
-});
 
-var Myswiper = new Swiper(".SwiperTeam", {
-    slidesPerView: 3,
-    loop: true,
-    spaceBetween: 25, 
-    infinite: true, 
-    autoplay: true, 
-    autoplaySpeed: 2000, 
-    speed: 1000,		
-    breakpoints: {
-       760: {
-        slidesPerView: 3
-       },
-       500: {
-        slidesPerView: 2
-       },
-       200: {
-        slidesPerView: 1
-       },
-    } 	
-}); 
+    // ---------------------------------------------------------------- preloader
+    function hidePreloader() {
+        var preload = document.querySelector('[data-preload]');
+        if (preload) {
+            setTimeout(function () { preload.classList.add('loaded'); }, 300);
+        }
+    }
+    if (document.readyState === 'complete') {
+        hidePreloader();
+    } else {
+        window.addEventListener('load', hidePreloader);
+        // never keep visitors waiting on a slow third-party asset
+        setTimeout(hidePreloader, 4000);
+    }
 
-const swiper_1 = new Swiper('.swiper-1', {
-    loop: true,
-    effect: 'fade',
-    fadeEffect: {
-        crossFade: true 
-    },
-    autoplay:{
-        delay:3500, 
-        disableOnInteraction:false,
-    },
-    navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-});
-const swiper_2 = new Swiper('.swiper-2', {
-    effect: 'flip',
-    flipEffect: {
-        slideShadows:true,
-        limitRotation:true
-    },
-    navigation: {
-    nextEl: '.swiper-button-next-2',
-    prevEl: '.swiper-button-prev-2',
-  },
-});
+    // ---------------------------------------------------------------- sliders
+    function slideCount(el) {
+        return el.querySelectorAll(':scope > .swiper-wrapper > .swiper-slide').length;
+    }
 
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('client-say-link').addEventListener('click', function (e) {
-        e.preventDefault();
-        window.location.href = '/AutoStyle#client-say';  
-    });
-});
+    function initSliders() {
+        if (typeof Swiper === 'undefined') { return; }
 
-document.addEventListener("DOMContentLoaded",()=>{
-window.addEventListener('load', function () {
-    if (window.location.hash) {
-        const element = document.querySelector(window.location.hash);
-        if (element) {
-            element.scrollIntoView({
-                behavior: 'smooth'
+        // Hero slider
+        var hero = document.querySelector('.swiper-1');
+        if (hero) {
+            new Swiper(hero, {
+                loop: slideCount(hero) > 1,
+                effect: 'fade',
+                fadeEffect: { crossFade: true },
+                autoplay: { delay: 3500, disableOnInteraction: false },
+                navigation: {
+                    nextEl: hero.querySelector('.swiper-button-next'),
+                    prevEl: hero.querySelector('.swiper-button-prev'),
+                },
+            });
+        }
+
+        // Testimonials
+        var clients = document.querySelector('.sc-ClieSwip');
+        if (clients) {
+            var clientCount = slideCount(clients);
+            new Swiper(clients, {
+                loop: clientCount > 4,
+                spaceBetween: 25,
+                speed: 800,
+                autoplay: clientCount > 1 ? { delay: 3500, disableOnInteraction: false } : false,
+                breakpoints: {
+                    200: { slidesPerView: 1 },
+                    600: { slidesPerView: 2 },
+                    868: { slidesPerView: 3 },
+                    1150: { slidesPerView: 4 },
+                },
+            });
+        }
+
+        // Team
+        var team = document.querySelector('.SwiperTeam');
+        if (team) {
+            var teamCount = slideCount(team);
+            new Swiper(team, {
+                loop: teamCount > 3,
+                spaceBetween: 25,
+                speed: 800,
+                autoplay: teamCount > 1 ? { delay: 3500, disableOnInteraction: false } : false,
+                breakpoints: {
+                    200: { slidesPerView: 1 },
+                    500: { slidesPerView: 2 },
+                    760: { slidesPerView: 3 },
+                },
+            });
+        }
+
+        // Before / after
+        var compare = document.querySelector('.swiper-2');
+        if (compare) {
+            new Swiper(compare, {
+                effect: 'flip',
+                flipEffect: { slideShadows: true, limitRotation: true },
+                navigation: {
+                    nextEl: '.swiper-button-next-2',
+                    prevEl: '.swiper-button-prev-2',
+                },
             });
         }
     }
-    });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
-    const burgerMenu = document.querySelector(".burger-menu");
-    const menuContainer = document.querySelector(".menu-container");
-    const closeBtn = document.querySelector(".close-btn");
+    // ---------------------------------------------------------------- mobile menu
+    function initMenu() {
+        var burger = document.querySelector('.burger-menu');
+        var menu = document.querySelector('.menu-container');
+        var closeBtn = document.querySelector('.close-btn');
+        if (!burger || !menu) { return; }
 
-    burgerMenu.addEventListener("click", function () {
-        menuContainer.classList.add("active");
-    });
+        var open = function () { menu.classList.add('active'); };
+        var close = function () { menu.classList.remove('active'); };
 
-    closeBtn.addEventListener("click", function () {
-        menuContainer.classList.remove("active");
-    });
+        burger.addEventListener('click', open);
+        if (closeBtn) { closeBtn.addEventListener('click', close); }
+        document.addEventListener('click', function (event) {
+            if (!menu.contains(event.target) && !burger.contains(event.target)) { close(); }
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') { close(); }
+        });
+    }
 
-    document.addEventListener("click", function (event) {
-        if (!menuContainer.contains(event.target) && !burgerMenu.contains(event.target)) {
-            menuContainer.classList.remove("active");
-        }
+    // ---------------------------------------------------------------- forms
+    // Prevent double submits: lock the submit button once a valid form is sent.
+    function initForms() {
+        document.querySelectorAll('form[data-submit-once]').forEach(function (form) {
+            form.addEventListener('submit', function () {
+                var button = form.querySelector('button[type="submit"]');
+                if (!button || button.disabled) { return; }
+                // disable after the event so the button value is still submitted
+                setTimeout(function () {
+                    button.dataset.label = button.textContent;
+                    button.textContent = 'Sending...';
+                    button.disabled = true;
+                }, 0);
+            });
+        });
+
+        // Browser "back" restores the page from cache with the button still locked
+        window.addEventListener('pageshow', function (event) {
+            if (!event.persisted) { return; }
+            document.querySelectorAll('form[data-submit-once] button[type="submit"]').forEach(function (button) {
+                button.disabled = false;
+                if (button.dataset.label) { button.textContent = button.dataset.label; }
+            });
+        });
+    }
+
+    ready(function () {
+        initSliders();
+        initMenu();
+        initForms();
     });
-});
+})();

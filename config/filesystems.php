@@ -44,6 +44,16 @@ return [
             'throw' => false,
         ],
 
+        // User uploads (member photos). Stored directly under /public so they are
+        // served without a storage:link symlink (works on Windows, Docker and shared hosting).
+        'uploads' => [
+            'driver' => 'local',
+            'root' => public_path('uploads'),
+            'url' => rtrim(env('APP_URL', ''), '/').'/uploads',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

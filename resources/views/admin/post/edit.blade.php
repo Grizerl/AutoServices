@@ -1,23 +1,15 @@
 @extends('layouts.admin_layouts')
-@section('title',' Car Services and Mechanic')
+@section('title', 'Edit post')
 @section('content')
-<div class="card card-primary">
-              <form action="{{route('post.update',$post['id'])}}" method="post">
-                @csrf
-                @method('put')
-                <div class="card-body">
-                  <div class="form-group">
-                    <label>Title post</label>
-                    <input name="title" type="text" class="form-control" value="{{$post['title']}}">
-                  </div>
-                  <div class="form-group">
-                    <label>Content post</label>
-                    <input name="content_post" type="text" class="form-control" value="{{$post['content']}}">
-                  </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Edit post</button>
-                </div>
-              </form>
-            </div>
+<section class="content">
+  <div class="container-fluid">
+    <div class="card card-primary">
+      <div class="card-header"><h3 class="card-title">Edit post</h3></div>
+      <form action="{{ route('post.update', $post) }}" method="post">
+        @method('PUT')
+        @include('admin.post._form', ['submit' => 'Save changes'])
+      </form>
+    </div>
+  </div>
+</section>
 @endsection

@@ -70,6 +70,8 @@
   }
 
   .btn-st-car {
+    display: inline-block;
+    text-align: center;
     font-family: $font-roboto;
     width: 35%;
     padding: 10px 0;
@@ -241,6 +243,8 @@
   }
 
   .btn-pricing-card {
+    display: block;
+    text-align: center;
     width: 100%;
     text-transform: uppercase;
     font-family: $font-roboto;

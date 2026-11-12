@@ -3,96 +3,50 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RepaireRequest;
-use App\Models\repair;
-use Illuminate\Http\Request;
+use App\Http\Requests\RepairRequest;
+use App\Models\Repair;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class RepairController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): View
     {
-        $repair=repair::all();
-        return view('admin.repair.index',[
-            'repair'=>$repair,
+        return view('admin.repair.index', [
+            'repair' => Repair::latest('id')->paginate(15),
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show(Repair $repair): View
     {
-        //
+        return view('admin.repair.view', ['repair' => $repair]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(RepaireRequest $request)
+    public function edit(Repair $repair): View
     {
-        $validateData=$request->validated();
-
-        $repair=new repair();
-
-        $repair->name=$validateData['name'];
-
-        $repair->telephone=$validateData['phone'];
-
-        $repair->car=$validateData['car'];
-
-        $repair->comment=$validateData['comment'];
-        
-        $repair->save();
-        return redirect()->back();
-
+        return view('admin.repair.edit', ['repair' => $repair]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(repair $repair)
+    public function update(RepairRequest $request, Repair $repair): RedirectResponse
     {
+        $data = $request->validated();
 
-        return view('admin.repair.view',[
-            'repair'=>$repair,
+        $repair->update([
+            'name' => $data['name'],
+            'telephone' => $data['phone'],
+            'car' => $data['car'],
+            'comment' => $data['problem'],
+            'price' => $data['price'],
+            'done' => $data['done'],
         ]);
+
+        return redirect()->route('repair.index')->with('success', 'The repair request has been updated.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(repair $repair)
-    {
-        return view('admin.repair.edit',[
-            'repair'=>$repair
-        ]);
-        
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, repair $repair)
-    {
-        $repair->name=$request->name;
-        $repair->car=$request->car;
-        $repair->comment=$request->problem;
-        $repair->done=$request->done;
-        $repair->price=$request->price;
-        $repair->save();
-        return redirect()->back();
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(repair $repair)
+    public function destroy(Repair $repair): RedirectResponse
     {
         $repair->delete();
-        return redirect()->back();
+
+        return redirect()->route('repair.index')->with('success', 'The repair request has been deleted.');
     }
 }

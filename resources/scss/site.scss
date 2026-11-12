@@ -1,5 +1,6 @@
 // Public website stylesheet (compiled by Vite -> public/build)
 @use 'base/base';
+@use 'components/forms';
 
 @use 'layout/preloader';
 @use 'layout/header';

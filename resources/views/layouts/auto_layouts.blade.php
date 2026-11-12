@@ -83,7 +83,7 @@
                     <a class="nav-link" tabindex="1" href="{{route('home_auto')}}">Home</a>
                 </li>
                 <li class="nav-item menu-item">
-                    <a class="nav-link" tabindex="2" id="about-link" href="#about">About us<i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
+                    <a class="nav-link" tabindex="2" href="{{ route('home_auto') }}#about">About us<i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
                         <ul class="sub-menu">
                             <li>
                                 <a href="{{route('vision')}}">Company news</a></li>
@@ -92,10 +92,10 @@
                         </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" tabindex="3" id="client-say-link" href="#client-say">Reviews</a>
+                    <a class="nav-link" tabindex="3" href="{{ route('home_auto') }}#client-say">Reviews</a>
                 </li>
                 <li class="nav-item menu-item">
-                    <a class="nav-link" tabindex="4" href="#contacts">Contacts <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
+                    <a class="nav-link" tabindex="4" href="{{ route('home_auto') }}#contacts">Contacts <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
                         <ul class="sub-menu">
                             <li>
                                 <a href="{{route('contacts')}}">More detailed information</a>
@@ -103,7 +103,7 @@
                         </ul>
                 </li>
                 <li class="nav-item menu-item">
-                    <a class="nav-link" tabindex="5" href="#">Pages <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
+                    <a class="nav-link" tabindex="5" href="{{ route('offer') }}">Pages <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
                         <ul class="sub-menu">
                             <li>
                                 <a href="{{route('offer')}}">Car for sale</a>
@@ -141,7 +141,7 @@
                     <a class="nav-link sc-FDFgh" tabindex="1" href="{{route('home_auto')}}">Home</a>
                 </li>
                 <li class="adaptive-item menu-item">
-                    <a class="nav-link sc-FDFgh" tabindex="2" id="about-link" href="#about">About us<i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
+                    <a class="nav-link sc-FDFgh" tabindex="2" href="{{ route('home_auto') }}#about">About us<i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
                         <ul class="sub-menu sc-FAFfgd">
                             <li>
                                 <a href="{{route('vision')}}">Company news</a>
@@ -152,10 +152,10 @@
                         </ul>
                 </li>
                 <li class="adaptive-item">
-                    <a class="nav-link sc-FDFgh" tabindex="3" id="client-say-link" href="#client-say">Reviews</a>
+                    <a class="nav-link sc-FDFgh" tabindex="3" href="{{ route('home_auto') }}#client-say">Reviews</a>
                 </li>
                 <li class="adaptive-item menu-item">
-                    <a class="nav-link sc-FDFgh" tabindex="4" href="#contacts">Contacts <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
+                    <a class="nav-link sc-FDFgh" tabindex="4" href="{{ route('home_auto') }}#contacts">Contacts <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
                         <ul class="sub-menu sc-FAFfgd">
                             <li>
                                 <a href="{{route('contacts')}}">More detailed information</a>
@@ -163,7 +163,7 @@
                         </ul>
                 </li>
                 <li class="adaptive-item menu-item">
-                    <a class="nav-link sc-FDFgh" tabindex="5" href="#">Pages <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
+                    <a class="nav-link sc-FDFgh" tabindex="5" href="{{ route('offer') }}">Pages <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
                         <ul class="sub-menu sc-FAFfgd">
                             <li>
                                 <a href="{{route('offer')}}">Car for sale</a>

@@ -7,11 +7,18 @@ Laravel 11 / PHP 8.4 website for a car service: public site, admin panel (AdminL
 ```bash
 composer install
 cp .env.example .env && php artisan key:generate
-php artisan migrate
+php artisan migrate --seed   # roles, first admin (ADMIN_EMAIL / ADMIN_PASSWORD) and demo content
 npm install
 npm run dev     # Vite dev server with hot reload
 npm run build   # production build of the SCSS/JS bundles into public/build
 ```
+
+### Admin panel & tests
+
+- Admin panel: `/Admin/Panel` (requires the `Admin` role). `php artisan db:seed` creates `admin@auto.local` / `password` outside production; in production set `ADMIN_PASSWORD` first.
+- Public forms (repair request on the home page, question on the contacts page) are rate limited and validated server-side.
+- Member photos are uploaded files stored in `public/uploads/members` (git-ignored, no `storage:link` needed).
+- Tests: `php artisan test` (SQLite in memory).
 
 ### Front-end structure
 

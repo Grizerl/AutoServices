@@ -6,30 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\Members;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
-    public function index()
-    {  
-        $post = Post::all();
-
-        $client = Client::all()->map(function ($item) {
-            $item->formatted_date = $item->created_at->format('Y-m-d');
-            return $item;
-        });
-
-        $members = Members::all();
-
-        if ($post->isEmpty() || $client->isEmpty() || $members->isEmpty()) {
-            return back()->with('error', 'No data found');
-        }
-        
+    public function index(): View
+    {
         return view('auto.index', [
-            'post' => $post,
-            'client' => $client,
-            'members' => $members,
+            'post' => Post::oldest()->get(),
+            'client' => Client::latest()->get(),
+            'members' => Members::oldest()->get(),
         ]);
-    }        
-
+    }
 }
