@@ -104,10 +104,9 @@
     }
   }
 
-  @include max(420px) {
-    .container {
-      padding: 0;
-    }
+  .shop-car-card-container img {
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -289,7 +288,17 @@
   @include max(660px) {
     .section-element-nav {
       grid-template-columns: 1fr;
-      gap: 60px;
+      gap: 12px;
+    }
+
+    .element-nav-item {
+      margin-bottom: 0;
+    }
+
+    .element-nav-link {
+      display: block;
+      width: 100%;
+      padding: 18px 20px;
     }
 
     .section-card-list-pricing-plan-content {

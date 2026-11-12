@@ -33,6 +33,7 @@
     position: relative;
     width: 100%;
     height: 90vh;
+    min-height: 520px;
   }
 
   .back-img-slide-1,
@@ -48,7 +49,7 @@
   .slide-2-content {
     display: flex;
     flex-direction: column;
-    margin-top: 15rem;
+    margin-top: clamp(7rem, 22vh, 15rem);
   }
 
   .slide-1-content {
@@ -65,9 +66,10 @@
   .slide-2-title {
     font-family: $font-sans;
     color: $white;
-    font-size: 5.5rem;
+    font-size: clamp(2.8rem, 9vw, 5.5rem);
     font-weight: 700;
-    margin: 0;
+    line-height: 1.1;
+    margin: 0 0 16px;
   }
 
   .slide-1-text,
@@ -240,16 +242,20 @@
     color: $gray;
   }
 
+  .img-aside-one,
+  .img-aside-two {
+    max-width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
   .img-aside-one {
     width: 265px;
-    height: 265px;
-    border-radius: 50%;
   }
 
   .img-aside-two {
     width: 340px;
-    height: 340px;
-    border-radius: 50%;
   }
 
   // -------------------------------------------------------------------------
@@ -575,16 +581,19 @@
   // Booking form
   // -------------------------------------------------------------------------
   .section-contact-container {
+    display: flex;
+    align-items: center;
     width: 100%;
-    height: 100vh;
-    background: url('#{$img-path}/contact-bg.jpg');
+    min-height: 100vh;
+    background: url('#{$img-path}/contact-bg.jpg') center / cover;
   }
 
   .section-contact-content {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    height: 100vh;
+    width: 100%;
+    padding: 60px 0;
   }
 
   .section-contact-container-form {
@@ -684,6 +693,14 @@
       width: 100%;
     }
 
+    .sc-AbOgs > div:last-child {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
     .card-list {
       gap: 20px;
     }
@@ -726,13 +743,7 @@
   }
 
   @include max($bp-md) {
-    .slide-1-title,
-    .slide-2-title {
-      font-size: 4.5rem;
-    }
-
-    .card-support-list,
-    .card-list {
+    .card-support-list {
       grid-template-columns: repeat(2, 1fr);
     }
 
@@ -750,6 +761,23 @@
 
     .section-about-card-content {
       display: block;
+    }
+
+    .img-aside-one,
+    .img-aside-two {
+      width: min(100%, 300px);
+    }
+
+    .slide-1-btn,
+    .slide-2-btn,
+    .aside-btn {
+      margin-right: 0;
+      padding: 12px 28px;
+    }
+
+    .slide-1-content,
+    .slide-2-content {
+      padding: 0 4px;
     }
 
     .star-container {
@@ -782,14 +810,9 @@
   }
 
   @include max($bp-xs) {
-    .slide-1-title,
-    .slide-2-title {
-      font-size: 60px;
-    }
-
     .slide-1-content,
     .slide-2-content {
-      margin-top: 8rem;
+      margin-top: 7rem;
     }
   }
 }

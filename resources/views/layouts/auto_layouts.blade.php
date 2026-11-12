@@ -125,65 +125,58 @@
                 </li>
             </ul>
         </div>
-    <!-- Burger menu -->
-        <div class="burger-menu">
-            <span class="burger-icon">
-                <i class="fa-solid fa-bars"></i>
-            </span>
-        </div>
-        <div class="menu-container">
+    <!-- Burger menu (mobile) -->
+        <button type="button" class="burger-menu" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="menu-backdrop" data-menu-backdrop></div>
+        <nav class="menu-container" id="mobile-menu" aria-label="Mobile menu">
             <div class="adaptive-logo">
                 <h2 class="logo-slogan">Auto Service</h2>
-                <div class="close-btn">&times;</div>
+                <button type="button" class="close-btn" aria-label="Close menu">&times;</button>
             </div>
             <ul class="menu">
                 <li class="adaptive-item">
-                    <a class="nav-link sc-FDFgh" tabindex="1" href="{{route('home_auto')}}">Home</a>
-                </li>
-                <li class="adaptive-item menu-item">
-                    <a class="nav-link sc-FDFgh" tabindex="2" href="{{ route('home_auto') }}#about">About us<i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
-                        <ul class="sub-menu sc-FAFfgd">
-                            <li>
-                                <a href="{{route('vision')}}">Company news</a>
-                            </li>
-                            <li>
-                                <a href="{{route('history')}}">About the company</a>
-                            </li>
-                        </ul>
+                    <a class="nav-link sc-FDFgh" href="{{ route('home_auto') }}">Home</a>
                 </li>
                 <li class="adaptive-item">
-                    <a class="nav-link sc-FDFgh" tabindex="3" href="{{ route('home_auto') }}#client-say">Reviews</a>
-                </li>
-                <li class="adaptive-item menu-item">
-                    <a class="nav-link sc-FDFgh" tabindex="4" href="{{ route('home_auto') }}#contacts">Contacts <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
-                        <ul class="sub-menu sc-FAFfgd">
-                            <li>
-                                <a href="{{route('contacts')}}">More detailed information</a>
-                            </li>
+                    <details>
+                        <summary class="nav-link sc-FDFgh">About us</summary>
+                        <ul class="adaptive-sub">
+                            <li><a href="{{ route('home_auto') }}#about">Overview</a></li>
+                            <li><a href="{{ route('vision') }}">Company news</a></li>
+                            <li><a href="{{ route('history') }}">About the company</a></li>
                         </ul>
-                </li>
-                <li class="adaptive-item menu-item">
-                    <a class="nav-link sc-FDFgh" tabindex="5" href="{{ route('offer') }}">Pages <i style="margin-left:3px;" class="fa-solid fa-caret-down"></i></a>
-                        <ul class="sub-menu sc-FAFfgd">
-                            <li>
-                                <a href="{{route('offer')}}">Car for sale</a>
-                            </li>
-                            <li>
-                                <a href="{{route('plan')}}">Monthly subscription</a>
-                            </li>
-                            <li>
-                                <a href="{{route('partners')}}">Partners of the company</a>
-                            </li>
-                        </ul>
+                    </details>
                 </li>
                 <li class="adaptive-item">
+                    <a class="nav-link sc-FDFgh" href="{{ route('home_auto') }}#client-say">Reviews</a>
+                </li>
+                <li class="adaptive-item">
+                    <details>
+                        <summary class="nav-link sc-FDFgh">Contacts</summary>
+                        <ul class="adaptive-sub">
+                            <li><a href="{{ route('home_auto') }}#contacts">Book a repair</a></li>
+                            <li><a href="{{ route('contacts') }}">More detailed information</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="adaptive-item">
+                    <details>
+                        <summary class="nav-link sc-FDFgh">Pages</summary>
+                        <ul class="adaptive-sub">
+                            <li><a href="{{ route('offer') }}">Car for sale</a></li>
+                            <li><a href="{{ route('plan') }}">Monthly subscription</a></li>
+                            <li><a href="{{ route('partners') }}">Partners of the company</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="adaptive-item adaptive-item--sales">
                     <span class="adaptive-link">Sales department</span>
-                    <div style="text-align: left;  margin-top: 20px;  margin-left: 15px; ">
-                        <a href="tel:+380950660959" class="adaptive-link-number">+380 95 066 09 59</a> 
-                    </div>
+                    <a href="tel:+380950660959" class="adaptive-link-number">+380 95 066 09 59</a>
                 </li>
             </ul>
-        </div>
+        </nav>
     </div>
 </div>
 </div>

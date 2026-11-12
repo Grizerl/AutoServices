@@ -93,7 +93,10 @@
 }
 
 .fa-icon-info {
+  flex: 0 0 64px;
+  width: 64px;
   font-size: xxx-large;
+  text-align: center;
   color: $white;
   margin-right: 25px;
 }
@@ -149,6 +152,22 @@
   .gc-3 {
     grid-template-columns: 1fr;
     gap: 25px;
+  }
+
+  .aside-content-info {
+    justify-content: flex-start;
+  }
+
+  .fa-icon-info {
+    flex-basis: 52px;
+    width: 52px;
+    font-size: 2.6rem;
+    margin-right: 16px;
+  }
+
+  .aside-container-info {
+    font-size: 1rem;
+    line-height: 1.6;
   }
 }
 

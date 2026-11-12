@@ -14,27 +14,27 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th style="width: 1%">Id</th>
+              <th class="d-none d-md-table-cell" style="width: 1%">Id</th>
               <th>Customer name</th>
-              <th>Role / car</th>
+              <th class="d-none d-lg-table-cell">Role / car</th>
               <th>Comment</th>
-              <th>Date</th>
+              <th class="d-none d-lg-table-cell">Date</th>
               <th style="width: 1%"></th>
             </tr>
           </thead>
           <tbody>
             @forelse ($client as $customer)
               <tr>
-                <td>{{ $customer->id }}</td>
+                <td class="d-none d-md-table-cell">{{ $customer->id }}</td>
                 <td>{{ $customer->name }}</td>
-                <td>{{ $customer->role }}</td>
+                <td class="d-none d-lg-table-cell">{{ $customer->role }}</td>
                 <td>{{ \Illuminate\Support\Str::limit($customer->commentars, 120) }}</td>
-                <td class="text-nowrap">{{ $customer->created_at?->format('Y-m-d') }}</td>
+                <td class="text-nowrap d-none d-lg-table-cell">{{ $customer->created_at?->format('Y-m-d') }}</td>
                 <td class="text-nowrap">
-                  <a class="btn btn-info btn-sm" href="{{ route('client.edit', $customer) }}"><i class="fas fa-pencil-alt"></i> Edit</a>
+                  <a class="btn btn-info btn-sm" title="Edit" href="{{ route('client.edit', $customer) }}"><i class="fas fa-pencil-alt"></i><span class="d-none d-lg-inline"> Edit</span></a>
                   <form action="{{ route('client.destroy', $customer) }}" method="post" class="d-inline" data-confirm="Delete this review?">
                     @csrf @method('DELETE')
-                    <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash"></i> Delete</button>
+                    <button class="btn btn-danger btn-sm" title="Delete" type="submit"><i class="fas fa-trash"></i><span class="d-none d-lg-inline"> Delete</span></button>
                   </form>
                 </td>
               </tr>
